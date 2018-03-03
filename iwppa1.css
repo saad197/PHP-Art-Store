@@ -1,0 +1,140 @@
+
+h1 { font-size: 3em; font-weight: bold; margin-top: 0;}
+
+div#topHeaderRow {
+   font-size: 0.9em;
+   color: white;
+   font-family: Bad Script;
+}
+
+#topHeaderRow ul {
+    margin-right: 5px;
+}
+
+#topHeaderRow li a{
+    color: white;
+}
+
+#mainNavText {
+    font-size: 1.0em;
+    color: whitesmoke;
+}
+
+#mainNavigationRow {
+    font-family: 'PT Sans Caption', sans-serif;
+}
+
+.navbar-wrapper {
+    position: absolute;
+    color: white;
+    background: visible;
+    margin: 1% 0 0 7%;
+}
+
+.brand-text {
+    font-size: 32px;
+    color: white;
+}
+.nav-text {
+    color: white;
+    font-size: 16px;
+}
+
+.google-font {
+    font-family: 'PT Sans Caption', sans-serif;
+}
+
+#logoRow {
+    font-family: 'PT Sans Caption', sans-serif;
+}
+.space {
+    margin-left: 50px;
+}
+
+.wrapper {
+    width: 80%;
+    margin: auto;
+    margin: 10% 10%;
+}
+.wrapper-list {
+   margin: 0 0 10% 0;
+}
+
+.wrapper-list li {
+    list-style-type: none;
+}
+
+.wrapper-list li {
+    margin: 10% 0 10% 0;
+}
+
+.btn-space {
+    margin: 5%;
+}
+
+.price { 
+    color: red;
+}
+
+.similarTitle { 
+    margin-bottom: 5%;
+ }
+
+
+.cartText { 
+
+}
+
+footer {
+   margin-top: 1em;
+   background-color: #E7E7E7;
+
+}
+
+.form-margin {
+    margin-bottom: 2%;
+}
+
+.tight-form-group {  }
+
+#copyrightRow { 
+    background-color: #3A3A3A; 
+    font-size: 12px;
+    color: rgb(160, 160, 160);
+}
+
+#copyright-message {
+    margin-left: 5%;
+}
+
+#copyright-symbol {
+    float: right;
+    margin-right: 5%;
+}
+.pic {
+    margin-bottom: 10%;
+    color: white;
+}
+.jumbotron {
+    background-image: url("images/whistler-1.jpg");
+    background-repeat: repeat-x;
+}
+
+#inner-button {
+    border-radius: 40%;
+}
+
+.thumbnail-style {
+    margin-top: 5%;
+    border-style: none;
+    text-align: justify;
+}
+
+.align-header {
+   text-align: center;
+   font-size: 20px;
+}
+
+.align-button {
+    margin-left: 35%;
+}
