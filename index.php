@@ -15,30 +15,8 @@
 </head>
 
 <body>
-    <div class="navbar-wrapper">
-        <div class="container">
-            <div class="navbar navbar-nav navbar-static-top">
-                <div class="navbar-header">
-                    <a class="navbar-brand brand-text google-font" href="#">Assign 2</a>
-                </div>
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a class="nav-text" href="index.php">Home</a>
-                    </li>
-                    <li>
-                        <a class="nav-text" href="about.php">About Us</a>
-                    </li>
-                    <li>
-                        <a class="nav-text" href="works.php">Work</a>
-                    </li>
-                    <li>
-                        <a class="nav-text" href="artists.php">Artists</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
+    <?php include('includes/primary-navigation.inc.php')?>
+    <div clas="container">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -139,7 +117,7 @@
             </div>
         </div>
     </div>
-
+</div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
