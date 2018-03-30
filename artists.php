@@ -14,18 +14,18 @@
 
 <body>
     <?php include 'includes/primary-navigation.inc.php'?>
-        <div class="container">
+        <!-- <div class="container"> -->
             <div class="row">
-            <div>
-                <br>
-                <h1 class="google-font">This Week's Best-Selling Artists</h1>
+                <div>
+                    <br>
+                    <h1 class="google-font">This Week's Best-Selling Artists</h1>
+                </div>
+                <div class="alert alert-warning">
+                    Each week we show you who are our best selling artists...
+                </div>
             </div>
-            <div class="alert alert-warning">
-                Each week we show you who are our best selling artists...
-            </div>
-
-        <!-- <div class="container">
-            <div class="row"> -->
+        <!-- <div class="container"> -->
+            <div class="row"> 
                 <div class="col-md-2">
                     <div class="thumbnail">
                         <img src="images/artists/1.jpg" alt="picaso">
@@ -170,8 +170,8 @@
                         </div>
                     </div>
                 </div>
-            <!-- </div>
-        </div> -->
+            </div>
+        <!-- </div> -->
         <!-- <div class="container"> -->
             <div>
                 <h3 class="google-font">Artists by Genre</h3>
@@ -196,7 +196,7 @@
             </div>
         </div>
         </div>
-        </div>
+        <!-- </div> -->
     <!-- </div> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

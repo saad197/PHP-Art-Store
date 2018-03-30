@@ -79,5 +79,6 @@
                 </ul>
             </nav>
         </div>
+    </div>
 
 <!-- end mainNavigationRow -->
