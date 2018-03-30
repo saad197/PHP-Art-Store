@@ -1,6 +1,6 @@
 <?php
 
-    include 'includes/art-utilities.php';
+    include 'includes/artist-utilities.php';
     if(isset($POST_['artistID']))
     {
         $artistID = $POST_['artistID'];
@@ -9,7 +9,7 @@
         $artistID = 1;
     }
 
-    echo $artistID;
+    
 
 
 ?>
