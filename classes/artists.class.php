@@ -1,6 +1,6 @@
 <?php
 
-    class artists
+    class Artists
     {
         private $artistID;
         private $artistLink;
