@@ -85,7 +85,7 @@
             $this->yearOfDeath = $yearOfDeath;
         }
         function getYearOfDeath() {
-            return $this->getYearOfDeath;
+            return $this->yearOfDeath;
         }
     }
     

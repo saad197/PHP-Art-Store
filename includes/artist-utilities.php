@@ -1,8 +1,7 @@
 <?php 
-    include 'config-inc.php';
+    include 'config.inc.php';
     include 'classes/artist.class.php';
 
-    
     function getArtistDetails($artistID) {
         try
         {

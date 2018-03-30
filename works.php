@@ -1,16 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WIP - Assignment 1</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!-- Custom styles for this template -->
-    <link href="css/common.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Bad Script' rel='stylesheet'>
-    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Caption" rel="stylesheet">
-</head>
+<?php include("includes/head.inc.php"); ?>
 
 <body>
     <?php include 'includes/primary-navigation.inc.php'?>
@@ -345,18 +336,10 @@
                 </form>
             </div>
         </div>
-        <div id="copyrightRow">
-            <br>
-            <p>
-                <span id="copyright-message">All images are copyright to their owners. This is just a hypothetical site</span>
-                <span id="copyright-symbol">&copy; 2014 Copyright Art Store</span>
-            </p>
-            <br>
-       </div>
-        </div>
+        <?php include("includes/copyright.inc.php"); ?>
+    </div>
+    <?php include('includes/scripts.inc.php'); ?>
     </footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 
 </html>
