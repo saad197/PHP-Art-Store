@@ -23,16 +23,16 @@
                 </div>
                 <ul class="nav navbar-nav">
                     <li>
-                        <a class="nav-text" href="index.html">Home</a>
+                        <a class="nav-text" href="index.php">Home</a>
                     </li>
                     <li>
-                        <a class="nav-text" href="about.html">About Us</a>
+                        <a class="nav-text" href="about.php">About Us</a>
                     </li>
                     <li>
-                        <a class="nav-text" href="works.html">Work</a>
+                        <a class="nav-text" href="works.php">Work</a>
                     </li>
                     <li>
-                        <a class="nav-text" href="artists.html">Artists</a>
+                        <a class="nav-text" href="artists.php">Artists</a>
                     </li>
                 </ul>
             </div>
