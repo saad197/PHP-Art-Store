@@ -138,3 +138,9 @@ footer {
 .align-button {
     margin-left: 35%;
 }
+
+
+#artist-img {
+    width: 225;
+    height: 275px;
+}
