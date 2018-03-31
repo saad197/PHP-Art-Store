@@ -7,9 +7,10 @@ function getArtistNames($searchResult) {
     {
         $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT ArtistID, FirstName, LastName FROM Artists where FirstName Like ?";
+        $sql = "SELECT ArtistID, FirstName, LastName FROM Artists where FirstName Like ? OR LastName LIKE ?";
         $result = $pdo->prepare($sql);
         $result->bindValue(1, $searchResult."%");
+        $result->bindValue(2, $searchResult."%");
         $result->execute();
         $artistNameList = array();
         while ($row = $result->fetch()) {

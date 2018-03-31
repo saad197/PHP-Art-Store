@@ -15,7 +15,7 @@
                         document.getElementById("suggestion").innerHTML = this.responseText;
                     }
                 }
-                xmlhttp.open("POST","async-request/artists.list.php", true);
+                xmlhttp.open("POST","async-request/search-results.php", true);
                 xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xmlhttp.send("search="+search);
             }
