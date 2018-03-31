@@ -144,3 +144,8 @@ footer {
     width: 225;
     height: 275px;
 }
+
+#artwork-panel {
+    height: 225px;
+    margin-bottom: 5px;
+}

@@ -1,7 +1,6 @@
 <?php 
-    include('config.inc.php');
+    include('art-ultilities.inc.php');
     include('classes/artist.class.php');
-    require('art-ultilities.php');
 
     function getArtistDetails($artistID) {
         try
@@ -26,11 +25,11 @@
     }
 
     function showArtistDetials($artistID) {
-        $artist = getArtistDetails($artistID);  
+        $artist = getArtistDetails($artistID); 
+        $artWorks = getArtWorkByArtist($artistID); 
         include("includes/single-artist-details.inc.php");    
     }
 
-    getArtWorkByArtist(1);
     function getArtWorkByArtist($artistID) {
         try
         {
@@ -41,10 +40,10 @@
             $statement->bindValue(1, $artistID);
             $statement->execute();
             while($row = $statement->fetch()) {
-                //ArtWorks[] = getArtDetails();
+                $artWorks[] = getPaintingDetails($row[0]);
             }
             $pdo = null;
-            return $artist;
+            return $artWorks;
         }
         catch (PDOException $e)
         {
