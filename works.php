@@ -1,3 +1,14 @@
+
+<?php
+// since there is not enough images file for all paintings , just show the painting as default panting detail
+    include('includes/art-ultilities.inc.php');
+    $listOfPaintings = getPaintingList();
+    $defaultPainting = $listOfPaintings[437]; // get this paiting ID by looking at  database table Painting
+    echo "<pre>";
+    print_r($defaultPainting);
+    echo "</pre>";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,22 +18,19 @@
     <?php include 'includes/primary-navigation.inc.php'?>
         <div class="row">
             <div class="col-md-10">
-                <h2 class="google-font">Self-portrait in a Straw Hat</h2>
+                <h2 class="google-font"><?php echo $defaultPainting->getTitle();?></h2>
                 <p>By
-                    <a href="#">Louise Elisabeth Lebrun</a>
+                    <a href="#"><?php echo $defaultPainting->getArtistName();?></a>
                 </p>
                 <div class="row">
                     <div class="col-md-5">
-                        <img src="images/113010.jpg" class="img-thumbnail img-responsive" alt="Self-portrait in a Straw Hat" />
+                        <img src="images/<?php echo $defaultPainting->getImageFileName();?>.jpg" class="img-thumbnail img-responsive" alt="<?php echo $defaultPainting->getTitle();?>" />
                     </div>
                     <div class="col-md-7 row">
                         <p>
-                            The painting appears, after cleaning, to be an autograph replica of a picture, the original of which was painted in Brussels
-                            in 1782 in free imitation of Rubens's 'Chapeau de Paille', which LeBrun had seen in Antwerp.
-                            It was exhibited in Paris in 1782 at the Salon de la Correspondance. LeBrun's original is recorded
-                            in a private collection in France.
+                            <? echo $defaultPainting->getDescription(); ?>
                         </p>
-                        <p class="price">$700</p>
+                        <p class="price">$<?php echo $defaultPainting->getCost();?></p>
                         <div class="btn-group">
                             <button type="button" class="btn btn-default btn-lg">
                                 <a href="#">
@@ -41,20 +49,20 @@
                             <table class="table">
                                 <tr>
                                     <th>Date:</th>
-                                    <td>1782</td>
+                                    <td><?php echo $defaultPainting->getYearOfWork();?></td>
                                 </tr>
                                 <tr>
                                     <th>Medium:</th>
-                                    <td>Oil on canvas</td>
+                                    <td><?php echo $defaultPainting->getMedium();?></td>
                                 </tr>
                                 <tr>
                                     <th>Dimensions:</th>
-                                    <td>98cm x 71cm</td>
+                                    <td><?php echo $defaultPainting->getWidth();?> cm x <?php echo $defaultPainting->getHeight();?>cm</td>
                                 </tr>
                                 <tr>
                                     <th>Home:</th>
                                     <td>
-                                        <a href="#">National Gallery, London</a>
+                                        <a href="#"><?php echo $defaultPainting->getGalleryName();?>, <?php echo $defaultPainting->getGalleryCity();?></a>
                                     </td>
                                 </tr>
                                 <tr>

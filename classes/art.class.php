@@ -13,6 +13,7 @@
         private $artitsName;
         private $galleryID;
         private $galleryName;
+        private $galleryCity;
         private $imageFileName;
         private $title;
         private $shapID;
@@ -21,14 +22,14 @@
         private $description;
         private $yearOfWork;
         private $width;
-        private $heigh;
+        private $height;
         private $medium;
         private $cost;
         private $genresName;
         private $subjectName;
 
         // constructor
-        public function __construct($paintingId, $artistId, $artistName, $galleryId, $galleryName, $imgName, $title, $shapId, $shapeName, $copyrightText,
+        public function __construct($paintingId, $artistId, $artistName, $galleryId, $galleryName, $galleryCity, $imgName, $title, $shapId, $shapeName, $copyrightText,
                                       $desc, $yearOfWork, $width, $height, $medium, $cost, $genresName, $subjectName) {
             
             $this->setPaintingID($paintingId);
@@ -36,6 +37,7 @@
             $this->setArtistName($artistName);
             $this->setGalleryID($galleryId);
             $this->setGalleryName($galleryName);
+            $this->setGalleryCity($galleryCity);
             $this->setImageFileName($imgName);
             $this->setTitle($title);
             $this->setShapId($shapId);
@@ -70,6 +72,10 @@
 
         function setGalleryName($galleryName) {
             $this->galleryName = $galleryName;
+        }
+
+        function setGalleryCity($galleryCity) {
+            $this->galleryCity = $galleryCity;
         }
 
         function setImageFileName($imgName) {
@@ -130,6 +136,7 @@
         function getArtistName() {return $this->artitsName;}
         function getGalleryID() {return $this->galleryID;}
         function getGalleryName() {return $this->galleryName;}
+        function getGalleryCity() {return $this->galleryCity;}
         function getImageFileName() {return $this->imageFileName;}
         function getTitle() {return $this->title;}
         function getShapeId() {return $this->shapID;}
@@ -138,7 +145,7 @@
         function getDescription() {return $this->description;}
         function getYearOfWork() {return $this->yearOfWork;}
         function getWidth() {return $this->width;}
-        function getHeight() {return $this->heigh;}
+        function getHeight() {return $this->height;}
         function getMedium() {return $this->medium;}
         function getCost() {return $this->cost;}
         function getGenresName() {return $this->genresName;}
