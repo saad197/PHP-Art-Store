@@ -1,6 +1,6 @@
 <?php
 
-    class Artists
+    class Artist
     {
         private $artistID;
         private $artistLink;
@@ -14,15 +14,15 @@
 
         public function __construct($artistID, $artistLink, $details, $firstName, $lastName, $gender, $nationality, $yearOfBirth, $yearOfDeath)
         {
-            setArtistID($artistID);
-            setArtistLink($artistLink);
-            setDetails($details);
-            setFirstName($firstName);
-            setLastName($lastName);
-            setGender($gender);
-            setNationality($nationality);
-            setYearOfBirth($yearOfBirth);
-            setYearOfDeath($yearOfDeath);
+            $this->setArtistID($artistID);
+            $this->setArtistLink($artistLink);
+            $this->setDetails($details);
+            $this->setFirstName($firstName);
+            $this->setLastName($lastName);
+            $this->setGender($gender);
+            $this->setNationality($nationality);
+            $this->setYearOfBirth($yearOfBirth);
+            $this->setYearOfDeath($yearOfDeath);
         }
 
         function setArtistID($artistID){
@@ -39,7 +39,7 @@
             return $this->artistLink;
         }
 
-        function setDetails($setDetails){
+        function setDetails($details){
             $this->details = $details;
         }
         function getDetails() {
@@ -85,7 +85,7 @@
             $this->yearOfDeath = $yearOfDeath;
         }
         function getYearOfDeath() {
-            return $this->getYearOfDeath;
+            return $this->yearOfDeath;
         }
     }
     
