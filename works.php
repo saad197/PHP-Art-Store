@@ -15,7 +15,7 @@
 <?php include("includes/head.inc.php"); ?>
 
 <body>
-    <?php include 'includes/primary-navigation.inc.php'?>
+    <?php include('includes/primary-navigation.inc.php');?>
         <div class="row">
             <div class="col-md-10">
                 <h2 class="google-font"><?php echo $defaultPainting->getTitle();?></h2>
