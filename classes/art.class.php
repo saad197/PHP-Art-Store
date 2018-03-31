@@ -10,9 +10,13 @@
     class Art {
         private $paintingID;
         private $artistID;
+        private $artitsName;
         private $galleryID;
+        private $galleryName;
         private $imageFileName;
         private $title;
+        private $shapID;
+        private $shapeName;
         private $copyrightText;
         private $description;
         private $yearOfWork;
@@ -20,37 +24,52 @@
         private $heigh;
         private $medium;
         private $cost;
+        private $genresName;
+        private $subjectName;
 
         // constructor
-        public function __construct($paintingId, $artistId, $galleryId, $imgName, $title, $copyrightText,
-                                      $desc, $yearOfWork, $width, $height, $medium, $cost) {
+        public function __construct($paintingId, $artistId, $artistName, $galleryId, $galleryName, $imgName, $title, $shapId, $shapeName, $copyrightText,
+                                      $desc, $yearOfWork, $width, $height, $medium, $cost, $genresName, $subjectName) {
             
-            setPaintingID($paintingId);
-            setArtistID($artistId);
-            setGalleryID($galleryId);
-            setImageFileName($imgName);
-            setTitle($title);
-            setCopyrightText($copyrightText);
-            setDescription($desc);
-            setYearOfWork($yearOfWork);
-            setWidth($width);
-            setHeight($heigh);
-            setMedium($medium);
-            setCost($cost);
-
+            $this->setPaintingID($paintingId);
+            $this->setArtistID($artistId);
+            $this->setArtistName($artistName);
+            $this->setGalleryID($galleryId);
+            $this->setGalleryName($galleryName);
+            $this->setImageFileName($imgName);
+            $this->setTitle($title);
+            $this->setShapId($shapId);
+            $this->setShapName($shapeName);
+            $this->setCopyrightText($copyrightText);
+            $this->setDescription($desc);
+            $this->setYearOfWork($yearOfWork);
+            $this->setWidth($width);
+            $this->setHeight($height);
+            $this->setMedium($medium);
+            $this->setCost($cost);
+            $this->setGenresName($genresName);
+            $this->setSubjectName($subjectName);
         }
 
         // setter
         function setPaintingID($paintingId) {
-            $this->$paintingID = $paintingId;
+            $this->paintingID = $paintingId;
         }
 
         function setArtistID($artistId) {
-            $this->$artistID = $artistId;
+            $this->artistID = $artistId;
+        }
+
+        function setArtistName($artistName) {
+            $this->artitsName = $artistName;
         }
 
         function setGalleryID($galleryId) {
-            $this->$galleryID = $galleryId;
+            $this->galleryID = $galleryId;
+        }
+
+        function setGalleryName($galleryName) {
+            $this->galleryName = $galleryName;
         }
 
         function setImageFileName($imgName) {
@@ -59,6 +78,14 @@
 
         function setTitle($title) {
             $this->title = $title;
+        }
+
+        function setShapId($shapId) {
+            $this->shapID = $shapId;
+        }
+
+        function setShapName($shapeName) {
+            $this->shapeName = $shapeName;
         }
 
         function setCopyrightText($copyrightText) {
@@ -89,12 +116,24 @@
             $this->cost = $cost;
         }
 
+        function setGenresName($genresName) {
+            $this->genresName = $genresName;
+        }
+
+        function setSubjectName($subjectName) {
+            $this->subjectName = $subjectName;
+        }
+
         //getter
         function getPaintingID() {return $this->paintingID;}
         function getArtistID() {return $this->artistID;}
+        function getArtistName() {return $this->artitsName;}
         function getGalleryID() {return $this->galleryID;}
+        function getGalleryName() {return $this->galleryName;}
         function getImageFileName() {return $this->imageFileName;}
         function getTitle() {return $this->title;}
+        function getShapeId() {return $this->shapID;}
+        function getShapeName() {return $this->shapeName;}
         function getCopyrightText() {return $this->copyrightText;}
         function getDescription() {return $this->description;}
         function getYearOfWork() {return $this->yearOfWork;}
@@ -102,6 +141,8 @@
         function getHeight() {return $this->heigh;}
         function getMedium() {return $this->medium;}
         function getCost() {return $this->cost;}
+        function getGenresName() {return $this->genresName;}
+        function getSubjectName() {return $this->subjectName;}
     }
 
 ?>
