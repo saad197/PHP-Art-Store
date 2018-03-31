@@ -7,7 +7,7 @@ function getSubjectList() {
     {
         $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT SubjectID, SubjectName FROM subjects";
+        $sql = "SELECT SubjectID, SubjectName FROM Subjects";
         $result = $pdo->prepare($sql);
         $result->execute();
         while ($row = $result->fetch()) {

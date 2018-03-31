@@ -2,10 +2,21 @@
 <?php
 // since there is not enough images file for all paintings , just show the painting as default panting detail
     include('includes/art-ultilities.inc.php');
-    $defaultPainting = getPaintingDetails(427);  
-    echo "<pre>";
-    print_r($defaultPainting);
-    echo "</pre>";
+    $paintingID = 8;
+    $defaultPainting = getPaintingDetails($paintingID);
+    $genresNames = $defaultPainting->getGenresName();
+    $genresName = '';
+    // get all genre names and put in <a>
+    foreach($genresNames as $element) {
+        $genresName .= "<a href=''>{$element}</a>". " ";
+    }
+
+    $subjectNames = $defaultPainting->getSubjectName();
+    $subjectName = '';
+    // get all subject names and put in <a>
+    foreach ($subjectNames as $eleemnt) {
+        $subjectName .= "<a href=''>{$eleemnt}</a>". " ";
+    } 
 ?>
 
 <!DOCTYPE html>
@@ -67,15 +78,17 @@
                                 <tr>
                                     <th>Genres:</th>
                                     <td>
-                                        <a href="#">Realism</a>,
-                                        <a href="#">Rococo</a>
+                                        <?php
+                                            echo $genresName;
+                                        ?>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Subjects:</th>
                                     <td>
-                                        <a href="#">People</a>,
-                                        <a href="#">Arts</a>
+                                        <?php
+                                            echo $subjectName;
+                                        ?>
                                     </td>
                                 </tr>
                             </table>
