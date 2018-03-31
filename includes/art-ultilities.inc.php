@@ -46,8 +46,8 @@ function getPaintingDetails($paintingsID) {
                 $paintings[$aPainting->getPaintingID()] = $aPainting;
             }
         }
-        return $paintings[$paintingsID];
         $pdo = null;
+        return $paintings[$paintingsID];
     } catch(PDOException $e) {
         die($e->getMessage());
         return null;
