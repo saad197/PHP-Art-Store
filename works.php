@@ -2,8 +2,7 @@
 <?php
 // since there is not enough images file for all paintings , just show the painting as default panting detail
     include('includes/art-ultilities.inc.php');
-    $listOfPaintings = getPaintingList();
-    $defaultPainting = $listOfPaintings[437]; // get this paiting ID by looking at  database table Painting
+    $defaultPainting = getPaintingDetails(8);  
     echo "<pre>";
     print_r($defaultPainting);
     echo "</pre>";

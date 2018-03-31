@@ -27,43 +27,10 @@
     function showArtistDetials($artistID) {
         $artist = getArtistDetails($artistID);
         
-        // Show artist name
-        echo "
-            <div class=\"col-md-10 row\">
-                <h1 class=\"google-font row\">" . $artist->getFirstName()  . " ". $artist->getLastName() . " </h1>
-                <div class=\"col-md-5 row\">
-                    <img src=\"images/artists/".$artistID.".jpg\" id=\"artist-img\"  class=\"img-thumbnail img-responsive row\" alt=\"Self-portrait in a Straw Hat\">
-                </div>
-                <div class=\"col-md-7 row\">
-                    <p class=\"row\">".$artist->getDetails()."</p>
-                ";
+        include("includes/single-artist-details.inc.php");
         
-        echo " <div class=\"btn-group\">
-                    <button type=\"button\" class=\"btn btn-default btn-lg\">
-                        <a href=\"#\">
-                            <span class=\"glyphicon glyphicon-heart\"></span> Add to Favourite List</a>
-                    </button>
-                </div>";
-        echo " <p></p>
-                <div class=\"panel panel-default\">
-                            <div class=\"panel-heading google-font\">
-                                Product Details
-                            </div>
-                            <table class=\"table\">
-                                <tr>
-                                    <th>Date:</th>
-                                    <td>".$artist->getYearOfBirth()."-".$artist->getYearOfDeath()."</td>
-                                </tr>
-                                <tr>
-                                    <th>Nationality:</th>
-                                    <td>" . $artist->getNationality() . "</td>
-                                </tr>
-                                <tr>
-                                    <th>More Info:</th>
-                                    <td><a href=".$artist->getArtistLink().">".$artist->getArtistLink()."</a></td>
-                                </tr>
-                            </table>";
-        echo "</div>";
-        echo "</div>";
+        
+        
+        
     }
 ?>
