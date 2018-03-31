@@ -1,6 +1,5 @@
 <?php 
 include("includes/config.inc.php");
-
 $searchResult = $_REQUEST['str'];
 function getArtList($searchResult) {
     try
@@ -23,10 +22,9 @@ function getArtList($searchResult) {
     return  $artList;
 }
 $artists = getArtList($searchResult);
-print_r($artists);
 foreach($artists as $key => $value)
 {
     echo '
-    <a href = "artists-details.php?artistID='.$key.'"><li>'.$value.'</li></a>';
+    <a href = "artist-details.php?artistID='.$key.'"><li>'.$value.'</li></a>';
 }
 ?>

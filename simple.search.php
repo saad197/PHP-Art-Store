@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 <?php include("includes/head.inc.php"); ?>
@@ -14,7 +15,7 @@
                     document.getElementById("suggestion").innerHTML = this.responseText;
                     }
                 }
-                xmlhttp.open("GET","artists.list.php?str="+str,true);
+                xmlhttp.open("GET","artists.list.php",true);
                 xmlhttp.send();
             }
     </script>
