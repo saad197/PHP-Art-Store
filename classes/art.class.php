@@ -123,11 +123,11 @@
         }
 
         function setGenresName($genresName) {
-            $this->genresName = $genresName;
+            $this->genresName[] = $genresName;
         }
 
         function setSubjectName($subjectName) {
-            $this->subjectName = $subjectName;
+            $this->subjectName[] = $subjectName;
         }
 
         //getter

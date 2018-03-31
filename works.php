@@ -2,7 +2,7 @@
 <?php
 // since there is not enough images file for all paintings , just show the painting as default panting detail
     include('includes/art-ultilities.inc.php');
-    $defaultPainting = getPaintingDetails(8);  
+    $defaultPainting = getPaintingDetails(427);  
     echo "<pre>";
     print_r($defaultPainting);
     echo "</pre>";

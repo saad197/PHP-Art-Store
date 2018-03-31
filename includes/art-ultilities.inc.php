@@ -27,19 +27,20 @@ function getPaintingDetails($paintingsID) {
                                 $row['ShapeID'],$row['ShapeName'],$row['CopyrightText'],$row['Description'],
                                 $row['YearOfWork'],$row['Width'],$row['Height'],$row['Medium'],$row['Cost'],
                                 $row['GenreName'],$row['SubjectName']);
+            //adding for duplicate entries for same painting id
             if(array_key_exists($aPainting->getPaintingID(),$paintings)) {
-                // collecting a different subjects for same paintings id
-                $tempSubject[] = $paintings[$aPainting->getPaintingID()]->getSubjectName();
-                if(!in_array($aPainting->getSubjectName(), $tempSubject)) {
-                    $tempSubject[] = $aPainting->getSubjectName();
+                //adding new subject names if not exist in array subjects
+                $newSubjectName = $row['SubjectName'];
+                $subjectNames = $paintings[$aPainting->getPaintingID()]->getSubjectName();
+                if(!in_array($newSubjectName, $subjectNames)){
+                    $paintings[$aPainting->getPaintingID()]->setSubjectName($newSubjectName);
                 }
-                $paintings[$aPainting->getPaintingID()]->setSubjectName($tempSubject);
-                // colllecting a different genres for same paintings id
-                $tempGenres[] = $paintings[$aPainting->getPaintingID()]->getGenresName();
-                if(!in_array($aPainting->getGenresName(), $tempGenres)) {
-                    $tempGenres[] = $aPainting->getGenresName();
+                //adding new genres names if not exist in array genres
+                $newGenereName = $row['GenreName'];
+                $genereNames = $paintings[$aPainting->getPaintingID()]->getGenresName();
+                if(!in_array($newGenereName, $genereNames)){ 
+                    $paintings[$aPainting->getPaintingID()]->setGenresName($newGenereName);
                 }
-                $paintings[$aPainting->getPaintingID()]->setGenresName($tempGenres);
             }
             else {
                 $paintings[$aPainting->getPaintingID()] = $aPainting;
@@ -49,6 +50,7 @@ function getPaintingDetails($paintingsID) {
         $pdo = null;
     } catch(PDOException $e) {
         die($e->getMessage());
+        return null;
     }
 }
 

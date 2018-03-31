@@ -1,6 +1,7 @@
 <?php 
-    include 'config.inc.php';
-    include 'classes/artist.class.php';
+    include('config.inc.php');
+    include('classes/artist.class.php');
+    require('art-ultilities.php');
 
     function getArtistDetails($artistID) {
         try
@@ -8,7 +9,7 @@
             $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "SELECT ArtistID, ArtistLink, FirstName, LastName, Gender, Nationality, YearofBirth, YearOfDeath, Details
-                      FROM artists WHERE artistID = ? ";
+                      FROM Artists WHERE artistID = ? ";
             $statement = $pdo->prepare($sql);
             $statement->bindValue(1, $artistID);
             $statement->execute();
@@ -25,12 +26,30 @@
     }
 
     function showArtistDetials($artistID) {
-        $artist = getArtistDetails($artistID);
-        
-        include("includes/single-artist-details.inc.php");
-        
-        
-        
-        
+        $artist = getArtistDetails($artistID);  
+        include("includes/single-artist-details.inc.php");    
+    }
+
+    getArtWorkByArtist(1);
+    function getArtWorkByArtist($artistID) {
+        try
+        {
+            $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = "SELECT PaintingID FROM Paintings WHERE ArtistID = ? ";
+            $statement = $pdo->prepare($sql);
+            $statement->bindValue(1, $artistID);
+            $statement->execute();
+            while($row = $statement->fetch()) {
+                //ArtWorks[] = getArtDetails();
+            }
+            $pdo = null;
+            return $artist;
+        }
+        catch (PDOException $e)
+        {
+            die($e->getMessage());
+            return null;
+        }
     }
 ?>
