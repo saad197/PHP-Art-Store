@@ -1,9 +1,15 @@
 <?php
 include('includes/subject-ultilities.inc.php');
 $subjects = getSubjectList();
-echo "<pre>";
-print_r($subjects);
-echo "</pre>";
+$subjectNames = '';
+foreach ($subjects as $subject) {
+    if(isset($subject)) {
+        $subjectNames .= "<option>{$subject->getSubjectName()}</option>";
+    }
+}
+// echo "<pre>";
+// print_r($subjectNames);
+// echo "</pre>";
 ?>
 
 <!DOCTYPE html>
@@ -35,25 +41,18 @@ echo "</pre>";
                             
                             <div class="dropdown">
                                 <h3>Genre</h3>
-                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Choose Genre
-                                <span class="caret"></span></button>
-                                <ul class="dropdown-menu">
-                                <li><a href="#">HTML</a></li>
-                                <li><a href="#">CSS</a></li>
-                                <li><a href="#">JavaScript</a></li>
-                                </ul>
+                                <select>
+                                    
+                                </select>
                             </div><!--end drop down for Genre-->
                             
-                            <div class="dropdown">
+                            <div>
                                 <h3>Subject</h3>
-                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Choose Subject
-                                <span class="caret"></span></button>
-                                <ul class="dropdown-menu">
-                                <li><a href="#">HTML</a></li>
-                                <li><a href="#">CSS</a></li>
-                                <li><a href="#">JavaScript</a></li>
-                                </ul>
+                                <select>
+                                    <?php if(isset($subjectNames)) { echo $subjectNames;}?>
+                                </select>
                             </div><!--end drop down for Subject-->
+                            <br />
                             <div>
                                 <h5>Medium</h5>
                                 <p><input type="text" class="form-control" id="art-medium" placeholder=""></p>
