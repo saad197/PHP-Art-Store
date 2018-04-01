@@ -2,7 +2,7 @@
 <?php
 // since there is not enough images file for all paintings , just show the painting as default panting detail
     include('includes/art-ultilities.inc.php');
-    $paintingID = 437;
+    $paintingID = 8;
     $defaultPainting = getPaintingDetails($paintingID);
     $genresNames = $defaultPainting->getGenresName();
     $genresName = '';
