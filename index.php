@@ -109,6 +109,5 @@
             <!-- </div> -->
         </div>
     <!-- </div> -->
-    <?php include('includes/scripts.inc.php'); ?>
 </body>
 </html>

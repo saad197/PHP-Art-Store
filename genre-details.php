@@ -13,6 +13,5 @@
     include('includes/primary-navigation.inc.php');
 ?>
 <body>
-<?php include('includes/scripts.inc.php'); ?>
 </body>
 </html>
