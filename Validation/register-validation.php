@@ -89,11 +89,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["phone"])) {
         $phoneErr = "phone is required";
+        $error = $phoneErr;
     } else {
-        $phone = test_input($_POST["lastname"]);
+        $phone = test_input($_POST["phone"]);
         // check if name only contains letters and whitespace
-        if (!preg_match("/^[a-zA-Z ]*$/", $lastName)) {
-            $phoneErr = "only numbers";
+        if (!preg_match("/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/", $phone)) {
+            $phoneErr = "Not valid format, must follow format 000-000-0000";
             $error = $phoneErr;
         }
     }
@@ -159,10 +160,7 @@ echo "empty";
     }
 
     //redirects user and also sends data
-    if(isset($_POST['submit'])){
-
-        header('Location: includes/process-registration.php?'.$addUserEnter);
-    }
+    header('Location: includes/process-registration.php?'.$addUserEnter);
 
 }
 
