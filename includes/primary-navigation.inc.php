@@ -72,7 +72,7 @@
                                 <a href="works.php">Art Work</a>
                             </li>
                             <li>
-                                <a href="#">Genres</a>
+                                <a href="genres.php">Genres</a>
                             </li>
                         </ul>
                     </li>

@@ -150,6 +150,10 @@ footer {
     margin-bottom: 5px;
 }
 
+#genre-panel {
+    margin-right: 38px;
+}
+
 /* edit art form styles*/
 #edit-work-form {
     border: solid 1px grey;

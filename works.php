@@ -1,6 +1,12 @@
 
 <?php
 // since there is not enough images file for all paintings , just show the painting as default panting detail
+    if(isset($_GET['PaintingID'])) {
+        $paintingID = $_GET['PaintingID'];
+    }
+    else {
+        $paintingID = 8;
+    }
     include('includes/art-ultilities.inc.php');
     $paintingID = 8;
     $defaultPainting = getPaintingDetails($paintingID);
