@@ -1,7 +1,7 @@
-<?php include("../includes/subject.list.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php include("../includes/head.inc.php"); ?>
+<?php include("../includes/subject.list.php");
+include("../includes/head.inc.php"); ?>
 <body>
     <div class = "dropdown">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select subjectList
@@ -17,6 +17,6 @@
             ?>
         </ul>
     </div>
-<?php include("includes/scripts.inc.php"); ?>
+<?php include("../includes/scripts.inc.php"); ?>
 </body>
 </html>

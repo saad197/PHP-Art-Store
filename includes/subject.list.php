@@ -1,6 +1,6 @@
 <?php
-include("includes/config.inc.php");
-include("classes/subject.list.class.php");
+include("config.inc.php");
+include("../classes/subject.list.class.php");
 
 function getSubjectList() {
     try
