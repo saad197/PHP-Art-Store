@@ -1,9 +1,6 @@
 
 <?php
     session_start();
-    if(isset($_SESSION['Err'])) {
-        print_r($_SESSION['Err']);
-    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,7 +24,12 @@
             <form class="form-group" action="includes/login-authentication.php" method="post">
                 <fieldset>
                     <legend>Welcome to Art Store</legend>
-                    <span>
+                    <span style="color:red">
+                        <?php
+                             if(isset($_SESSION['Err'])) {
+                                print_r($_SESSION['Err']);
+                                }
+                        ?>
                     </span>
                     <p>
                         <label>Email address: </label><br />
