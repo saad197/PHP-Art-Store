@@ -5,10 +5,9 @@
         $paintingID = $_GET['PaintingID'];
     }
     else {
-        $paintingID = 8;
+        $paintingID = 437;
     }
     include('includes/art-ultilities.inc.php');
-    $paintingID = 437;
     $defaultPainting = getPaintingDetails($paintingID);
     $genresNames = $defaultPainting->getGenresName();
     $genresName = '';
@@ -44,7 +43,7 @@
                     </div>
                     <div class="col-md-7 row">
                         <p>
-                            <? echo $defaultPainting->getDescription(); ?>
+                            <?php echo $defaultPainting->getDescription(); ?>
                         </p>
                         <p class="price">$<?php echo $defaultPainting->getCost();?></p>
                         <div class="btn-group">
