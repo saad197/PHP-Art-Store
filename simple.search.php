@@ -1,22 +1,24 @@
-<?php session_start(); ?>
+<?php 
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
 <?php include("includes/head.inc.php"); ?>
 <head>
     <script>
-            function SearchArtists()
+            function searchArtists()
             {
-                var str = document.getElementById("input").value;
-                console.log(str);
+                var search = document.getElementById("input").value;
+                var filterValue = $("input:radio[name=filter]:checked").val();
                 var xmlhttp = new XMLHttpRequest();
-                xmlhttp.onreadystatechange = function()
-                {
-                if (this.readyState == 4 && this.status == 200){
-                    document.getElementById("suggestion").innerHTML = this.responseText;
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("suggestion").innerHTML = this.responseText;
                     }
                 }
-                xmlhttp.open("GET","artists.list.php",true);
-                xmlhttp.send();
+                xmlhttp.open("POST","async-request/search-results.php", true);
+                xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xmlhttp.send("search="+search+"&filter="+filterValue);
             }
     </script>
 </head>
@@ -63,18 +65,18 @@
         <h1>Search Result</h1>
         <form class = "well">
             <div class = "radio">
-                <label><input type = "radio" name = ""> Filter by Title
+                <label><input type = "radio" name = "filter" value="title" checked> Filter by Title
             </div>
             <div class = "form-group">
                 <input type="text" class = "form-control" id="input">
             </div>
             <div class = "radio">
-                <label><input type = "radio" name = ""> Filter by Description
+                <label><input type = "radio" name = "filter" value="desc"> Filter by Description
             </div>
             <div class = "radio">
-                <label><input type = "radio" name = ""> No Filter (show all art works)
+                <label><input type = "radio" name = "filter" value=" "> No Filter (show all art works)
             </div>
-            <button class="btn btn-primary" type="button" onclick="SearchArtists()">Filter
+            <button class="btn btn-primary" type="button" onclick="searchArtists()">Filter
             </button>
         </form>
         <p id="suggestion"></p>

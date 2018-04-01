@@ -1,7 +1,7 @@
 <?php
-    if(isset($POST_['artistID']))
+    if(isset($_GET['artistID']))
     {
-        $artistID = $POST_['artistID'];
+        $artistID = $_GET['artistID'];
     }
     else {
         $artistID = 1;
