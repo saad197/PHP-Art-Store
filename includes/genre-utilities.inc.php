@@ -10,7 +10,7 @@
             $statement->execute();
             while($row = $statement->fetch()) {
                 $aGenre = new Genre($row['GenreID'], $row['GenreName'], $row['EraID'], $row['Description'], $row['Link']);
-                $genres[] = $aGenre;
+                $genres[$row['GenreID']] = $aGenre;
             }
             $pdo = null;
             return $genres;
@@ -21,5 +21,8 @@
         }
     }
     
+    function gerGenreDetails() {
+
+    }
 
 ?>
