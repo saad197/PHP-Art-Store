@@ -1,6 +1,6 @@
 <?php
 include("config.inc.php");
-include("../classes/subject.list.class.php");
+include("classes/subject.class.php");
 
 function getSubjectList() {
     try
@@ -11,7 +11,7 @@ function getSubjectList() {
         $result = $pdo->prepare($sql);
         $result->execute();
         while ($row = $result->fetch()) {
-            $subjectList = new SubjectList($row['SubjectID'], $row['SubjectName']);
+            $subjectList = new Subject($row['SubjectID'], $row['SubjectName']);
             $subList[] = $subjectList;
         }
         $pdo = null;

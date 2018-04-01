@@ -1,3 +1,4 @@
+<?php include("../includes/subject-ultilities.inc.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php include("../includes/subject.list.php");
@@ -17,6 +18,5 @@ include("../includes/head.inc.php"); ?>
             ?>
         </ul>
     </div>
-<?php include("../includes/scripts.inc.php"); ?>
 </body>
 </html>

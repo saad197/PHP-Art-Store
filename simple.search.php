@@ -81,6 +81,5 @@
         </form>
         <p id="suggestion"></p>
     </div>
-<?php include("includes/scripts.inc.php"); ?>
 </body>
 </html>

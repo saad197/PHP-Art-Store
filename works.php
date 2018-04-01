@@ -358,7 +358,6 @@
         </div>
         <?php include("includes/copyright.inc.php"); ?>
     </div>
-    <?php include('includes/scripts.inc.php'); ?>
     </footer>
 </body>
 

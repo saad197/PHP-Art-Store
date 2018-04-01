@@ -39,9 +39,9 @@ if(isset($_POST['filter'])){
     }
 }
 
-
 foreach($results as $key => $value)
 {
-    echo '<a href = "artist-details.php?artistID='.$key.'"><li>'.$value.'</li></a>';
+    echo '<a href = "artist-details.php?ArtistID='.$key.'"><li>'.$value.'</li></a>';
 }
+
 ?>
