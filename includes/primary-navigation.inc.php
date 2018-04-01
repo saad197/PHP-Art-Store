@@ -17,7 +17,7 @@
                             <span class="glyphicon glyphicon-gift"></span>Favourite List</a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="view-shopping-cart.php">
                             <span class="glyphicon glyphicon-shopping-cart"></span> View Cart</a>
                     </li>
                     <li>

@@ -7,9 +7,7 @@ foreach ($subjects as $subject) {
         $subjectNames .= "<option>{$subject->getSubjectName()}</option>";
     }
 }
-// echo "<pre>";
-// print_r($subjectNames);
-// echo "</pre>";
+
 ?>
 
 <!DOCTYPE html>

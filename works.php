@@ -2,7 +2,7 @@
 <?php
 // since there is not enough images file for all paintings , just show the painting as default panting detail
     include('includes/art-ultilities.inc.php');
-    $paintingID = 8;
+    $paintingID = 437;
     $defaultPainting = getPaintingDetails($paintingID);
     $genresNames = $defaultPainting->getGenresName();
     $genresName = '';
@@ -14,8 +14,8 @@
     $subjectNames = $defaultPainting->getSubjectName();
     $subjectName = '';
     // get all subject names and put in <a>
-    foreach ($subjectNames as $eleemnt) {
-        $subjectName .= "<a href=''>{$eleemnt}</a>". " ";
+    foreach ($subjectNames as $elemnt) {
+        $subjectName .= "<a href=''>{$elemnt}</a>". " ";
     } 
 ?>
 
