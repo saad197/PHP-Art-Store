@@ -10,40 +10,6 @@ echo "</pre>";
 <html>
     <head>
         <?php include "includes/head.inc.php";?>
-        <style>
-            #edit-work-form {
-                border: solid 1px grey;
-                padding: 5px;
-                background-color: #F8F8F8;
-            }
-            #art-year{
-                width: 200px;
-            }
-            #type-box{
-                border: solid 0.5px grey;
-                padding : 10px;
-                width: 450px;
-                
-            }
-            #check-box{
-                border: solid 0.5px grey;
-                padding : 10px;
-                width: 450px;
-                margin-top: 10px;
-            }
-            #sm-buttons {
-                height: 40px;
-                width: 85%;
-                background-color: grey;
-                text-align: center;
-                padding-top: 8px;
-                margin-top: 20px;
-            }
-            #sm-buttons .form-btn {
-                background-color: orange;
-                color: black;
-            }
-        </style>
     </head>
     <body>
         <?php include 'includes/primary-navigation.inc.php';?>
