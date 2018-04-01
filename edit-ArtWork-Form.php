@@ -1,10 +1,20 @@
 <?php
 include('includes/subject-ultilities.inc.php');
+include('includes/genre-utilities.inc.php');
+//get list of subject names
 $subjects = getSubjectList();
 $subjectNames = '';
 foreach ($subjects as $subject) {
     if(isset($subject)) {
         $subjectNames .= "<option>{$subject->getSubjectName()}</option>";
+    }
+}
+//get list of genre names
+$genres =  getGenres();
+$genreNames = '';
+foreach($genres as $genre) {
+    if(isset($genre)) {
+        $genreNames .= "<option>{$genre->getGenreName()}</option>";
     }
 }
 
@@ -40,7 +50,7 @@ foreach ($subjects as $subject) {
                             <div class="dropdown">
                                 <h3>Genre</h3>
                                 <select>
-                                    
+                                    <?php if(isset($genreNames)) { echo $genreNames;}?>
                                 </select>
                             </div><!--end drop down for Genre-->
                             
@@ -92,8 +102,8 @@ foreach ($subjects as $subject) {
                         </div><!--end col for right inputs-->
                     </div><!--end row for rest of form elements-->
                     <div id="sm-buttons">
-                        <a href="#"><button class="form-btn">Submit</button></a>
-                        <a href="#"><button class="form-btn">Clear the form</button></a>
+                        <a href="#"><button class="form-btn" type="submit">Submit</button></a>
+                        <a href="#"><button class="form-btn" type="reset">Clear the form</button></a>
                         <a href="#"><button class="form-btn">Cancel</button></a>
                     </div><!--end submit buttons-->
                 </div>
