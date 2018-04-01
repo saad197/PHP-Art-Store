@@ -65,7 +65,7 @@
         <h1>Search Result</h1>
         <form class = "well">
             <div class = "radio">
-                <label><input type = "radio" name = "filter" value="title" checked> Filter by Title
+                <label><input type = "radio" name = "filter" value="title"> Filter by Title
             </div>
             <div class = "form-group">
                 <input type="text" class = "form-control" id="input">
@@ -81,6 +81,5 @@
         </form>
         <p id="suggestion"></p>
     </div>
-<?php include("includes/scripts.inc.php"); ?>
 </body>
 </html>

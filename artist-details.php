@@ -16,6 +16,5 @@
     showArtistDetials($artistID);
 ?>
 <body>
-<?php include('includes/scripts.inc.php'); ?>
 </body>
 </html>
