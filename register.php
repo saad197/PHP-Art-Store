@@ -2,15 +2,7 @@
 include "validation/register-validation.php";
 include 'includes/primary-navigation.inc.php';
 
-
-
-
-
-
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">

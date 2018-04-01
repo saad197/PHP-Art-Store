@@ -21,7 +21,7 @@
                             <span class="glyphicon glyphicon-shopping-cart"></span> View Cart</a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="user-login.php">
                             <span class="glyphicon glyphicon-arrow-right"></span> Login</a>
                     </li>
                 </ul>
