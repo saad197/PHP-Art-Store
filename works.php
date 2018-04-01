@@ -8,7 +8,6 @@
         $paintingID = 8;
     }
     include('includes/art-ultilities.inc.php');
-    $paintingID = 8;
     $defaultPainting = getPaintingDetails($paintingID);
     $genresNames = $defaultPainting->getGenresName();
     $genresName = '';
