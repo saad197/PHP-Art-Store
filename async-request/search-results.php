@@ -1,7 +1,6 @@
 <?php 
 include("../includes/config.inc.php");
 $searchResult = $_POST['search'];
-
 function getArtistNames($searchResult) {
     try
     {
@@ -26,8 +25,21 @@ function getArtistNames($searchResult) {
         return null;
     }
 }
-$artists = getArtistNames($searchResult);
-foreach($artists as $key => $value)
+if(isset($_POST['filter'])){
+    if($_POST['filter'] = "title") {
+        $results = getArtistNames($searchResult);
+    }
+    else if($_POST['filter'] = "desc") {
+        //$results = getArtDescription($searchResult);
+    }
+    else {
+        //$results = getAllArtWorkTitles();
+        $results = getArtistNames($searchResult);
+    }
+}
+
+
+foreach($results as $key => $value)
 {
     echo '<a href = "artist-details.php?artistID='.$key.'"><li>'.$value.'</li></a>';
 }
