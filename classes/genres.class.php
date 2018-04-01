@@ -11,7 +11,7 @@ class Genre
     {
         $this->setGenreId($genreId);
         $this->setGenreName($genreName);
-        $this->setEraId($eraID);
+        $this->setEraId($eraId);
         $this->setDescription($desc);
         $this->setLink($link);
     }
@@ -39,7 +39,7 @@ class Genre
 
     public function setLink($link)
     {
-        $this0->link = $linkl;
+        $this->link = $link;
     }
     //getter
 
