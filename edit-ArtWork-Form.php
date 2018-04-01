@@ -1,3 +1,11 @@
+<?php
+include('includes/subject-ultilities.inc.php');
+$subjects = getSubjectList();
+echo "<pre>";
+print_r($subjects);
+echo "</pre>";
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
