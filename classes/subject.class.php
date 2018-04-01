@@ -1,6 +1,6 @@
 <?php
 
-class SubjectList{
+class Subject{
 
 private $subjectID;
 private $subjectName;

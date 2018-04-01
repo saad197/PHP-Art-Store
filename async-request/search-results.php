@@ -1,5 +1,6 @@
 <?php 
 include("../includes/config.inc.php");
+print_r($_POST);
 $searchResult = $_POST['search'];
 function getArtistNames($searchResult) {
     try
@@ -38,9 +39,9 @@ if(isset($_POST['filter'])){
     }
 }
 
-
 foreach($results as $key => $value)
 {
-    echo '<a href = "artist-details.php?artistID='.$key.'"><li>'.$value.'</li></a>';
+    echo '<a href = "artist-details.php?ArtistID='.$key.'"><li>'.$value.'</li></a>';
 }
+
 ?>

@@ -1,7 +1,7 @@
 <?php
-    if(isset($_GET['artistID']))
+    if(isset($_GET['ArtistID']))
     {
-        $artistID = $_GET['artistID'];
+        $artistID = $_GET['ArtistID'];
     }
     else {
         $artistID = 1;
@@ -16,6 +16,5 @@
     showArtistDetials($artistID);
 ?>
 <body>
-<?php include('includes/scripts.inc.php'); ?>
 </body>
 </html>

@@ -1,41 +1,29 @@
+<?php
+include('includes/subject-ultilities.inc.php');
+include('includes/genre-utilities.inc.php');
+//get list of subject names
+$subjects = getSubjectList();
+$subjectNames = '';
+foreach ($subjects as $subject) {
+    if(isset($subject)) {
+        $subjectNames .= "<option>{$subject->getSubjectName()}</option>";
+    }
+}
+//get list of genre names
+$genres =  getGenres();
+$genreNames = '';
+foreach($genres as $genre) {
+    if(isset($genre)) {
+        $genreNames .= "<option>{$genre->getGenreName()}</option>";
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
         <?php include "includes/head.inc.php";?>
-        <style>
-            #edit-work-form {
-                border: solid 1px grey;
-                padding: 5px;
-                background-color: #F8F8F8;
-            }
-            #art-year{
-                width: 200px;
-            }
-            #type-box{
-                border: solid 0.5px grey;
-                padding : 10px;
-                width: 450px;
-                
-            }
-            #check-box{
-                border: solid 0.5px grey;
-                padding : 10px;
-                width: 450px;
-                margin-top: 10px;
-            }
-            #sm-buttons {
-                height: 40px;
-                width: 85%;
-                background-color: grey;
-                text-align: center;
-                padding-top: 8px;
-                margin-top: 20px;
-            }
-            #sm-buttons .form-btn {
-                background-color: orange;
-                color: black;
-            }
-        </style>
     </head>
     <body>
         <?php include 'includes/primary-navigation.inc.php';?>
@@ -61,25 +49,18 @@
                             
                             <div class="dropdown">
                                 <h3>Genre</h3>
-                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Choose Genre
-                                <span class="caret"></span></button>
-                                <ul class="dropdown-menu">
-                                <li><a href="#">HTML</a></li>
-                                <li><a href="#">CSS</a></li>
-                                <li><a href="#">JavaScript</a></li>
-                                </ul>
+                                <select>
+                                    <?php if(isset($genreNames)) { echo $genreNames;}?>
+                                </select>
                             </div><!--end drop down for Genre-->
                             
-                            <div class="dropdown">
+                            <div>
                                 <h3>Subject</h3>
-                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Choose Subject
-                                <span class="caret"></span></button>
-                                <ul class="dropdown-menu">
-                                <li><a href="#">HTML</a></li>
-                                <li><a href="#">CSS</a></li>
-                                <li><a href="#">JavaScript</a></li>
-                                </ul>
+                                <select>
+                                    <?php if(isset($subjectNames)) { echo $subjectNames;}?>
+                                </select>
                             </div><!--end drop down for Subject-->
+                            <br />
                             <div>
                                 <h5>Medium</h5>
                                 <p><input type="text" class="form-control" id="art-medium" placeholder=""></p>
@@ -121,8 +102,8 @@
                         </div><!--end col for right inputs-->
                     </div><!--end row for rest of form elements-->
                     <div id="sm-buttons">
-                        <a href="#"><button class="form-btn">Submit</button></a>
-                        <a href="#"><button class="form-btn">Clear the form</button></a>
+                        <a href="#"><button class="form-btn" type="submit">Submit</button></a>
+                        <a href="#"><button class="form-btn" type="reset">Clear the form</button></a>
                         <a href="#"><button class="form-btn">Cancel</button></a>
                     </div><!--end submit buttons-->
                 </div>

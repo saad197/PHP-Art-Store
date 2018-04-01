@@ -1,6 +1,12 @@
 
 <?php
 // since there is not enough images file for all paintings , just show the painting as default panting detail
+    if(isset($_GET['PaintingID'])) {
+        $paintingID = $_GET['PaintingID'];
+    }
+    else {
+        $paintingID = 8;
+    }
     include('includes/art-ultilities.inc.php');
     $paintingID = 8;
     $defaultPainting = getPaintingDetails($paintingID);
@@ -14,8 +20,8 @@
     $subjectNames = $defaultPainting->getSubjectName();
     $subjectName = '';
     // get all subject names and put in <a>
-    foreach ($subjectNames as $eleemnt) {
-        $subjectName .= "<a href=''>{$eleemnt}</a>". " ";
+    foreach ($subjectNames as $elemnt) {
+        $subjectName .= "<a href=''>{$elemnt}</a>". " ";
     } 
 ?>
 
@@ -358,7 +364,6 @@
         </div>
         <?php include("includes/copyright.inc.php"); ?>
     </div>
-    <?php include('includes/scripts.inc.php'); ?>
     </footer>
 </body>
 
