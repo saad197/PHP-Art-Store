@@ -1,8 +1,8 @@
 <?php
 
 // define variables and set to empty values
-$email = $password = $cpassword = $country = $firstName = $lastName = $address = $city = $postal = $phone = "";
-$emailErr = $passwordErr = $countryErr = $cPasswordErr = $firstNameErr = $lastNameErr = $addressErr = $cityErr = $postalErr = $phoneErr = "";
+$email = $password = $cpassword = $country = $firstName = $state = $lastName = $address = $city = $postal = $phone = "";
+$emailErr = $passwordErr = $countryErr = $cPasswordErr = $stateErr = $firstNameErr = $lastNameErr = $addressErr = $cityErr = $postalErr = $phoneErr = "";
 
 $error = array();
 
@@ -27,9 +27,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $firstNameErr = "First Name is required";
         $error = $firstNameErr;
     } else {
-        $name = test_input($_POST["firstname"]);
+        $firstName = test_input($_POST["firstname"]);
         // check if name only contains letters and whitespace
-        if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
+        if (!preg_match("/^[a-zA-Z ]*$/", $firstName)) {
             $firstNameErr = "Only letters and white space allowed";
             $error = $firstNameErr;
         }
@@ -40,22 +40,118 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["lastname"])) {
-        $nameErr = "Last Name is required";
+        $lastNameErr = "Last Name is required";
+        $error = $lastNameErr;
     } else {
-        $name = test_input($_POST["name"]);
+        $lastName = test_input($_POST["lastname"]);
         // check if name only contains letters and whitespace
-        if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
-            $nameErr = "Only letters and white space allowed";
+        if (!preg_match("/^[a-zA-Z ]*$/", $lastName)) {
+            $lastNameErr = "Only letters and white space allowed";
+            $error = $lastNameErr;
+        }
+    }
+}
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["password"])) {
+        $passwordErr = "Password is required";
+        $error = $passwordErr;
+    } else {
+        $password = test_input($_POST["password"]);
+        // check if name only contains letters and whitespace
+        if (!preg_match("/^[a-zA-Z ]*$/", $password)) {
+            $passwordErr = "Only letters and white space allowed";
+            $error = $passwordErr;
+        }
+    }
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["cpassword"])) {
+        $cPasswordErr = "Type password again to confirm";
+        $error = $cPasswordErr;
+    } else {
+        $cpassword = test_input($_POST["cpassword"]);
+        // check if name only contains letters and whitespace
+        if (!preg_match("/^[a-zA-Z ]*$/", $cpassword)) {
+            $cPasswordErr = "Only letters and white space allowed";
+            $error = $cPasswordErr;
+        } else if ($cpassword != $password) {
+            $cPasswordErr = "Password does not match";
+            $error = $cPasswordErr;
+
+        }
+    }
+}
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["phone"])) {
+        $phoneErr = "phone is required";
+        $error = $phoneErr;
+    } else {
+        $phone = test_input($_POST["phone"]);
+        // check if name only contains letters and whitespace
+        if (!preg_match("/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/", $phone)) {
+            $phoneErr = "Not valid format, must follow format 000-000-0000";
+            $error = $phoneErr;
         }
     }
 }
 
 
 
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["postal"])) {
+        $postalErr = "postal code is required";
+        $error = $postalErr;
+    } else {
+        $postal = test_input($_POST["postal"]);
+        // check if name only contains letters and whitespace
+        if (!preg_match("/^[a-zA-Z ]*$/", $postal)) {
+            $postalErr = "Wrong format, should be like T1T G5G";
+            $error = $postalErr;
+        }
+    }
+}
+
+
+/*
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["region"])) {
+        $stateErr = "state is required";
+        $error = $stateErr;
+    } else {
+        $state = test_input($_POST["state"]);
+        // check if name only contains letters and whitespace
+
+    }
+} */
+
+
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["address"])) {
+        $addressErr = "address is required";
+        $error = $addressErr;
+    } else {
+        $address = test_input($_POST["address"]);
+        // check if name only contains letters and whitespace
+
+    }
+
+}
+
+
+
+
 if(empty($error))
 {
 
-
+echo "empty";
     $addUserEnter = "";
 
     //sending data of all fields
@@ -64,11 +160,13 @@ if(empty($error))
     }
 
     //redirects user and also sends data
-    if(isset($_POST['submit'])){
+    header('Location: includes/process-registration.php?'.$addUserEnter);
 
-        header('Location: send-data.php?'.$addUserEnter);
-    }
+}
 
+else {
+    echo "error exists";
+    print_r($error);
 }
 
 

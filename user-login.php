@@ -1,4 +1,20 @@
 
+<?php
+    if($_SERVER['REQUEST_METHOD'] == "POST") {
+        $errors = array();
+        $requires = array('username', 'pword');
+        foreach($requires as $field) {
+            if(! isset($_POST[$field]) || empty($_POST[$field])) {
+                $errors[] = "The <strong>{$field}</strong> are required.";
+            }
+        }//end foreach
+
+        if(empty($errors)) {
+            //connect database and authenticate the user acc
+            
+        }
+    }
+?>
 <!DOCTYPE html>
 <html>
     <head>
