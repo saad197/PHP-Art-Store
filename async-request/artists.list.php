@@ -28,6 +28,6 @@ function getArtistNames($searchResult) {
 $artists = getArtistNames($searchResult);
 foreach($artists as $key => $value)
 {
-    echo '<a href = "../artist-details.php?artistID='.$key.'"><li>'.$value.'</li></a>';
+    echo '<a href = "artist-details.php?artistID='.$key.'"><li>'.$value.'</li></a>';
 }
 ?>
