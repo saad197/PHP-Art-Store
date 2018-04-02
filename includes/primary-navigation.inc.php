@@ -2,11 +2,10 @@
     session_start();
     if(isset($_SESSION['cusName'])) {
         $cusName = $_SESSION['cusName'];
-        $icon = "";
+        $btn = "Logout";
     } else {
-        $cusName = "Login";
-        $icon = "glyphicon glyphicon-arrow-right";
-    } 
+        $btn = "Login";
+    }
 ?>
 <div class="container">
     <div class="row">
@@ -32,7 +31,7 @@
                     </li>
                     <li>
                         <a href="user-login.php">
-                            <span class="<?php echo $icon;?>"></span> <?php echo" Welcome {$cusName}";?></a>
+                            <span class="glyphicon glyphicon-arrow-right"></span><?php echo $btn;?></a>
                     </li>
                 </ul>
             </nav>
@@ -41,7 +40,7 @@
     <!-- end topHeaderRow -->
     <div class="row">
         <div id="logoRow">
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <h1>Art Store</h1>
             </div>
             <div class="col-md-3">
@@ -56,6 +55,8 @@
                     </div>
                 </form>
             </div>
+            <!--show customer name-->
+            <div><?php echo "Welcome {$cusName}";?></div>
         </div>
     </div>
     <!-- end logoRow -->
