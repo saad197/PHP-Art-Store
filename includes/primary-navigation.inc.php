@@ -1,3 +1,13 @@
+<?php  
+    session_start();
+    if(isset($_SESSION['cusName'])) {
+        $cusName = $_SESSION['cusName'];
+        $icon = "";
+    } else {
+        $cusName = "Login";
+        $icon = "glyphicon glyphicon-arrow-right";
+    } 
+?>
 <div class="container">
     <div class="row">
         <div id="topHeaderRow">
@@ -22,7 +32,7 @@
                     </li>
                     <li>
                         <a href="user-login.php">
-                            <span class="glyphicon glyphicon-arrow-right"></span> Login</a>
+                            <span class="<?php echo $icon;?>"></span> <?php echo" Welcome {$cusName}";?></a>
                     </li>
                 </ul>
             </nav>

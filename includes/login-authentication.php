@@ -19,6 +19,8 @@ function authenticateUserLogin($email, $pword) {
         if($statement->rowCount() == 1) {
             while($row = $statement->fetch()) {
                 // this step means authenticate successful
+                $cusId = $row['CustomerID'];
+                $_SESSION['cusID'] = $cusId;
                 return true;
             }
         } else {
@@ -45,7 +47,7 @@ if(isset($_POST['login'])) {
         $pword = $_POST['pword'];
         $isAuthenticated = authenticateUserLogin($username, $pword);
         if($isAuthenticated) {
-            header('Location: ../index.php');
+            header('Location: customer-ultilities.php');
         } else{
             $errors[] = "The username or password does not match";
             header('Location: ../user-login.php');
@@ -56,5 +58,6 @@ if(isset($_POST['login'])) {
 foreach($errors as $err) {
     $_SESSION['Err'] = $err;
 }
+
 
 ?>
