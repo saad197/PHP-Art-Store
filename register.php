@@ -15,17 +15,17 @@ include "includes/head.inc.php";
 
 
     //City sql for select
-    $citySql = "SELECT DISTINCT city FROM Art.Customers ORDER BY city ASC";
+    $citySql = "SELECT DISTINCT city FROM Customers WHERE city != '' ORDER BY city ASC";
     $cityResult = $conn->prepare($citySql);
     $cityResult->execute();
 
 
-    $countrySql = "SELECT DISTINCT country FROM Art.Customers ORDER BY country ASC";
+    $countrySql = "SELECT DISTINCT country FROM Customers WHERE country != '' ORDER BY country ASC";
     $countryResult = $conn->prepare($countrySql);
     $countryResult->execute();
 
 
-    $stateSql = "SELECT DISTINCT region FROM Art.Customers ORDER BY region ASC";
+    $stateSql = "SELECT DISTINCT region FROM Customers WHERE region != '' ORDER BY region ASC";
     $stateResult = $conn->prepare($stateSql);
     $stateResult->execute();
 
@@ -113,7 +113,6 @@ include "includes/head.inc.php";
 
                 <select class="form-control" name = "country" id="country">
                     <?php foreach($countryResult as $key => $value){ ?>
-
                         <option><?php echo $value['country']; ?></option>
                     <?php } ?>
 
