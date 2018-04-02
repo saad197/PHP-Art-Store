@@ -46,7 +46,7 @@ if(isset($_POST['login'])) {
     if(empty($errors)) {
         $username = $_POST['username'];
         $pword = $_POST['pword'];
-        $hashed_pword = password_hash($pword, PASSWORD_DEFAULT); 
+        $hashed_pword = sha1($pword); 
         $isAuthenticated = authenticateUserLogin($username, $hashed_pword);
         if($isAuthenticated) {
             header('Location: customer-ultilities.php');

@@ -32,18 +32,18 @@ catch(PDOException $e)
 }
 
 
-$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+$hashed_password = sha1($password);
 
 try {
 
     //login details insert
-    $insertCustomerLogonSql = "INSERT INTO `customerlogon` (`CustomerID`, `UserName`, `Pass`, `Salt`, `State`, `DateJoined`, `DateLastModified`) VALUES (DEFAULT , '$email', '$hashed_password', 1, 1, NOW(), NOW())";
+    $insertCustomerLogonSql = "INSERT INTO `CustomerLogon` (`CustomerID`, `UserName`, `Pass`, `Salt`, `State`, `DateJoined`, `DateLastModified`) VALUES (DEFAULT , '$email', '$hashed_password', 1, 1, NOW(), NOW())";
 $customerLogon = $conn->prepare($insertCustomerLogonSql);
 
 $conn->exec($insertCustomerLogonSql);
 
 //get customer id
-    $getCustIdSql = "SELECT CustomerID, UserName FROM customerlogon WHERE UserName = '$email'; ";
+    $getCustIdSql = "SELECT CustomerID, UserName FROM CustomerLogon WHERE UserName = '$email'; ";
     $getCustId = $conn->prepare($getCustIdSql);
     $getCustId->execute();
     echo '</br>';
@@ -58,7 +58,7 @@ $conn->exec($insertCustomerLogonSql);
 
 
     //insert to customers
-    $insertCustomerSql = "INSERT INTO `customers` (`CustomerID`, `FirstName`, `LastName`, `Address`, `City`, `Region`, `Country`, `Postal`, `Phone`, `Email`, `Privacy`) 
+    $insertCustomerSql = "INSERT INTO `Customers` (`CustomerID`, `FirstName`, `LastName`, `Address`, `City`, `Region`, `Country`, `Postal`, `Phone`, `Email`, `Privacy`) 
                           VALUES ($customerID, '$firstName', '$lastName', '$address', '$city', '$state', '$country', '$postal', '$phone', '$email', NULL)";
     $customer= $conn->prepare($insertCustomerSql);
 
