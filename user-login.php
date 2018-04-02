@@ -44,6 +44,7 @@
                     </p>
                     <p>
                         <button class="btn btn-primary" type="submit" name="login" id="login">Login</button>
+                        <button class="btn btn-primary"><a href="register.php"></a>Sign up</button>
                     </p>
                 </fieldset>
             </form>
