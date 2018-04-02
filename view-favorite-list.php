@@ -1,5 +1,32 @@
 
 <?php
+session_start();
+$listOfFvPaintings = $_SESSION['listFvPaintings'];
+if(isset($listOfFvPaintings)) {
+    $aSingleRow = "";
+    foreach($listOfFvPaintings as $singleFvPainting) {
+        print_r($singleFvPainting);
+        $aSingleRow .= "<tr>";
+        $aSingleRow .= "<td><input type='checkbox'><img src='images/". $singleFvPainting[0]. ".jpg'></td>";
+        $aSingleRow .= "<td>".$singleFvPainting[1]."</td>";
+        $aSingleRow .= "<td>".$singleFvPainting[2]."</td>";
+        $aSingleRow .= "<td>".$singleFvPainting[3]."</td>";
+        $genres = "";
+        foreach($singleFvPainting[4] as $genreName) {
+            $genres .= $genreName . ' ';
+        }
+        $aSingleRow .= "<td>".$genres."</td>";
+        $aSingleRow .= "<td>";
+        $aSingleRow .= "<button type='button' class='btn btn-default'>
+                            <span class='glyphicon glyphicon-trash' aria-hidden='true'></span>
+                        </button>
+                        <button type='button' class='btn btn-default'>
+                            <span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span>
+                        </button>";
+        $aSingleRow .= "</td>";
+        $aSingleRow .= "</tr>";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,21 +48,7 @@
                         <th>Genre</th>
                         <th>Actions</th>
                     </tr>
-                    <tr>
-                        <td><input type="checkbox"> uhuhu</td>
-                        <td>juhuh</td>
-                        <td>knk</td>
-                        <td>kn</td>
-                        <td>knk</td>
-                        <td>
-                            <button type="button" class="btn btn-default">
-                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                            </button>
-                            <button type="button" class="btn btn-default">
-                                <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-                            </button>
-                        </td>
-                    </tr>
+                    <?php if(isset($aSingleRow)) { echo $aSingleRow; }?>
                 </table>
             </fieldset>
         </form>
