@@ -1,15 +1,34 @@
 <?php
 session_start();
+include('art-ultilities.inc.php');
 
 if(isset($_GET['PaintingID'])) {
-    $_SESSION['PaintingId'] = $_GET['PaintingID'];
-    $paintingIdList = $_SESSION['PaintingId'];
+    $paintingId = $_GET['PaintingID'];
+} else {
+    // make default since it has image
+    $paintingId = 437;
+}
 
-    if(!in_array($_GET['PaintingID'], $paintingIdList)) {
-        $paintingIdList[] = $_GET['PaintingID'];
+if(isset($_SESSION['ArtWishList'])) {
+    $artWishLists = $_SESSION['ArtWishList'];
+    if(! in_array($paintingId, $artWishLists)) {
+        $artWishLists[] = $paintingId;
+    }
+} else {
+    $artWishLists[] = $paintingId;
+}
+
+$_SESSION['ArtWishList'] = $artWishLists;
+
+function getListOfPaintingWishList($listOfArtWishId) {
+    foreach($_SESSION['ArtWishList'] as $aWishArtId) {
+        // get art data
+        // make list of wish object based on each wishartId
+        // store all of objects in one array
+        
     }
 }
-print_r($_SESSION['PaintingId']);
-print_r($paintingIdList);
+
+
 
 ?>
