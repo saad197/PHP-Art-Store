@@ -48,7 +48,7 @@
                         <p class="price">$<?php echo $defaultPainting->getCost();?></p>
                         <div class="btn-group">
                             <button type="button" class="btn btn-default btn-lg">
-                                <a href="#">
+                                <a href="includes/add-favorite-list.inc.php?PaintingID=<?php echo $paintingID;?>">
                                     <span class="glyphicon glyphicon-gift"></span> Add to Wish List</a>
                             </button>
                             <button type="button" class="btn btn-default btn-lg">
