@@ -1,7 +1,6 @@
 <?php
 include "validation/register-validation.php";
 include 'includes/primary-navigation.inc.php';
-include "includes/config.inc.php";
 include "includes/head.inc.php";
 
 
@@ -9,7 +8,7 @@ include "includes/head.inc.php";
         $conn = new PDO(DBCONNSTRING, DBUSER, DBPASS);
         // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        echo "Connected successfully";
+
     } catch (PDOException $e) {
         echo "Connection failed: " . $e->getMessage();
     }
@@ -114,7 +113,8 @@ include "includes/head.inc.php";
 
                 <select class="form-control" name = "country" id="country">
                     <?php foreach($countryResult as $key => $value){ ?>
-                        <option name = "country" value="<?php  ?>"><?php echo $value['country']; ?></option>
+
+                        <option><?php echo $value['country']; ?></option>
                     <?php } ?>
 
 
@@ -137,7 +137,8 @@ include "includes/head.inc.php";
 
                 <select class="form-control" name = "city" id="city">
                     <?php foreach($cityResult as $key => $value){ ?>
-                        <option name = "city" value="<?php  ?>"><?php echo $value['city']; ?></option>
+
+                        <option><?php echo $value['city']; ?></option>
                     <?php } ?>
 
 
@@ -149,7 +150,7 @@ include "includes/head.inc.php";
                 <label for="state">State</label>
                 <select class="form-control" name = "region" id="state">
                     <?php foreach($stateResult as $key => $value){ ?>
-                        <option name = "region" id = "region" value="<?php  ?>"><?php echo $value['region']; ?></option>
+                        <option><?php echo $value['region']; ?></option>
                     <?php } ?>
 
 
@@ -164,7 +165,7 @@ include "includes/head.inc.php";
 
         <div class = "form-group row">
 
-        <button type="submit" class="btn btn-primary btn-lg" value = "Submit Form" style = "margin-left: 19px">Register</button>
+        <button type="submit" class="btn btn-primary btn-lg" value = "Submit Form" name = "submit" style = "margin-left: 19px">Register</button>
         </div>
     </form>
 
