@@ -1,6 +1,6 @@
 
 <?php
-// since there is not enough images file for all paintings , just show the painting as default panting detail
+    // since there is not enough images file for all paintings , just show the painting as default panting detail
     if(isset($_GET['PaintingID'])) {
         $paintingID = $_GET['PaintingID'];
     }

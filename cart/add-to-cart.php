@@ -27,5 +27,6 @@ else {
 
 $_SESSION['CartPaintings'] = $cartPaintings;
 
+header('Location: ../view-shopping-cart.php');
 
 ?>
