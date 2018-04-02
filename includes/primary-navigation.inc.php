@@ -1,5 +1,7 @@
-<?php  
-    session_start();
+<?php    
+    if(session_status() == PHP_SESSION_NONE) {         
+        session_start();     
+    }
     if(isset($_SESSION['cusName'])) {
         $cusName = "Welcome " . $_SESSION['cusName'];
         $btn = "Logout";

@@ -1,5 +1,5 @@
 <?php
-include('includes/subject-ultilities.inc.php');
+include('includes/subject-utilities.inc.php');
 include('includes/genre-utilities.inc.php');
 //get list of subject names
 $subjects = getSubjectList();

@@ -1,7 +1,8 @@
 <?php
 include('config.inc.php');
-session_start();
-
+if(session_status() == PHP_SESSION_NONE){  
+    session_start(); 
+}
 //connect CustomerLogon
 function authenticateUserLogin($email, $pword) {
     try{

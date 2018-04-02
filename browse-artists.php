@@ -1,6 +1,4 @@
-<?php
-    include("includes/artist-utilities.php");
-?>
+<?php include("includes/artist-utilities.php"); ?>
 
 <!DOCTYPE html>
 <html lang="en">

@@ -1,6 +1,9 @@
 <?php
 include('config.inc.php');
-session_start();
+//Check Session has Started or not
+if(session_status() == PHP_SESSION_NONE){   
+    session_start();     
+}
 if(isset($_SESSION['cusID'])){
     $cusID = $_SESSION['cusID'];
     print_r($cusID);
