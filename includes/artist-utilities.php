@@ -8,7 +8,7 @@
             $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "SELECT ArtistID, ArtistLink, FirstName, LastName, Gender, Nationality, YearofBirth, YearOfDeath, Details
-                      FROM Artists WHERE artistID = ? ";
+                      FROM `Artists` WHERE ArtistID = ? ";
             $statement = $pdo->prepare($sql);
             $statement->bindValue(1, $artistID);
             $statement->execute();
