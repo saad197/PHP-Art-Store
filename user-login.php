@@ -30,7 +30,7 @@
                         <?php
                              if(isset($_SESSION['Err'])) {
                                 print_r($_SESSION['Err']);
-                                }
+                            }
                         ?>
                     </span>
                     <p>

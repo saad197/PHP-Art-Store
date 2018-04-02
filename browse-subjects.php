@@ -3,12 +3,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php include("includes/head.inc.php"); ?>
-
 <body>
     <?php
         include('includes/primary-navigation.inc.php');
-        //include('includes/');
+        showSubjectsList();
+        
     ?>
+    </div>
 </body>
 
 </html>
