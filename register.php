@@ -15,17 +15,17 @@ include "includes/head.inc.php";
 
 
     //City sql for select
-    $citySql = "SELECT DISTINCT city FROM Art.Customers ORDER BY city ASC";
+    $citySql = "SELECT DISTINCT City FROM art.Customers ORDER BY City ASC";
     $cityResult = $conn->prepare($citySql);
     $cityResult->execute();
 
 
-    $countrySql = "SELECT DISTINCT country FROM Art.Customers ORDER BY country ASC";
+    $countrySql = "SELECT DISTINCT Country FROM art.Customers ORDER BY Country ASC";
     $countryResult = $conn->prepare($countrySql);
     $countryResult->execute();
 
 
-    $stateSql = "SELECT DISTINCT region FROM Art.Customers ORDER BY region ASC";
+    $stateSql = "SELECT DISTINCT Region FROM art.Customers ORDER BY Region ASC";
     $stateResult = $conn->prepare($stateSql);
     $stateResult->execute();
 
