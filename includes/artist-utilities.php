@@ -51,4 +51,75 @@
             return null;
         }
     }
+
+    function getNumberOfSales($artistID) {
+        try
+        {
+            $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = "SELECT COUNT(*) AS Sales FROM `orderdetails` 
+                        JOIN paintings 
+                        ON paintings.PaintingID = orderdetails.PaintingID
+                        JOIN artists
+                        ON artists.ArtistID = paintings.PaintingID
+                        WHERE paintings.ArtistID = ? ";
+            $statement = $pdo->prepare($sql);
+            $statement->bindValue(1, $artistID);
+            $statement->execute();
+            $row = $statement->fetch();
+            $sales = $row['Sales'];
+            $pdo = null;
+            return $sales;
+        }
+        catch (PDOException $e)
+        {
+            die($e->getMessage());
+            return null;
+        }
+    }
+
+
+    function getAllArtistNames() {
+        try
+        {
+            $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = "SELECT ArtistID, FirstName FROM Artists";
+            $statement = $pdo->prepare($sql);
+            $statement->execute();
+            while($row = $statement->fetch()) {
+                $artists[$row['ArtistID']] = $row['FirstName'];
+            }
+            $pdo = null;
+            return $artists;
+        }
+        catch (PDOException $e)
+        {
+            die($e->getMessage());
+            return null;
+        }
+    }
+
+    function showBestSellingArtist() {
+        $artists = getAllArtistNames();
+        foreach ($artists as $key => $value) {
+            $sales = getNumberOfSales($key);
+            if($sales>0) {
+                echo "
+                    <div class=\"col-md-2\">
+                        <div class=\"thumbnail\">
+                            <a href=\"artist-details.php?ArtistID=".$key."\"><img src=\"images/artists/".$key.".jpg\" alt=\"picaso\"></a>
+                            <div class=\"caption\">
+                                 <a href=\"artist-details.php?ArtistID=".$key."\"><p>".$value."</p></a>
+                                <button class=\"btn btn-info\">
+                                    <i class=\"glyphicon glyphicon-fire\"></i> Sales
+                                    <span class=\"badge\">".$sales."</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>";
+            }
+        }
+    }
+
 ?>

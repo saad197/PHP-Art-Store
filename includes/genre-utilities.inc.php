@@ -89,7 +89,13 @@
             die($e->getMessage());
             return null;
         }
-        foreach ($paintings as $key => $value) {
+        
+        echo " <div class=\"row\">
+                    <h2 class=\"google-font\">Paintings</h2>
+                    <hr>
+                </div>";
+
+        foreach ($paintings as $key => $value) {  
             echo "
                 <div class=\"col-md-3\">
                     <a href=\"works.php?PaintingID=". $key ."\">
