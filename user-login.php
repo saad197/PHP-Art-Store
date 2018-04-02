@@ -1,19 +1,6 @@
 
 <?php
-    if($_SERVER['REQUEST_METHOD'] == "POST") {
-        $errors = array();
-        $requires = array('username', 'pword');
-        foreach($requires as $field) {
-            if(! isset($_POST[$field]) || empty($_POST[$field])) {
-                $errors[] = "The <strong>{$field}</strong> are required.";
-            }
-        }//end foreach
-
-        if(empty($errors)) {
-            //connect database and authenticate the user acc
-            
-        }
-    }
+    session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,25 +15,30 @@
             }
             #login-box #login-header{
                 height: 30px;
-                /* background-color: orange;
-                color: white; */
             }
         </style>
     </head>
     <body>
         <?php include('includes/primary-navigation.inc.php');?>
         <div id="login-box">
-            <form class="form-group" action="" method="post">
+            <form class="form-group" action="includes/login-authentication.php" method="post">
                 <fieldset>
                     <legend>Welcome to Art Store</legend>
+                    <span style="color:red">
+                        <?php
+                             if(isset($_SESSION['Err'])) {
+                                print_r($_SESSION['Err']);
+                                }
+                        ?>
+                    </span>
                     <p>
                         <label>Email address: </label><br />
-                        <input type="email" name="username" id="username" required />
+                        <input type="email" name="username" id="username"  />
                     </p>
                     
                     <p>
                         <label>Password: </label><br />
-                        <input type="password" name="pword" id="pword" required />
+                        <input type="password" name="pword" id="pword"  />
                     </p>
                     <p>
                         <button class="btn btn-primary" type="submit" name="login" id="login">Login</button>

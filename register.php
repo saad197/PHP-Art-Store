@@ -2,6 +2,7 @@
 include "validation/register-validation.php";
 include 'includes/primary-navigation.inc.php';
 include "includes/config.inc.php";
+include "includes/head.inc.php";
 
 
     try {
@@ -49,18 +50,7 @@ include "includes/config.inc.php";
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WIP - Assignment 1</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!-- Custom styles for this template -->
-    <link href="css/common.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Bad Script' rel='stylesheet'>
-    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Caption" rel="stylesheet">
-    <style>.error{color : red; margin-top: 0px; margin-bottom: 0px;}</style>
-</head>
-
+<style>.error{color : red; margin-top: 0px; margin-bottom: 0px;}</style>
 <body>
 
 
@@ -71,7 +61,7 @@ include "includes/config.inc.php";
 
 
 </div>
-    <form method = "post" action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+    <form method = "post" action = "<?php echo $_SERVER["PHP_SELF"];?>">
         <div class="form-group row">
 
 
@@ -174,7 +164,7 @@ include "includes/config.inc.php";
 
         <div class = "form-group row">
 
-        <button type="submit" class="btn btn-primary btn-lg" style = "margin-left: 19px">Register</button>
+        <button type="submit" class="btn btn-primary btn-lg" value = "Submit Form" style = "margin-left: 19px">Register</button>
         </div>
     </form>
 
