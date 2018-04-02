@@ -21,7 +21,7 @@ if(isset($_SESSION['ArtWishList'])) {
 $_SESSION['ArtWishList'] = $artWishLists;
 
 function getListOfPaintingWishList($listOfArtWishId) {
-    foreach($_SESSION['ArtWishList'] as $aWishArtId) {
+    foreach($listOfArtWishId as $aWishArtId) {
         // get art data
         // make list of wish object based on each wishartId
         // store all of objects in one array

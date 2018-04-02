@@ -55,11 +55,14 @@ if(isset($_POST['login'])) {
             header('Location: ../user-login.php');
         }
     }
-}// end if(isset[login])
-
-foreach($errors as $err) {
-    $_SESSION['Err'] = $err;
+    foreach($errors as $err) {
+        $_SESSION['Err'] = $err;
+    }
+} else {
+    header("Location: ../register.php");
 }
+
+
 
 
 ?>
