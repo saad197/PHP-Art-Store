@@ -15,29 +15,17 @@ include "includes/head.inc.php";
 
 
     //City sql for select
-<<<<<<< HEAD
     $citySql = "SELECT DISTINCT City FROM art.Customers ORDER BY City ASC";
-=======
-    $citySql = "SELECT DISTINCT city FROM Customers WHERE city != '' ORDER BY city ASC";
->>>>>>> 418dfeadb1a1e085370440c08e989ed3b7bde415
     $cityResult = $conn->prepare($citySql);
     $cityResult->execute();
 
 
-<<<<<<< HEAD
     $countrySql = "SELECT DISTINCT Country FROM art.Customers ORDER BY Country ASC";
-=======
-    $countrySql = "SELECT DISTINCT country FROM Customers WHERE country != '' ORDER BY country ASC";
->>>>>>> 418dfeadb1a1e085370440c08e989ed3b7bde415
     $countryResult = $conn->prepare($countrySql);
     $countryResult->execute();
 
 
-<<<<<<< HEAD
     $stateSql = "SELECT DISTINCT Region FROM art.Customers ORDER BY Region ASC";
-=======
-    $stateSql = "SELECT DISTINCT region FROM Customers WHERE region != '' ORDER BY region ASC";
->>>>>>> 418dfeadb1a1e085370440c08e989ed3b7bde415
     $stateResult = $conn->prepare($stateSql);
     $stateResult->execute();
 
@@ -125,7 +113,7 @@ include "includes/head.inc.php";
 
                 <select class="form-control" name = "country" id="country">
                     <?php foreach($countryResult as $key => $value){ ?>
-                        <option><?php echo $value['country']; ?></option>
+                        <option><?php echo $value['Country']; ?></option>
                     <?php } ?>
 
 
@@ -149,7 +137,7 @@ include "includes/head.inc.php";
                 <select class="form-control" name = "city" id="city">
                     <?php foreach($cityResult as $key => $value){ ?>
 
-                        <option><?php echo $value['city']; ?></option>
+                        <option><?php echo $value['City']; ?></option>
                     <?php } ?>
 
 
@@ -161,7 +149,7 @@ include "includes/head.inc.php";
                 <label for="state">State</label>
                 <select class="form-control" name = "region" id="state">
                     <?php foreach($stateResult as $key => $value){ ?>
-                        <option><?php echo $value['region']; ?></option>
+                        <option><?php echo $value['Region']; ?></option>
                     <?php } ?>
 
 
