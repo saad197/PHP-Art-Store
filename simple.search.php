@@ -1,4 +1,4 @@
-<?php 
+ <?php 
     session_start();
 ?>
 <!DOCTYPE html>
@@ -18,6 +18,7 @@
                 }
                 xmlhttp.open("POST","async-request/search-results.php", true);
                 xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                console.log(filterValue);
                 xmlhttp.send("search="+search+"&filter="+filterValue);
             }
     </script>
@@ -65,7 +66,7 @@
         <h1>Search Result</h1>
         <form class = "well">
             <div class = "radio">
-                <label><input type = "radio" name = "filter" value="title"> Filter by Title
+                <label><input type = "radio" name = "filter" value="title" checked> Filter by Title
             </div>
             <div class = "form-group">
                 <input type="text" class = "form-control" id="input">

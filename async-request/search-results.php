@@ -1,24 +1,58 @@
 <?php 
 include("../includes/config.inc.php");
-print_r($_POST);
-$searchResult = $_POST['search'];
-function getArtistNames($searchResult) {
+$trimSearchResult = $_POST['search'];
+$search = trim($trimSearchResult);
+
+if(isset($_POST['filter'])){
+    if($_POST['filter'] == "title") {
+        $results = getArtByTitleAndArtist($search);
+        foreach($results as $key => $value)
+        {
+            echo '
+                <ul class="list-group"> 
+                    <a href="artist-details.php?ArtistID='.$value['ArtistID'].'"><li class="list-group-item">'.$value['Title'].'</li></a>
+                     <li class="list-group-item">'.$value['Description'].'</li>
+                </ul>';
+        }
+    }
+    else if($_POST['filter'] == "desc") {
+        $results = getArtDescription($search);
+        foreach($results as $key => $value)
+        {
+            echo '<ul class="list-group"> 
+                <a href="artist-details.php?ArtistID='.$value['ArtistID'].'"><li class="list-group-item">'.$value['Title'].'</li></a>
+                    <li class="list-group-item">'.str_replace($search,'<span class="bg-primary">'.$search.'</span>',$value['Description']).'</li>
+                    </ul>';
+        }
+    }
+    else {
+        $results = getAllArtWork();
+        foreach($results as $key => $value)
+        {
+            echo '<ul class="list-group"> 
+            <a href="artist-details.php?ArtistID='.$value['ArtistID'].'"><li class="list-group-item">'.$value['Title'].'</li></a>
+            <li class="list-group-item">'.$value['Description'].'</li></ul>';
+        }
+    }
+}
+
+function getAllArtWork() {
     try
     {
         $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT ArtistID, FirstName, LastName FROM Artists where FirstName Like ? OR LastName LIKE ?";
+        $sql = "SELECT Paintings.ArtistID, Paintings.Title, Paintings.Description FROM Paintings ORDER BY Title";
         $result = $pdo->prepare($sql);
-        $result->bindValue(1, $searchResult."%");
-        $result->bindValue(2, $searchResult."%");
         $result->execute();
-        $artistNameList = array();
+        $allArtWork = array();
         while ($row = $result->fetch()) {
-            $artistName = $row['FirstName'].' '.$row['LastName'];
-            $artistNameList[$row['ArtistID']] = $artistName;
+            $artDetails['ArtistID'] = $row['ArtistID'];
+            $artDetails['Title'] = $row['Title'];
+            $artDetails['Description'] = $row['Description'];
+            $allArtWork[] = $artDetails;
         }
         $pdo = null;
-        return $artistNameList;
+        return $allArtWork;
     }
     catch (PDOException $e)
     {
@@ -26,22 +60,70 @@ function getArtistNames($searchResult) {
         return null;
     }
 }
-if(isset($_POST['filter'])){
-    if($_POST['filter'] = "title") {
-        $results = getArtistNames($searchResult);
-    }
-    else if($_POST['filter'] = "desc") {
-        //$results = getArtDescription($searchResult);
-    }
-    else {
-        //$results = getAllArtWorkTitles();
-        $results = getArtistNames($searchResult);
-    }
-}
 
-foreach($results as $key => $value)
+function getArtByTitleAndArtist($search)
 {
-    echo '<a href = "artist-details.php?ArtistID='.$key.'"><li>'.$value.'</li></a>';
+    try
+    {
+        $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT Paintings.ArtistID, Paintings.Title, Paintings.Description 
+        FROM Paintings JOIN Artists ON Paintings.ArtistID = Artists.ArtistID  
+        where Artists.FirstName Like ?
+        UNION
+        SELECT Paintings.ArtistID, Paintings.Title, Paintings.Description 
+        FROM Paintings JOIN Artists ON Paintings.ArtistID = Artists.ArtistID 
+        where Artists.LastName Like ?
+        UNION
+        SELECT Paintings.ArtistID, Paintings.Title, Paintings.Description 
+        FROM Paintings JOIN Artists ON Paintings.ArtistID = Artists.ArtistID  
+        where Paintings.Title Like ?";
+        $result = $pdo->prepare($sql);
+        $result->bindValue(1, $search."%");
+        $result->bindValue(2, $search."%");
+        $result->bindValue(3, $search."%");
+        $result->execute();
+        $arts = array();
+        while ($row = $result->fetch()) {
+            $artDetails['ArtistID'] = $row['ArtistID'];
+            $artDetails['Title'] = $row['Title'];
+            $artDetails['Description'] = $row['Description'];
+            $arts[] = $artDetails;
+        }
+        $pdo = null;
+        return $arts;
+    }
+    catch (PDOException $e)
+    {
+        die($e->getMessage());
+        return null;
+    }
 }
 
+function getArtDescription($search){
+
+    try
+    {
+        $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT Paintings.ArtistID, Paintings.Title, Paintings.Description FROM Paintings JOIN Artists ON Paintings.ArtistID = Artists.ArtistID WHERE Description Like ?";
+        $result = $pdo->prepare($sql);
+        $result->bindValue(1, "%".$search."%");
+        $result->execute();
+        $arts = array();
+        while ($row = $result->fetch()) {
+            $artDetails['ArtistID'] = $row['ArtistID'];
+            $artDetails['Title'] = $row['Title'];
+            $artDetails['Description'] = $row['Description'];
+            $arts[] = $artDetails;
+        }
+        $pdo = null;
+        return $arts;
+    }
+    catch (PDOException $e)
+    {
+        die($e->getMessage());
+        return null;
+    }
+}
 ?>
