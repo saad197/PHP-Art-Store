@@ -5,9 +5,11 @@
     if(isset($_SESSION['cusName'])) {
         $cusName = "Welcome " . $_SESSION['cusName'];
         $btn = "Logout";
+        $link = "includes/user-logout.php";
     } else {
         $btn = "Login";
         $cusName = "";
+        $link = "user-login.php";   
     }
 ?>
 <div class="container">
@@ -33,7 +35,7 @@
                             <span class="glyphicon glyphicon-shopping-cart"></span> View Cart</a>
                     </li>
                     <li>
-                        <a href="user-login.php">
+                        <a href="<?php echo $link;?>">
                             <span class="glyphicon glyphicon-arrow-right"></span><?php echo $btn;?></a>
                     </li>
                 </ul>

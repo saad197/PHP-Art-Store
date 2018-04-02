@@ -8,7 +8,7 @@
             $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "SELECT ArtistID, ArtistLink, FirstName, LastName, Gender, Nationality, YearofBirth, YearOfDeath, Details
-                      FROM Artists WHERE artistID = ? ";
+                      FROM `Artists` WHERE ArtistID = ? ";
             $statement = $pdo->prepare($sql);
             $statement->bindValue(1, $artistID);
             $statement->execute();
@@ -57,12 +57,12 @@
         {
             $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "SELECT COUNT(*) AS Sales FROM `orderdetails` 
-                        JOIN paintings 
-                        ON paintings.PaintingID = orderdetails.PaintingID
-                        JOIN artists
-                        ON artists.ArtistID = paintings.PaintingID
-                        WHERE paintings.ArtistID = ? ";
+            $sql = "SELECT COUNT(*) AS Sales FROM `OrderDetails` 
+                        JOIN Paintings 
+                        ON Paintings.PaintingID = OrderDetails.PaintingID
+                        JOIN Artists
+                        ON Artists.ArtistID = Paintings.PaintingID
+                        WHERE Paintings.ArtistID = ? ";
             $statement = $pdo->prepare($sql);
             $statement->bindValue(1, $artistID);
             $statement->execute();
