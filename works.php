@@ -21,7 +21,7 @@
     // get all subject names and put in <a>
     foreach ($subjectNames as $elemnt) {
         $subjectName .= "<a href=''>{$elemnt}</a>". " ";
-    } 
+    }
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +52,7 @@
                                     <span class="glyphicon glyphicon-gift"></span> Add to Wish List</a>
                             </button>
                             <button type="button" class="btn btn-default btn-lg">
-                                <a href="#">
+                                <a href="cart/add-to-cart.php?PaintingID=<?php echo $paintingID; ?>">
                                     <span class="glyphicon glyphicon-shopping-cart"></span> Add to Shopping Cart</a>
                             </button>
                         </div>

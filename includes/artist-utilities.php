@@ -57,7 +57,7 @@
         {
             $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "SELECT COUNT(*) AS Sales FROM `OrderDetails` 
+            $sql = "SELECT COUNT(*) AS Sales FROM OrderDetails
                         JOIN Paintings 
                         ON Paintings.PaintingID = OrderDetails.PaintingID
                         JOIN Artists
