@@ -5,7 +5,7 @@
     if(isset($_SESSION['cusName'])) {
         $cusName = "Welcome " . $_SESSION['cusName'];
         $btn = "Logout";
-        $link = "includes/user-logout.php";
+        $link = "includes/user-logout.inc.php";
     } else {
         $btn = "Login";
         $cusName = "";
@@ -27,8 +27,8 @@
                             <span class="glyphicon glyphicon-user"></span> My Account</a>
                     </li>
                     <li>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-gift"></span>Favourite List</a>
+                        <a href="view-favorite-list.php">
+                            <span class="glyphicon glyphicon-gift"></span> View Wish List</a>
                     </li>
                     <li>
                         <a href="view-shopping-cart.php">

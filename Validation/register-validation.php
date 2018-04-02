@@ -1,5 +1,5 @@
 <?php
-
+include_once "includes/config.inc.php";
 // define variables and set to empty values
 $email = $password = $cpassword = $country = $firstName = $state = $lastName = $address = $city = $postal = $phone = "";
 $emailErr = $passwordErr = $countryErr = $cPasswordErr = $stateErr = $firstNameErr = $lastNameErr = $addressErr = $cityErr = $postalErr = $phoneErr = "";
@@ -18,6 +18,18 @@ if (empty($_POST["email"])) {
         $emailErr = "Invalid email format";
         $error[] = $emailErr;
     }
+
+    $conn = new PDO(DBCONNSTRING,DBUSER,DBPASS);
+    $sql = $conn->prepare("SELECT UserName FROM customerlogon WHERE UserName = '$email'; ");
+    $sql->execute();
+
+    if($sql->rowCount() > 0)
+    {
+        $emailErr = "An account is already registered with this email.";
+        $error[] = $emailErr;
+    }
+
+
 }
 
 
@@ -60,8 +72,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $password = test_input($_POST["password"]);
         // check if name only contains letters and whitespace
-        if (!preg_match("/^[a-zA-Z ]*$/", $password)) {
-            $passwordErr = "Only letters and white space allowed";
+        $uppercase = preg_match('@[A-Z]@', $password);
+        $lowercase = preg_match('@[a-z]@', $password);
+        $number    = preg_match('@[0-9]@', $password);
+
+        if(!$uppercase || !$lowercase || !$number || strlen($password) < 8) {
+            $passwordErr = "Password must be greater than 8 characters, must include capital letters and numbers";
             $error = $passwordErr;
         }
     }
@@ -110,7 +126,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $postal = test_input($_POST["postal"]);
         // check if name only contains letters and whitespace
-        if (!preg_match("/^[a-zA-Z ]*$/", $postal)) {
+        if (!preg_match("^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$^", $postal)) {
             $postalErr = "Wrong format, should be like T1T G5G";
             $error = $postalErr;
         }
@@ -159,9 +175,11 @@ echo "empty";
         $addUserEnter .= "&".$key."=".$value ."&" ;
     }
 
-    //redirects user and also sends data
-    header('Location: includes/process-registration.php?'.$addUserEnter);
+    if(isset($_POST['submit'])) {
 
+        //redirects user and also sends data
+        header('Location: includes/process-registration.php?' . $addUserEnter);
+    }
 }
 
 else {

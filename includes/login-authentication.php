@@ -46,7 +46,8 @@ if(isset($_POST['login'])) {
     if(empty($errors)) {
         $username = $_POST['username'];
         $pword = $_POST['pword'];
-        $isAuthenticated = authenticateUserLogin($username, $pword);
+        $hashed_pword = password_hash($pword, PASSWORD_DEFAULT); 
+        $isAuthenticated = authenticateUserLogin($username, $hashed_pword);
         if($isAuthenticated) {
             header('Location: customer-ultilities.php');
         } else{
@@ -54,11 +55,14 @@ if(isset($_POST['login'])) {
             header('Location: ../user-login.php');
         }
     }
-}// end if(isset[login])
-
-foreach($errors as $err) {
-    $_SESSION['Err'] = $err;
+    foreach($errors as $err) {
+        $_SESSION['Err'] = $err;
+    }
+} else {
+    header("Location: ../register.php");
 }
+
+
 
 
 ?>
