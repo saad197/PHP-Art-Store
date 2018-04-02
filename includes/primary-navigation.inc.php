@@ -1,10 +1,11 @@
 <?php  
     session_start();
     if(isset($_SESSION['cusName'])) {
-        $cusName = $_SESSION['cusName'];
+        $cusName = "Welcome " . $_SESSION['cusName'];
         $btn = "Logout";
     } else {
         $btn = "Login";
+        $cusName = "";
     }
 ?>
 <div class="container">
@@ -56,7 +57,7 @@
                 </form>
             </div>
             <!--show customer name-->
-            <div><?php echo "Welcome {$cusName}";?></div>
+            <div><?php echo $cusName;?></div>
         </div>
     </div>
     <!-- end logoRow -->
