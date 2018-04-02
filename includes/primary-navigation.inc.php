@@ -66,13 +66,16 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="artists.php">Artists</a>
+                                <a href="browse-artists.php">Artists</a>
                             </li>
                             <li>
                                 <a href="works.php">Art Work</a>
                             </li>
                             <li>
-                                <a href="genres.php">Genres</a>
+                                <a href="browse-genres.php">Genres</a>
+                            </li>
+                            <li>
+                                <a href="browse-subjects.php">Subjects</a>
                             </li>
                         </ul>
                     </li>

@@ -10,7 +10,7 @@
 <body>
     <?php
         include('includes/primary-navigation.inc.php');
-        include('includes/artist-browse.inc.php');
+        include('includes/artist-list.inc.php');
     ?>
 </body>
 

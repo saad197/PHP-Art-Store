@@ -108,7 +108,7 @@
                 echo "
                     <div class=\"col-md-2\">
                         <div class=\"thumbnail\">
-                            <a href=\"artist-details.php?ArtistID=".$key."\"><img src=\"images/artists/".$key.".jpg\" alt=\"picaso\"></a>
+                            <a href=\"artist-details.php?ArtistID=".$key."\"><img src=\"images/artists/".$key.".jpg\" alt=\"Image not available\"></a>
                             <div class=\"caption\">
                                  <a href=\"artist-details.php?ArtistID=".$key."\"><p>".$value."</p></a>
                                 <button class=\"btn btn-info\">
@@ -119,6 +119,22 @@
                         </div>
                     </div>";
             }
+        }
+    }
+
+
+    function showAllArtist() {
+        $artists = getAllArtistNames();
+        foreach ($artists as $key => $value) {
+            echo "
+                <div class=\"col-md-2\">
+                    <div class=\"thumbnail\">
+                        <a href=\"artist-details.php?ArtistID=".$key."\"><img src=\"images/artists/".$key.".jpg\" alt=\"Image not available\"></a>
+                        <div class=\"caption\">
+                                <a href=\"artist-details.php?ArtistID=".$key."\"><p>".$value."</p></a>
+                        </div>
+                    </div>
+                </div>";
         }
     }
 
