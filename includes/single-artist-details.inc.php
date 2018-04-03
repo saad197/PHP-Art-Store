@@ -4,7 +4,7 @@
         <div class="col-md-10">
             <h1 class="google-font"><?php echo $artist->getFirstName()  . " ". $artist->getLastName() ?></h1>
             <div class="col-md-5 ">
-                <img src="images/artists/<?php echo $artist->getArtistID() ?>.jpg" id="artist-img"  class="img-thumbnail img-responsive " alt="Self-portrait in a Straw Hat">
+                <img src="images/artists/medium/<?php echo $artist->getArtistID() ?>.jpg" id="artist-img"  class="img-thumbnail img-responsive " alt="Self-portrait in a Straw Hat">
             </div>
             <div class="col-md-7 ">
                 <p class=""><?php echo $artist->getDetails() ?></p>
@@ -43,11 +43,12 @@
         <h2 class="google-font">Art by <?php echo $artist->getFirstName()  . " ". $artist->getLastName() ?>  </h2>
     </div>
     <div class="row"> 
+    
         <?php 
             foreach ($artWorks as $value) {
                 echo "<div class=\"col-md-3\" id=\"artwork-panel\">
                         <div class=\"thumbnail\">
-                            <img src=\"images/artists/".$value->getPaintingID().".jpg\" alt=\"pic not available\">
+                            <img src=\"images/works/square-medium/".$value->getImageFileName().".jpg\" alt=\"pic not available\">
                             <div class=\"caption\">
                                 <p class=\"similarTitle\">
                                     <a href=\"#\">".$value->getTitle().", ".$value->getYearOfWork()."</a>
