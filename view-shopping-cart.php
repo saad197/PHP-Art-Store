@@ -3,16 +3,6 @@
 <html>
     <head>
         <?php include "includes/head.inc.php";?>
-        <style>
-            #tb-header{
-                background-color: orange;
-                color: white;
-            }
-            .summary-tr {
-                background-color: #f7ecc3;
-                text-align: right;
-            }
-        </style>
     </head>
     <body>
         <?php include 'includes/primary-navigation.inc.php';?>

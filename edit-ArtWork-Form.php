@@ -10,7 +10,7 @@ foreach ($subjects as $subject) {
     }
 }
 //get list of genre names
-$genres =  getGenres();
+$genres =  getGenresFromDB();
 $genreNames = '';
 foreach($genres as $genre) {
     if(isset($genre)) {
@@ -27,7 +27,7 @@ foreach($genres as $genre) {
     </head>
     <body>
         <?php include 'includes/primary-navigation.inc.php';?>
-
+    
         <form action="" method="post" class"form-group">
             <legend>Edit Work Details</legend>
             <fieldset id="edit-work-form">

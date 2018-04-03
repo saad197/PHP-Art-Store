@@ -188,3 +188,26 @@ footer {
     color: black;
 }
 
+/* Shopping cart */
+
+#tb-header {
+    background-color: orange;
+    color: white;
+}
+
+.summary-tr {
+    background-color: #f7ecc3;
+    text-align: right;
+}
+
+/* customize-produect */
+
+.row-spacing {
+    padding-right: 75px;
+    padding-bottom: 10px;
+}
+
+#prize input {
+    width: 80px;
+}
+
