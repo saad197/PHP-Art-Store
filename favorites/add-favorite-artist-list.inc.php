@@ -23,6 +23,9 @@ function getWishListOfArtist($listOfArtistId) {
     $listOfFvArtist = array();
     foreach($listOfArtistId as $aWishArtist) {
         $anArtistObject = getArtistDetails($aWishArtist);
+        // store artists id
+        $aFavoriteArtistId = $anArtistObject->getArtistID();
+        $aFavoriteArtist[] = $aFavoriteArtistId;
         // store artist  name
         $aFavoriteArtistName = $anArtistObject->getFirstName() . " " . $anArtistObject->getLastName();
         $aFavoriteArtist[] = $aFavoriteArtistName;
@@ -42,7 +45,7 @@ function getWishListOfArtist($listOfArtistId) {
         $aFavoriteArtistDetails = $anArtistObject->getDetails();
         $aFavoriteArtist[] = $aFavoriteArtistDetails;
 
-        if(! array_key_exists($aWishArtId, $listOfFvPaintings)) {
+        if(! array_key_exists($aWishArtist, $listOfFvArtist)) {
             $listOfFvArtist[$aWishArtist] = $aFavoriteArtist;
         } 
         $aFavoriteArtist = array();
@@ -52,9 +55,10 @@ function getWishListOfArtist($listOfArtistId) {
 
 $listOfFvArtist = getWishListOfArtist($_SESSION['ArtistWishList']);
 $_SESSION['listFvArtist'] = $listOfFvArtist;
-echo"<pre>";
-print_r($_SESSION['listFvArtist']);
-echo"</pre>";
+// echo"<pre>";
+// print_r($_SESSION['listFvArtist']);
+// echo "</pre>";
+//header('Location: ../artist-details.php?status=1');
 
 
 
