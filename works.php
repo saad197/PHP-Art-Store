@@ -1,5 +1,7 @@
 
 <?php
+    require('includes/art-ultilities.inc.php');
+
     // since there is not enough images file for all paintings , just show the painting as default panting detail
     if(isset($_GET['PaintingID'])) {
         $paintingID = $_GET['PaintingID'];
@@ -7,7 +9,7 @@
     else {
         $paintingID = 437;
     }
-    require('includes/art-ultilities.inc.php');
+    
     $defaultPainting = getPaintingDetails($paintingID);
     $genresNames = $defaultPainting->getGenresName();
     $genresName = '';
@@ -22,6 +24,19 @@
     foreach ($subjectNames as $elemnt) {
         $subjectName .= "<a href=''>{$elemnt}</a>". " ";
     }
+    $ImgPath = "images/works/medium/";
+
+    // get info for top 7 artists to display on left panel
+    $listOfTopSevenArtist = getTopSevenArtist();
+    $listOfTopSevenArtistNames = $listOfTopSevenArtist['name'];
+    $listOfTopSevenArtistId = $listOfTopSevenArtist['id'];
+
+    //display top 7 artist names
+    $singleArtistName = "";
+    for($i=0; $i < count($listOfTopSevenArtistNames); $i++) {
+        $singleArtistName .= "<li><a href='artist-details.php?ArtistID=".$listOfTopSevenArtistId[$i]."'>".$listOfTopSevenArtistNames[$i]."</a></li>";
+    } 
+
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +46,6 @@
 
 <body>
     <?php include('includes/primary-navigation.inc.php');?>
-    <img src="images/works/medium/019110.jpg">
         <div class="row">
             <div class="col-md-10">
                 <h2 class="google-font"><?php echo $defaultPainting->getTitle();?></h2>
@@ -40,7 +54,7 @@
                 </p>
                 <div class="row">
                     <div class="col-md-5">
-                        <img src="images/works/large/<?php echo $defaultPainting->getImageFileName();?>.jpg" class="img-thumbnail img-responsive" alt="<?php echo $defaultPainting->getTitle();?>" />
+                        <img src="<?php echo $ImgPath.$defaultPainting->getImageFileName();?>.jpg" class="img-thumbnail img-responsive" alt="<?php echo $defaultPainting->getTitle();?>" />
                     </div>
                     <div class="col-md-7 row">
                         <p>
@@ -53,7 +67,7 @@
                                     <span class="glyphicon glyphicon-gift"></span> Add to Wish List</a>
                             </button>
                             <button type="button" class="btn btn-default btn-lg">
-                                <a href="cart/add-to-cart.php?PaintingID=<?php echo $paintingID; ?>">
+                                <a href="customize-product.php?PaintingID=<?php echo $paintingID; ?>">
                                     <span class="glyphicon glyphicon-shopping-cart"></span> Add to Shopping Cart</a>
                             </button>
                         </div>
@@ -221,27 +235,7 @@
                     </div>
                     <div class="wrapper-list">
                         <ul>
-                            <li>
-                                <a href="#">Caravaggio</a>
-                            </li>
-                            <li>
-                                <a href="#">Cezanne</a>
-                            </li>
-                            <li>
-                                <a href="#">Matisse</a>
-                            </li>
-                            <li>
-                                <a href="#">Michelangelo</a>
-                            </li>
-                            <li>
-                                <a href="#">Picasso</a>
-                            </li>
-                            <li>
-                                <a href="#">Raphael</a>
-                            </li>
-                            <li>
-                                <a href="#">Van Gogh</a>
-                            </li>
+                            <?php if(isset($singleArtistName)){echo $singleArtistName;}?>
                         </ul>
                     </div>
                 </div>

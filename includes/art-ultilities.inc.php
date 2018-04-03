@@ -60,4 +60,52 @@ function getPaintingDetails($paintingsID) {
     }
 }
 
+function getTopSevenArtist() {
+    $topSevenArtistId = array();
+    $topSevenArtistNames = array();
+    try {
+        $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT ArtistID, CONCAT_WS(' ', FirstName, LastName) AS FullName
+                FROM Artists
+                LIMIT 7";
+        $result = $pdo->query($sql);
+        while($row = $result->fetch()) {
+            $topSevenArtistId[] = $row['ArtistID'];
+            $topSevenArtistNames[] = $row['FullName'];
+            $topSevenArtistInfo['id'] = $topSevenArtistId;
+            $topSevenArtistInfo['name'] = $topSevenArtistNames;
+        }
+        $pdo = null;
+        return $topSevenArtistInfo;
+        
+    }catch(PDOException $e) {
+    
+    } 
+}
+
+function getTopFourGenre() {
+    $topSevenArtistId = array();
+    $topSevenArtistNames = array();
+    try {
+        $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT ArtistID, CONCAT_WS(' ', FirstName, LastName) AS FullName
+                FROM Artists
+                LIMIT 7";
+        $result = $pdo->query($sql);
+        while($row = $result->fetch()) {
+            $topSevenArtistId[] = $row['ArtistID'];
+            $topSevenArtistNames[] = $row['FullName'];
+            $topSevenArtistInfo['id'] = $topSevenArtistId;
+            $topSevenArtistInfo['name'] = $topSevenArtistNames;
+        }
+        $pdo = null;
+        return $topSevenArtistInfo;
+        
+    }catch(PDOException $e) {
+    
+    } 
+}
+
 ?>
