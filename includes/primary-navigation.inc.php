@@ -27,7 +27,7 @@
                             <span class="glyphicon glyphicon-user"></span> My Account</a>
                     </li>
                     <li>
-                        <a href="view-favorite-list.php">
+                        <a href="display-favorite-lists.php">
                             <span class="glyphicon glyphicon-gift"></span> View Wish List</a>
                     </li>
                     <li>

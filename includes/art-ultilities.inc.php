@@ -1,6 +1,12 @@
 <?php
 include('config.inc.php');
-include('classes/art.class.php');
+$filePath = "classes/art.class.php";
+if(file_exists($filePath)) {
+    include($filePath);
+}
+else {
+    include('../' . $filePath);
+}
 
 function getPaintingDetails($paintingsID) {
     try{

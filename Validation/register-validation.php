@@ -90,11 +90,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $cpassword = test_input($_POST["cpassword"]);
         // check if name only contains letters and whitespace
-        if (!preg_match("/^[a-zA-Z ]*$/", $cpassword)) {
-            $cPasswordErr = "Only letters and white space allowed";
-            $error = $cPasswordErr;
-        } else if ($cpassword != $password) {
-            $cPasswordErr = "Password does not match";
+        if ($cpassword != $password) {
+            $cPasswordErr = "Passwords do not match";
             $error = $cPasswordErr;
 
         }

@@ -7,7 +7,7 @@
     else {
         $paintingID = 437;
     }
-    include('includes/art-ultilities.inc.php');
+    require('includes/art-ultilities.inc.php');
     $defaultPainting = getPaintingDetails($paintingID);
     $genresNames = $defaultPainting->getGenresName();
     $genresName = '';
@@ -48,7 +48,7 @@
                         <p class="price">$<?php echo $defaultPainting->getCost();?></p>
                         <div class="btn-group">
                             <button type="button" class="btn btn-default btn-lg">
-                                <a href="includes/add-favorite-list.inc.php?PaintingID=<?php echo $paintingID;?>">
+                                <a href="favorites/add-favorite-painting-list.inc.php?PaintingID=<?php echo $paintingID;?>">
                                     <span class="glyphicon glyphicon-gift"></span> Add to Wish List</a>
                             </button>
                             <button type="button" class="btn btn-default btn-lg">

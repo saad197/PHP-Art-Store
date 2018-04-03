@@ -18,7 +18,7 @@ $state = $_GET['region'];
 $phone = $_GET['phone'];
 
 
-echo $email;
+
 
 try {
     $conn = new PDO(DBCONNSTRING,DBUSER,DBPASS);
@@ -31,36 +31,57 @@ catch(PDOException $e)
     echo "Connection failed: " . $e->getMessage();
 }
 
-$hashed_password = password_hash($password, PASSWORD_DEFAULT);
-echo '</br>';
 
+$hashed_password = sha1($password);
 
-if (password_verify($password, $hashed_password)) {
-    echo '</br>';
-    echo "password is correct";
-    echo '</br>';
-}
-else {
-    echo '</br>';
-    echo "wrong password";
-    echo '</br>';
-}
-echo $hashed_password;
-echo '</br>';
 try {
-   $conn = new PDO(DBCONNSTRING,DBUSER,DBPASS);
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $insertCustomerLogonSql = "INSERT INTO `customerlogon` (`CustomerID`, `UserName`, `Pass`, `Salt`, `State`, `DateJoined`, `DateLastModified`) VALUES (DEFAULT , '$email', $hashed_password, 1, 1, NOW(), NOW())";
+
+    //login details insert
+    $insertCustomerLogonSql = "INSERT INTO `CustomerLogon` (`CustomerID`, `UserName`, `Pass`, `Salt`, `State`, `DateJoined`, `DateLastModified`) VALUES (DEFAULT , '$email', '$hashed_password', 1, 1, NOW(), NOW())";
 $customerLogon = $conn->prepare($insertCustomerLogonSql);
 
 $conn->exec($insertCustomerLogonSql);
-    echo "New record created successfully";
+
+//get customer id
+    $getCustIdSql = "SELECT CustomerID, UserName FROM CustomerLogon WHERE UserName = '$email'; ";
+    $getCustId = $conn->prepare($getCustIdSql);
+    $getCustId->execute();
+    echo '</br>';
+    foreach ($getCustId as $key => $value) {
+        //   echo '</br>';
+        //echo 'email is' . $value['UserName'];
+        // echo '</br>';
+        $customerID = $value['CustomerID'];
+        echo $customerID;
+        // echo '</br>';
+    }
+
+
+    //insert to customers
+    $insertCustomerSql = "INSERT INTO `Customers` (`CustomerID`, `FirstName`, `LastName`, `Address`, `City`, `Region`, `Country`, `Postal`, `Phone`, `Email`, `Privacy`) 
+                          VALUES ($customerID, '$firstName', '$lastName', '$address', '$city', '$state', '$country', '$postal', '$phone', '$email', NULL)";
+    $customer= $conn->prepare($insertCustomerSql);
+
+    $conn->exec($insertCustomerSql);
+
+
+
+
+
+
+    echo "New records created successfully";
+    header('Location: ../registration-complete.php');
+
+
     }
 catch(PDOException $e)
     {
     echo $insertCustomerLogonSql . "<br>" . $e->getMessage();
+        echo $insertCustomerLogonSql . "<br>" . $e->getMessage();
+        echo $getCustIdSql . "<br>" . $e->getMessage();
     }
+
+
 
 
 

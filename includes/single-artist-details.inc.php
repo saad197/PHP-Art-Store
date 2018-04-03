@@ -10,7 +10,7 @@
                 <p class=""><?php echo $artist->getDetails() ?></p>
                 <div class="btn-group">
                     <button type="button" class="btn btn-default btn-lg">
-                        <a href="#">
+                        <a href="favorites/add-favorite-artist-list.inc.php?ArtistID=<?php echo $artist->getArtistID();?>">
                             <span class="glyphicon glyphicon-heart"></span> Add to Favourite List</a>
                     </button>
                 </div>
