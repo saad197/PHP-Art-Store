@@ -1,7 +1,13 @@
 <?php 
     include('art-ultilities.inc.php');
-    include('classes/artist.class.php');
-
+    $filePath = "classes/artist.class.php";
+    if(file_exists($filePath)) {
+        include($filePath);
+    }
+    else {
+        include('../' . $filePath);
+    }
+    
     function getArtistDetails($artistID) {
         try
         {
