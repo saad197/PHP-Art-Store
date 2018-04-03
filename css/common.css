@@ -187,3 +187,28 @@ footer {
     background-color: orange;
     color: black;
 }
+
+/*Advanced-search*/
+#legendLabel{
+    background-color: dimgrey;
+    color : white;
+    width: 50em;
+    text-align: center;
+    height: 2em;
+    margin-left : 4em;
+}
+.form-container{
+    margin : auto;
+    width : 60em;
+}
+.listStyle{
+    list-style-type:none;
+    
+    }
+.advanced-select{
+    border : 1px solid black;
+    background-color:lightgrey;
+}
+.fieldset-container{
+    background-color:lightslategray;
+}
