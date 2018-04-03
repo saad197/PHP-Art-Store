@@ -1,11 +1,11 @@
 <?
 session_start();
-$paintingId = $_POST['PaintingID'];
-$_SESSION['listFvPaintings'][$paintingId] = array();
+$artistID = $_POST['ArtistID'];
+$_SESSION['listFvArtist'][$artistID] = array();
 session_destroy();
 // $listOfFvArtsToDelete = $_SESSION['listFvPaintings'];
 // $selectedPaintingToDelete = $listOfFvArtsToDelete[$paintingId];
 // $selectedPaintingToDelete = " ";
-echo "The panting is removed";
+echo "The artist is removed";
 
 ?>
