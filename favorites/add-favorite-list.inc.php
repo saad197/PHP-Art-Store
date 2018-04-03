@@ -23,6 +23,7 @@ $_SESSION['ArtWishList'] = $artWishLists;
 print_r($_SESSION['ArtWishList']);
 
 function getListOfPaintingWishList($listOfArtWishId) {
+    $listOfFvPaintings = array();
     foreach($listOfArtWishId as $aWishArtId) {
         $anArtObject = getPaintingDetails($aWishArtId);
         // store art Img name
@@ -40,13 +41,20 @@ function getListOfPaintingWishList($listOfArtWishId) {
         // store genre name
         $aFavoriteArtGenreName = $anArtObject->getGenresName();
         $aFavoriteArt[] = $aFavoriteArtGenreName;
-        $listOfFvPaintings[$aWishArtId] = $aFavoriteArt;
+
+        if(! array_key_exists($aWishArtId, $listOfFvPaintings)) {
+            $listOfFvPaintings[$aWishArtId] = $aFavoriteArt;
+        } 
+        $aFavoriteArt = array();
     }
     return $listOfFvPaintings;
 }
 
 $listOfFvPaintings = getListOfPaintingWishList($_SESSION['ArtWishList']);
 $_SESSION['listFvPaintings'] = $listOfFvPaintings;
+echo"<pre>";
+print_r($_SESSION['listFvPaintings']);
+echo"</pre>";
 header('Location: ../works.php?status=1');
 
 

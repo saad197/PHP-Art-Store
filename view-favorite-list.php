@@ -5,9 +5,8 @@ $listOfFvPaintings = $_SESSION['listFvPaintings'];
 if(isset($listOfFvPaintings)) {
     $aSingleRow = "";
     foreach($listOfFvPaintings as $singleFvPainting) {
-        print_r($singleFvPainting);
         $aSingleRow .= "<tr>";
-        $aSingleRow .= "<td><input type='checkbox'><img src='images/". $singleFvPainting[0]. ".jpg'></td>";
+        $aSingleRow .= "<td><input type='checkbox'><span> </span><img src='images/tiny/". $singleFvPainting[0]. ".jpg'></td>";
         $aSingleRow .= "<td>".$singleFvPainting[1]."</td>";
         $aSingleRow .= "<td>".$singleFvPainting[2]."</td>";
         $aSingleRow .= "<td>".$singleFvPainting[3]."</td>";
