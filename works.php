@@ -31,6 +31,7 @@
 
 <body>
     <?php include('includes/primary-navigation.inc.php');?>
+    <img src="images/works/medium/019110.jpg">
         <div class="row">
             <div class="col-md-10">
                 <h2 class="google-font"><?php echo $defaultPainting->getTitle();?></h2>
@@ -39,7 +40,7 @@
                 </p>
                 <div class="row">
                     <div class="col-md-5">
-                        <img src="images/<?php echo $defaultPainting->getImageFileName();?>.jpg" class="img-thumbnail img-responsive" alt="<?php echo $defaultPainting->getTitle();?>" />
+                        <img src="images/works/large/<?php echo $defaultPainting->getImageFileName();?>.jpg" class="img-thumbnail img-responsive" alt="<?php echo $defaultPainting->getTitle();?>" />
                     </div>
                     <div class="col-md-7 row">
                         <p>
