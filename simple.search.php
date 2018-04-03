@@ -20,7 +20,6 @@
                 }
                 xmlhttp.open("POST","async-request/search-results.php", true);
                 xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                console.log(filterValue);
                 xmlhttp.send("search="+search+"&filter="+filterValue);
             }
     </script>

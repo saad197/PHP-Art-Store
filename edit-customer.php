@@ -2,38 +2,59 @@
 include "Validation/register-validation.php";
 include 'includes/primary-navigation.inc.php';
 include "includes/head.inc.php";
+include "classes/customerlist.class.php";
 
 
-    try {
-        $conn = new PDO(DBCONNSTRING, DBUSER, DBPASS);
-        // set the PDO error mode to exception
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+try {
+    $conn = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    } catch (PDOException $e) {
-        echo "Connection failed: " . $e->getMessage();
-    }
-
-
-    //City sql for select
-    $citySql = "SELECT DISTINCT city FROM Customers WHERE city != '' ORDER BY city ASC";
-    $cityResult = $conn->prepare($citySql);
-    $cityResult->execute();
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+}
 
 
-
-    $countrySql = "SELECT DISTINCT country FROM Customers WHERE country != '' ORDER BY country ASC";
-    $countryResult = $conn->prepare($countrySql);
-    $countryResult->execute();
+//City sql for select
+$citySql = "SELECT DISTINCT city FROM Customers WHERE city != '' ORDER BY city ASC";
+$cityResult = $conn->prepare($citySql);
+$cityResult->execute();
 
 
 
-    $stateSql = "SELECT DISTINCT region FROM Customers WHERE region != '' ORDER BY region ASC";
-    $stateResult = $conn->prepare($stateSql);
-    $stateResult->execute();
+$countrySql = "SELECT DISTINCT country FROM Customers WHERE country != '' ORDER BY country ASC";
+$countryResult = $conn->prepare($countrySql);
+$countryResult->execute();
 
 
 
+$stateSql = "SELECT DISTINCT region FROM Customers WHERE region != '' ORDER BY region ASC";
+$stateResult = $conn->prepare($stateSql);
+$stateResult->execute();
 
+
+
+$customerID = $_GET['customerid'];
+
+
+  try {
+      $pdo = new PDO(DBCONNSTRING,DBUSER,DBPASS);
+      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $sql = "SELECT * FROM Customers WHERE CustomerID = $customerID; ";
+      $result = $pdo->query($sql);
+      while ($row = $result->fetch()) {
+
+          ///will create instance of AdoptionList class to store the adoption data
+          $aCustomer = new CustomerList($row['CustomerID'],$row['FirstName'],$row['LastName'],$row['Address'],
+              $row['City'],$row['Region'], $row['Country'],$row['Postal'], $row['Phone'], $row['Email'], $row['Privacy']);
+          $customerlist[] = $aCustomer;
+          //   asort($adoption_detail);
+      }
+      $pdo = null;
+  }
+  catch (PDOException $e) {
+      die($e->getMessage());
+  }
 
 
 /*foreach($cityResult as $key=> $value) {
@@ -59,57 +80,44 @@ include "includes/head.inc.php";
 
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <h3 class="google-font">Register Account </h3>
+        <h3 class="google-font"><span class = "glyphicon glyphicon-pencil"> </span> Edit Customer Details </h3>
 
 
-</div>
+    </div>
     <form  method = "post" action = "<?php echo $_SERVER["PHP_SELF"];?>">
         <div class="form-group row">
 
 
             <div class="col-md-5" style = "margin-left: 16px; margin-top: 10px;">
-            <div id = "email">
-                <label for="inputEmail4">Email</label>
-                <input type="email" class="form-control" name = "email" placeholder="Email" value="<?php echo $email;?>">
-                <span class = "error"><?php echo $emailErr?></span>
-            </div>
+                <div id = "email">
+                    <label for="inputEmail4">Email</label>
+                    <input type="email" class="form-control" name = "email" placeholder="Email" value="<?php echo $aCustomer->getEmail();?>" readonly>
+                    <span class = "error"><?php echo $emailErr?></span>
+                </div>
             </div>
         </div>
 
         <div class="form-group row-md-5">
             <div id = "firstname" class="col-md-6">
                 <label for="inputPassword4">First Name</label>
-                <input type="text" class="form-control" name = "firstname" placeholder="First Name" value="<?php echo $firstName;?>">
+                <input type="text" class="form-control" name = "firstname" placeholder="First Name" value="<?php echo $aCustomer->getFirstName();?>">
                 <span class = "error"><?php echo $firstNameErr?></span>
                 <br/>
             </div>
             <div id = "lastname" class="col-md-6">
                 <label for="inputPassword4">Last Name</label>
-                <input type="text" class="form-control" name = "lastname" placeholder="Last Name" value="<?php echo $lastName;?>">
+                <input type="text" class="form-control" name = "lastname" placeholder="Last Name" value="<?php echo $aCustomer->getLastName();?>">
                 <span class = "error"><?php echo $lastNameErr?></span>
                 <br/>
             </div>
         </div>
 
-        <div class="form-group row-md-5">
-            <div id = "password" class="col-md-6">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" name = "password" placeholder="Password" value="<?php echo $password;?>">
-                <span class = "error"><?php echo $passwordErr?></span>
-                <br/>
-            </div>
-            <div id = "cpassword" class="col-md-6">
-                <label for="inputPassword4">Confirm Password</label>
-                <input type="password" class="form-control" name = "cpassword" placeholder="Confirm Password" value = "<?php echo $cpassword;?>">
-                <span class = "error"><?php echo $cPasswordErr?></span>
-                <br/>
-            </div>
-        </div>
+
 
         <div class="form-group row-md-5" >
             <div id = "phone" class="col-md-6">
                 <label for="inputPassword4">Phone Number</label>
-                <input type="text" class="form-control" name="phone" placeholder="Phone Number" value = "<?php echo $phone; ?>">
+                <input type="text" class="form-control" name="phone" placeholder="Phone Number" value = "<?php echo $aCustomer->getPhone(); ?>">
                 <span class = "error"><?php echo $phoneErr?></span>
                 <br/>
             </div>
@@ -120,6 +128,7 @@ include "includes/head.inc.php";
                 <label for="country">Country</label>
 
                 <select class="form-control" name = "country" id="country">
+                    <option><?php echo $aCustomer->getCountry();?></option>
                     <?php foreach($countryResult as $key => $value){ ?>
                         <option><?php echo $value['country']; ?></option>
                     <?php } ?>
@@ -134,7 +143,7 @@ include "includes/head.inc.php";
         <div class="form-group">
             <div id = "address" class = "col-md-6">
                 <label for="inputAddress">Address</label>
-                <input type="text" class="form-control" name = "address" id="address" placeholder="1234 Main St" value="<?php echo $address; ?>">
+                <input type="text" class="form-control" name = "address" id="address" placeholder="1234 Main St" value="<?php echo $aCustomer->getAddress(); ?>">
                 <span class = "error"><?php echo $addressErr?></span>
 
                 <br/>
@@ -147,6 +156,7 @@ include "includes/head.inc.php";
 
 
                 <select class="form-control" name = "city" id="city">
+                    <option><?php echo $aCustomer->getCity();?></option>
                     <?php foreach($cityResult as $key => $value){ ?>
 
                         <option><?php echo $value['city']; ?></option>
@@ -160,6 +170,7 @@ include "includes/head.inc.php";
             <div class="form-group col-md-4">
                 <label for="state">State</label>
                 <select class="form-control" name = "region" id="state">
+                    <option><?php echo $aCustomer->getRegion();?></option>
                     <?php foreach($stateResult as $key => $value){ ?>
                         <option><?php echo $value['region']; ?></option>
                     <?php } ?>
@@ -170,16 +181,16 @@ include "includes/head.inc.php";
             </div>
             <div class="form-group col-md-2">
                 <label for="postal">Postal</label>
-                <input type="text" class="form-control" name = "postal" id="postal" value = "<?php echo $postal; ?>">
+                <input type="text" class="form-control" name = "postal" id="postal" value = "<?php echo $aCustomer->getPostal(); ?>">
                 <span class = "error"><?php echo $postalErr?></span>
             </div>
         </div>
         <br/>
 
         <div class = "form-group row">
-        <div class = "col-md-12">
-        <button type="submit" class="btn btn-primary btn-lg" value = "Submit Form" name = "submit" style = "margin-left: 480px"><span class="glyphicon glyphicon-ok-sign"></span> Register</button>
-        </div>
+            <div class = "col-md-12">
+                <button type="submit" class="btn btn-primary btn-lg" value = "Submit Form" name = "update" style = "margin-left: 480px"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
+            </div>
         </div>
     </form>
 
