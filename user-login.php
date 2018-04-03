@@ -40,7 +40,7 @@
                     
                     <p>
                         <label>Password: </label><br />
-                        <input type="password" name="pword" id="pword"  />
+                        <input type="password" name="pword" id="pword" />
                     </p>
                     <p>
                         <button class="btn btn-primary" type="submit" name="login" id="login">Login</button>

@@ -8,7 +8,6 @@ if(isset($listOfFvArtist)) {
     //     print_r($item);
     //     echo "</pre>";
     // }
-    
     $aSingleRow = "";
     foreach($listOfFvArtist as $singleFvArtist) {
         $aSingleRow .= "<tr>";

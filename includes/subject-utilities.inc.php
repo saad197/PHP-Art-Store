@@ -52,7 +52,7 @@ function getSubjectAllArtWorks($subjectID) {
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "SELECT Paintings.PaintingID, Paintings.Title, Paintings.ImageFileName FROM PaintingSubjects
                 INNER JOIN Paintings
-                ON Paintingsubjects.PaintingID = Paintings.PaintingID
+                ON PaintingSubjects.PaintingID = Paintings.PaintingID
                 WHERE SubjectID = ?";
         $result = $pdo->prepare($sql);
         $result->bindValue(1, $subjectID);
