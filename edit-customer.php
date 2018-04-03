@@ -1,5 +1,5 @@
 <?php
-include "Validation/register-validation.php";
+include "Validation/customer-validation.php";
 include 'includes/primary-navigation.inc.php';
 include "includes/head.inc.php";
 include "classes/customerlist.class.php";
@@ -84,7 +84,25 @@ $customerID = $_GET['customerid'];
 
 
     </div>
-    <form  method = "post" action = "<?php echo $_SERVER["PHP_SELF"];?>">
+
+
+
+
+
+    <form  method = "post" action = "<?php echo $_SERVER["PHP_SELF"]; echo "?customerid=" . $aCustomer->getCustomerId();?>">
+
+        <div class="form-group row">
+
+
+            <div class="col-md-5" style = "margin-left: 16px; margin-top: 10px;">
+                <div id = "email">
+                    <label for="inputEmail4">Customer ID</label>
+                    <input type="email" class="form-control" name = "customerid" value="<?php echo $aCustomer->getCustomerId();?>" readonly>
+
+                </div>
+            </div>
+        </div>
+
         <div class="form-group row">
 
 
@@ -92,7 +110,7 @@ $customerID = $_GET['customerid'];
                 <div id = "email">
                     <label for="inputEmail4">Email</label>
                     <input type="email" class="form-control" name = "email" placeholder="Email" value="<?php echo $aCustomer->getEmail();?>" readonly>
-                    <span class = "error"><?php echo $emailErr?></span>
+
                 </div>
             </div>
         </div>
@@ -117,7 +135,7 @@ $customerID = $_GET['customerid'];
         <div class="form-group row-md-5" >
             <div id = "phone" class="col-md-6">
                 <label for="inputPassword4">Phone Number</label>
-                <input type="text" class="form-control" name="phone" placeholder="Phone Number" value = "<?php echo $aCustomer->getPhone(); ?>">
+                <input type="text" class="form-control" name="phone" placeholder="Phone Number" value = "<?php echo $aCustomer->getPhone(); ?>" maxlength="19">
                 <span class = "error"><?php echo $phoneErr?></span>
                 <br/>
             </div>
@@ -181,7 +199,7 @@ $customerID = $_GET['customerid'];
             </div>
             <div class="form-group col-md-2">
                 <label for="postal">Postal</label>
-                <input type="text" class="form-control" name = "postal" id="postal" value = "<?php echo $aCustomer->getPostal(); ?>">
+                <input type="text" class="form-control" name = "postal" id="postal" value = "<?php echo $aCustomer->getPostal(); ?>" maxlength="10">
                 <span class = "error"><?php echo $postalErr?></span>
             </div>
         </div>
@@ -189,11 +207,20 @@ $customerID = $_GET['customerid'];
 
         <div class = "form-group row">
             <div class = "col-md-12">
-                <button type="submit" class="btn btn-primary btn-lg" value = "Submit Form" name = "update" style = "margin-left: 480px"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
+                <button type="submit" class="btn btn-success btn-lg" value = "Submit Form" name = "update" style = "margin-left: 480px"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
             </div>
         </div>
     </form>
 
+
+
+    <form action="customer-list.php" style = "margin-left: 470px; margin-top: -30px;">
+
+        <button type="submit" class="btn btn btn-danger btn-s" style = "margin-top: 20px; margin-left: 20px;"><span class = "glyphicon glyphicon-remove"></span> Cancel</button>
+
+</div>
+
+</form>
 
 
 
