@@ -22,6 +22,7 @@
     foreach ($subjectNames as $elemnt) {
         $subjectName .= "<a href=''>{$elemnt}</a>". " ";
     }
+    $ImgPath = "images/works/medium/";
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +40,7 @@
                 </p>
                 <div class="row">
                     <div class="col-md-5">
-                        <img src="images/<?php echo $defaultPainting->getImageFileName();?>.jpg" class="img-thumbnail img-responsive" alt="<?php echo $defaultPainting->getTitle();?>" />
+                        <img src="<?php echo $ImgPath.$defaultPainting->getImageFileName();?>.jpg" class="img-thumbnail img-responsive" alt="<?php echo $defaultPainting->getTitle();?>" />
                     </div>
                     <div class="col-md-7 row">
                         <p>
