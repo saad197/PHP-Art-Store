@@ -1,13 +1,13 @@
 
 <?php
-// since there is not enough images file for all paintings , just show the painting as default panting detail
+    // since there is not enough images file for all paintings , just show the painting as default panting detail
     if(isset($_GET['PaintingID'])) {
         $paintingID = $_GET['PaintingID'];
     }
     else {
         $paintingID = 437;
     }
-    include('includes/art-ultilities.inc.php');
+    require('includes/art-ultilities.inc.php');
     $defaultPainting = getPaintingDetails($paintingID);
     $genresNames = $defaultPainting->getGenresName();
     $genresName = '';
@@ -21,7 +21,8 @@
     // get all subject names and put in <a>
     foreach ($subjectNames as $elemnt) {
         $subjectName .= "<a href=''>{$elemnt}</a>". " ";
-    } 
+    }
+    $ImgPath = "images/works/medium/";
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +40,7 @@
                 </p>
                 <div class="row">
                     <div class="col-md-5">
-                        <img src="images/<?php echo $defaultPainting->getImageFileName();?>.jpg" class="img-thumbnail img-responsive" alt="<?php echo $defaultPainting->getTitle();?>" />
+                        <img src="<?php echo $ImgPath.$defaultPainting->getImageFileName();?>.jpg" class="img-thumbnail img-responsive" alt="<?php echo $defaultPainting->getTitle();?>" />
                     </div>
                     <div class="col-md-7 row">
                         <p>
@@ -48,11 +49,11 @@
                         <p class="price">$<?php echo $defaultPainting->getCost();?></p>
                         <div class="btn-group">
                             <button type="button" class="btn btn-default btn-lg">
-                                <a href="#">
+                                <a href="favorites/add-favorite-painting-list.inc.php?PaintingID=<?php echo $paintingID;?>">
                                     <span class="glyphicon glyphicon-gift"></span> Add to Wish List</a>
                             </button>
                             <button type="button" class="btn btn-default btn-lg">
-                                <a href="#">
+                                <a href="customize-product.php?PaintingID=<?php echo $paintingID; ?>">
                                     <span class="glyphicon glyphicon-shopping-cart"></span> Add to Shopping Cart</a>
                             </button>
                         </div>

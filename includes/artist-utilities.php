@@ -1,14 +1,20 @@
 <?php 
     include('art-ultilities.inc.php');
-    include('classes/artist.class.php');
-
+    $filePath = "classes/artist.class.php";
+    if(file_exists($filePath)) {
+        include($filePath);
+    }
+    else {
+        include('../' . $filePath);
+    }
+    
     function getArtistDetails($artistID) {
         try
         {
             $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "SELECT ArtistID, ArtistLink, FirstName, LastName, Gender, Nationality, YearofBirth, YearOfDeath, Details
-                      FROM Artists WHERE artistID = ? ";
+                      FROM `Artists` WHERE ArtistID = ? ";
             $statement = $pdo->prepare($sql);
             $statement->bindValue(1, $artistID);
             $statement->execute();
@@ -57,12 +63,12 @@
         {
             $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "SELECT COUNT(*) AS Sales FROM `orderdetails` 
-                        JOIN paintings 
-                        ON paintings.PaintingID = orderdetails.PaintingID
-                        JOIN artists
-                        ON artists.ArtistID = paintings.PaintingID
-                        WHERE paintings.ArtistID = ? ";
+            $sql = "SELECT COUNT(*) AS Sales FROM OrderDetails
+                        JOIN Paintings 
+                        ON Paintings.PaintingID = OrderDetails.PaintingID
+                        JOIN Artists
+                        ON Artists.ArtistID = Paintings.PaintingID
+                        WHERE Paintings.ArtistID = ? ";
             $statement = $pdo->prepare($sql);
             $statement->bindValue(1, $artistID);
             $statement->execute();
@@ -108,7 +114,7 @@
                 echo "
                     <div class=\"col-md-2\">
                         <div class=\"thumbnail\">
-                            <a href=\"artist-details.php?ArtistID=".$key."\"><img src=\"images/artists/".$key.".jpg\" alt=\"picaso\"></a>
+                            <a href=\"artist-details.php?ArtistID=".$key."\"><img src=\"images/artists/".$key.".jpg\" alt=\"Image not available\"></a>
                             <div class=\"caption\">
                                  <a href=\"artist-details.php?ArtistID=".$key."\"><p>".$value."</p></a>
                                 <button class=\"btn btn-info\">
@@ -119,6 +125,22 @@
                         </div>
                     </div>";
             }
+        }
+    }
+
+
+    function showAllArtist() {
+        $artists = getAllArtistNames();
+        foreach ($artists as $key => $value) {
+            echo "
+                <div class=\"col-md-2\">
+                    <div class=\"thumbnail\">
+                        <a href=\"artist-details.php?ArtistID=".$key."\"><img src=\"images/artists/".$key.".jpg\" alt=\"Image not available\"></a>
+                        <div class=\"caption\">
+                                <a href=\"artist-details.php?ArtistID=".$key."\"><p>".$value."</p></a>
+                        </div>
+                    </div>
+                </div>";
         }
     }
 

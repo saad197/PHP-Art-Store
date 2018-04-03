@@ -1,3 +1,17 @@
+<?php    
+    if(session_status() == PHP_SESSION_NONE) {         
+        session_start();     
+    }
+    if(isset($_SESSION['cusName'])) {
+        $cusName = "Welcome " . $_SESSION['cusName'];
+        $btn = "Logout";
+        $link = "includes/user-logout.inc.php";
+    } else {
+        $btn = "Login";
+        $cusName = "";
+        $link = "user-login.php";   
+    }
+?>
 <div class="container">
     <div class="row">
         <div id="topHeaderRow">
@@ -13,16 +27,16 @@
                             <span class="glyphicon glyphicon-user"></span> My Account</a>
                     </li>
                     <li>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-gift"></span>Favourite List</a>
+                        <a href="display-favorite-lists.php">
+                            <span class="glyphicon glyphicon-gift"></span> View Wish List</a>
                     </li>
                     <li>
                         <a href="view-shopping-cart.php">
                             <span class="glyphicon glyphicon-shopping-cart"></span> View Cart</a>
                     </li>
                     <li>
-                        <a href="user-login.php">
-                            <span class="glyphicon glyphicon-arrow-right"></span> Login</a>
+                        <a href="<?php echo $link;?>">
+                            <span class="glyphicon glyphicon-arrow-right"></span><?php echo $btn;?></a>
                     </li>
                 </ul>
             </nav>
@@ -31,7 +45,7 @@
     <!-- end topHeaderRow -->
     <div class="row">
         <div id="logoRow">
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <h1>Art Store</h1>
             </div>
             <div class="col-md-3">
@@ -46,6 +60,8 @@
                     </div>
                 </form>
             </div>
+            <!--show customer name-->
+            <div><?php echo $cusName;?></div>
         </div>
     </div>
     <!-- end logoRow -->
@@ -66,13 +82,16 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="artists.php">Artists</a>
+                                <a href="browse-artists.php">Artists</a>
                             </li>
                             <li>
                                 <a href="works.php">Art Work</a>
                             </li>
                             <li>
-                                <a href="genres.php">Genres</a>
+                                <a href="browse-genres.php">Genres</a>
+                            </li>
+                            <li>
+                                <a href="browse-subjects.php">Subjects</a>
                             </li>
                         </ul>
                     </li>

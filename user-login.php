@@ -1,6 +1,8 @@
 
 <?php
-    session_start();
+    if(session_status() == PHP_SESSION_NONE){   
+        session_start();  
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,7 +30,7 @@
                         <?php
                              if(isset($_SESSION['Err'])) {
                                 print_r($_SESSION['Err']);
-                                }
+                            }
                         ?>
                     </span>
                     <p>
@@ -38,10 +40,11 @@
                     
                     <p>
                         <label>Password: </label><br />
-                        <input type="password" name="pword" id="pword"  />
+                        <input type="password" name="pword" id="pword" />
                     </p>
                     <p>
                         <button class="btn btn-primary" type="submit" name="login" id="login">Login</button>
+                        <button class="btn btn-primary"><a href="register.php"></a>Sign up</button>
                     </p>
                 </fieldset>
             </form>

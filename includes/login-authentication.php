@@ -1,7 +1,8 @@
 <?php
 include('config.inc.php');
-session_start();
-
+if(session_status() == PHP_SESSION_NONE){  
+    session_start(); 
+}
 //connect CustomerLogon
 function authenticateUserLogin($email, $pword) {
     try{
@@ -19,6 +20,8 @@ function authenticateUserLogin($email, $pword) {
         if($statement->rowCount() == 1) {
             while($row = $statement->fetch()) {
                 // this step means authenticate successful
+                $cusId = $row['CustomerID'];
+                $_SESSION['cusID'] = $cusId;
                 return true;
             }
         } else {
@@ -43,18 +46,23 @@ if(isset($_POST['login'])) {
     if(empty($errors)) {
         $username = $_POST['username'];
         $pword = $_POST['pword'];
-        $isAuthenticated = authenticateUserLogin($username, $pword);
+        $hashed_pword = sha1($pword); 
+        $isAuthenticated = authenticateUserLogin($username, $hashed_pword);
         if($isAuthenticated) {
-            header('Location: ../index.php');
+            header('Location: customer-ultilities.php');
         } else{
             $errors[] = "The username or password does not match";
             header('Location: ../user-login.php');
         }
     }
-}// end if(isset[login])
-
-foreach($errors as $err) {
-    $_SESSION['Err'] = $err;
+    foreach($errors as $err) {
+        $_SESSION['Err'] = $err;
+    }
+} else {
+    header("Location: ../register.php");
 }
+
+
+
 
 ?>
