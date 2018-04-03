@@ -11,7 +11,7 @@ if(isset($listOfFvArtist)) {
     $aSingleRow = "";
     foreach($listOfFvArtist as $singleFvArtist) {
         $aSingleRow .= "<tr>";
-        $aSingleRow .= "<td><input type='checkbox'><span> </span><img src='images/artists/". $singleFvArtist[0]. ".jpg'></td>";
+        $aSingleRow .= "<td><input type='checkbox'><span> </span><img src='images/artists/square-thumb/". $singleFvArtist[0]. ".jpg'></td>";
         $aSingleRow .= "<td>".$singleFvArtist[1]."</td>";
         $aSingleRow .= "<td>".$singleFvArtist[2]."</td>";
         $aSingleRow .= "<td>".$singleFvArtist[3]."</td>";

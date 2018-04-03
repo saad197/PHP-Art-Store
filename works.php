@@ -1,5 +1,7 @@
 
 <?php
+    require('includes/art-ultilities.inc.php');
+
     // since there is not enough images file for all paintings , just show the painting as default panting detail
     if(isset($_GET['PaintingID'])) {
         $paintingID = $_GET['PaintingID'];
@@ -7,7 +9,7 @@
     else {
         $paintingID = 437;
     }
-    require('includes/art-ultilities.inc.php');
+    
     $defaultPainting = getPaintingDetails($paintingID);
     $genresNames = $defaultPainting->getGenresName();
     $genresName = '';
@@ -23,6 +25,27 @@
         $subjectName .= "<a href=''>{$elemnt}</a>". " ";
     }
     $ImgPath = "images/works/medium/";
+
+    // get info for top 7 artists to display on left panel
+    $listOfTopSevenArtist = getTopSevenArtist();
+    $listOfTopSevenArtistNames = $listOfTopSevenArtist['name'];
+    $listOfTopSevenArtistId = $listOfTopSevenArtist['id'];
+
+    //display top 7 artist names
+    $singleArtistName = "";
+    for($i=0; $i < count($listOfTopSevenArtistNames); $i++) {
+        $singleArtistName .= "<li><a href='artist-details.php?ArtistID=".$listOfTopSevenArtistId[$i]."'>".$listOfTopSevenArtistNames[$i]."</a></li>";
+    } 
+
+    //display top 4 genres names
+    $listOfTopFourGenre = getTopFourGenre();
+    $listOfTopFourGenreNames = $listOfTopFourGenre['name'];
+    $listOfTopFourGenreId = $listOfTopFourGenre['id'];
+    $singleGenreName = "";
+    for($i=0; $i < count($listOfTopFourGenreNames); $i++) {
+        $singleGenreName .= "<li><a href='genre-details.php?GenreID=".$listOfTopFourGenreId[$i]."'>".$listOfTopFourGenreNames[$i]."</a></li>";
+    } 
+
 ?>
 
 <!DOCTYPE html>
@@ -221,27 +244,7 @@
                     </div>
                     <div class="wrapper-list">
                         <ul>
-                            <li>
-                                <a href="#">Caravaggio</a>
-                            </li>
-                            <li>
-                                <a href="#">Cezanne</a>
-                            </li>
-                            <li>
-                                <a href="#">Matisse</a>
-                            </li>
-                            <li>
-                                <a href="#">Michelangelo</a>
-                            </li>
-                            <li>
-                                <a href="#">Picasso</a>
-                            </li>
-                            <li>
-                                <a href="#">Raphael</a>
-                            </li>
-                            <li>
-                                <a href="#">Van Gogh</a>
-                            </li>
+                            <?php if(isset($singleArtistName)){echo $singleArtistName;}?>
                         </ul>
                     </div>
                 </div>
@@ -251,18 +254,7 @@
                     </div>
                     <div class="wrapper-list">
                         <ul>
-                            <li>
-                                <a href="#">Baroque</a>
-                            </li>
-                            <li>
-                                <a href="#">Cubism</a>
-                            </li>
-                            <li>
-                                <a href="#">Impressionism</a>
-                            </li>
-                            <li>
-                                <a href="#">Renaissance</a>
-                            </li>
+                            <?php if(isset($singleGenreName)) { echo $singleGenreName;} ?>
                         </ul>
                     </div>
                 </div>
