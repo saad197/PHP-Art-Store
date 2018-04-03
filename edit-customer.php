@@ -207,11 +207,20 @@ $customerID = $_GET['customerid'];
 
         <div class = "form-group row">
             <div class = "col-md-12">
-                <button type="submit" class="btn btn-primary btn-lg" value = "Submit Form" name = "update" style = "margin-left: 480px"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
+                <button type="submit" class="btn btn-success btn-lg" value = "Submit Form" name = "update" style = "margin-left: 480px"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
             </div>
         </div>
     </form>
 
+
+
+    <form action="customer-list.php" style = "margin-left: 470px; margin-top: -30px;">
+
+        <button type="submit" class="btn btn btn-danger btn-s" style = "margin-top: 20px; margin-left: 20px;"><span class = "glyphicon glyphicon-remove"></span> Cancel</button>
+
+</div>
+
+</form>
 
 
 
