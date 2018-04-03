@@ -37,6 +37,15 @@
         $singleArtistName .= "<li><a href='artist-details.php?ArtistID=".$listOfTopSevenArtistId[$i]."'>".$listOfTopSevenArtistNames[$i]."</a></li>";
     } 
 
+    //display top 4 genres names
+    $listOfTopFourGenre = getTopFourGenre();
+    $listOfTopFourGenreNames = $listOfTopFourGenre['name'];
+    $listOfTopFourGenreId = $listOfTopFourGenre['id'];
+    $singleGenreName = "";
+    for($i=0; $i < count($listOfTopFourGenreNames); $i++) {
+        $singleGenreName .= "<li><a href='genre-details.php?GenreID=".$listOfTopFourGenreId[$i]."'>".$listOfTopFourGenreNames[$i]."</a></li>";
+    } 
+
 ?>
 
 <!DOCTYPE html>
@@ -245,18 +254,7 @@
                     </div>
                     <div class="wrapper-list">
                         <ul>
-                            <li>
-                                <a href="#">Baroque</a>
-                            </li>
-                            <li>
-                                <a href="#">Cubism</a>
-                            </li>
-                            <li>
-                                <a href="#">Impressionism</a>
-                            </li>
-                            <li>
-                                <a href="#">Renaissance</a>
-                            </li>
+                            <?php if(isset($singleGenreName)) { echo $singleGenreName;} ?>
                         </ul>
                     </div>
                 </div>
