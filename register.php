@@ -15,19 +15,22 @@ include "includes/head.inc.php";
 
 
     //City sql for select
-    $citySql = "SELECT DISTINCT City FROM art.Customers ORDER BY City ASC";
+    $citySql = "SELECT DISTINCT city FROM Customers WHERE city != '' ORDER BY city ASC";
     $cityResult = $conn->prepare($citySql);
     $cityResult->execute();
 
 
-    $countrySql = "SELECT DISTINCT Country FROM art.Customers ORDER BY Country ASC";
+
+    $countrySql = "SELECT DISTINCT country FROM Customers WHERE country != '' ORDER BY country ASC";
     $countryResult = $conn->prepare($countrySql);
     $countryResult->execute();
 
 
-    $stateSql = "SELECT DISTINCT Region FROM art.Customers ORDER BY Region ASC";
+
+    $stateSql = "SELECT DISTINCT region FROM Customers WHERE region != '' ORDER BY region ASC";
     $stateResult = $conn->prepare($stateSql);
     $stateResult->execute();
+
 
 
 
@@ -60,7 +63,7 @@ include "includes/head.inc.php";
 
 
 </div>
-    <form method = "post" action = "<?php echo $_SERVER["PHP_SELF"];?>">
+    <form  method = "post" action = "<?php echo $_SERVER["PHP_SELF"];?>">
         <div class="form-group row">
 
 
@@ -78,11 +81,13 @@ include "includes/head.inc.php";
                 <label for="inputPassword4">First Name</label>
                 <input type="text" class="form-control" name = "firstname" placeholder="First Name" value="<?php echo $firstName;?>">
                 <span class = "error"><?php echo $firstNameErr?></span>
+                <br/>
             </div>
             <div id = "lastname" class="col-md-6">
                 <label for="inputPassword4">Last Name</label>
                 <input type="text" class="form-control" name = "lastname" placeholder="Last Name" value="<?php echo $lastName;?>">
                 <span class = "error"><?php echo $lastNameErr?></span>
+                <br/>
             </div>
         </div>
 
@@ -91,19 +96,22 @@ include "includes/head.inc.php";
                 <label for="password">Password</label>
                 <input type="password" class="form-control" name = "password" placeholder="Password" value="<?php echo $password;?>">
                 <span class = "error"><?php echo $passwordErr?></span>
+                <br/>
             </div>
             <div id = "cpassword" class="col-md-6">
                 <label for="inputPassword4">Confirm Password</label>
                 <input type="password" class="form-control" name = "cpassword" placeholder="Confirm Password" value = "<?php echo $cpassword;?>">
                 <span class = "error"><?php echo $cPasswordErr?></span>
+                <br/>
             </div>
         </div>
 
-        <div class="form-group row-md-5">
+        <div class="form-group row-md-5" >
             <div id = "phone" class="col-md-6">
                 <label for="inputPassword4">Phone Number</label>
                 <input type="text" class="form-control" name="phone" placeholder="Phone Number" value = "<?php echo $phone; ?>">
                 <span class = "error"><?php echo $phoneErr?></span>
+                <br/>
             </div>
         </div>
 
@@ -113,12 +121,14 @@ include "includes/head.inc.php";
 
                 <select class="form-control" name = "country" id="country">
                     <?php foreach($countryResult as $key => $value){ ?>
-                        <option><?php echo $value['Country']; ?></option>
+                        <option><?php echo $value['country']; ?></option>
                     <?php } ?>
 
 
                 </select>
+                <br/>
             </div>
+
         </div>
 
         <div class="form-group">
@@ -126,6 +136,8 @@ include "includes/head.inc.php";
                 <label for="inputAddress">Address</label>
                 <input type="text" class="form-control" name = "address" id="address" placeholder="1234 Main St" value="<?php echo $address; ?>">
                 <span class = "error"><?php echo $addressErr?></span>
+
+                <br/>
             </div>
         </div>
 
@@ -137,23 +149,24 @@ include "includes/head.inc.php";
                 <select class="form-control" name = "city" id="city">
                     <?php foreach($cityResult as $key => $value){ ?>
 
-                        <option><?php echo $value['City']; ?></option>
+                        <option><?php echo $value['city']; ?></option>
                     <?php } ?>
 
 
                 </select>
 
-
+                <br/>
             </div>
             <div class="form-group col-md-4">
                 <label for="state">State</label>
                 <select class="form-control" name = "region" id="state">
                     <?php foreach($stateResult as $key => $value){ ?>
-                        <option><?php echo $value['Region']; ?></option>
+                        <option><?php echo $value['region']; ?></option>
                     <?php } ?>
 
 
                 </select>
+                <br/>
             </div>
             <div class="form-group col-md-2">
                 <label for="postal">Postal</label>
@@ -161,12 +174,19 @@ include "includes/head.inc.php";
                 <span class = "error"><?php echo $postalErr?></span>
             </div>
         </div>
+        <br/>
 
         <div class = "form-group row">
-
-        <button type="submit" class="btn btn-primary btn-lg" value = "Submit Form" name = "submit" style = "margin-left: 19px">Register</button>
+        <div class = "col-md-12">
+        <button type="submit" class="btn btn-primary btn-lg" value = "Submit Form" name = "submit" style = "margin-left: 480px"><span class="glyphicon glyphicon-ok-sign"></span> Register</button>
+        </div>
         </div>
     </form>
+
+
+
+
+
 
 </div>
 
