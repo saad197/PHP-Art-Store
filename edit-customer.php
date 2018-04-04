@@ -3,6 +3,7 @@ include "Validation/customer-validation.php";
 include 'includes/primary-navigation.inc.php';
 include "includes/head.inc.php";
 include "classes/customerlist.class.php";
+include('includes/admin-check.php');
 
 
 try {
@@ -57,11 +58,31 @@ $customerID = $_GET['customerid'];
   }
 
 
+  $test = "admin";
 /*foreach($cityResult as $key=> $value) {
     echo $value['city'];
 
 
 } */
+
+
+//check to see if user is admin
+if ( @$_SESSION['cusID']) {
+
+    if (!isAdmin($_SESSION['cusID'])) {
+        echo '<script type="text/javascript">
+window.location.href = \'index.php/\';
+</script>';
+    }
+}
+
+else {
+    echo '<script type="text/javascript">
+alert("Access Denied");
+window.location.href = \'index.php/\';
+</script>';
+}
+
 
 
 
@@ -75,6 +96,8 @@ $customerID = $_GET['customerid'];
 
 <style>.error{color : red; margin-top: 0px; margin-bottom: 0px;}</style>
 <body>
+
+
 
 
 
@@ -109,7 +132,7 @@ $customerID = $_GET['customerid'];
             <div class="col-md-5" style = "margin-left: 16px; margin-top: 10px;">
                 <div id = "email">
                     <label for="inputEmail4">Email</label>
-                    <input type="email" class="form-control" name = "email" placeholder="Email" value="<?php echo $aCustomer->getEmail();?>" readonly>
+                    <input type="email" class="form-control" name = "email" placeholder="Email" value="<?php echo $aCustomer->getEmail();?>">
 
                 </div>
             </div>
@@ -204,6 +227,8 @@ $customerID = $_GET['customerid'];
             </div>
         </div>
         <br/>
+        <br/>
+
 
         <div class = "form-group row">
             <div class = "col-md-12">

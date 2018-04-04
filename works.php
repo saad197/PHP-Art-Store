@@ -103,6 +103,10 @@
                                 <a href="customize-product.php?PaintingID=<?php echo $paintingID; ?>">
                                     <span class="glyphicon glyphicon-shopping-cart"></span> Add to Shopping Cart</a>
                             </button>
+                            <button type="button" class="btn btn-default btn-lg">
+                                <a href="edit-ArtWork-Form.php?PaintingID=<?php echo $paintingID; ?>">
+                                    <span class="glyphicon glyphicon-wrench"></span> Edit</a>
+                            </button>
                         </div>
                         <p>&nbsp;</p>
                         <div class="panel panel-default">
