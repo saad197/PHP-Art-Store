@@ -1,6 +1,5 @@
 <?php
     include('includes/cart-utilities.inc.php');
-    include('includes/art-ultilities.inc.php');
     if(isset($_GET['PaintingID'])) {
         $paintingID = $_GET['PaintingID'];
     }
@@ -14,18 +13,18 @@
         session_start();     
     }
 
-    // Collect previous cart value
+    // Collect previous cart value and add new one
     if(isset($_SESSION['CartPaintings'])) {
         $cartPaintings = $_SESSION['CartPaintings'];
-        // stops override info
-        $cartPaintings[$paintingID] = $paintingID;
+        $paintingInfo['New'] = true;
+        $cartPaintings[$paintingID] = $paintingInfo;
+    }
+    else {
+        $paintingInfo['New'] = true;
+        $cartPaintings[$paintingID] = $paintingInfo;
     }
 
     $_SESSION['CartPaintings'] = $cartPaintings;
-
-    echo '<pre>';
-    print_r($_SESSION);
-    echo '</pre>';
 ?>
 
 <!DOCTYPE html>
@@ -33,6 +32,7 @@
     <head>
         <?php include "includes/head.inc.php";?>
         <?php include("includes/customize-product.script.inc.php") ;?>
+        <?php include('includes/view-cart.script.inc.php'); ?>
     </head>
     <body>
         <?php include 'includes/primary-navigation.inc.php';?>
@@ -79,6 +79,7 @@
                         </div>
                     </fieldset>
                 </form>
+                <script>updateFinalPrices(0);</script>
             </div>
         </div>
     </body>

@@ -262,3 +262,14 @@ footer {
 .panelspace {
     margin-left: 20px;
 }
+
+
+/* view-cart */
+.cart-pic {
+    height: 150px;
+    width: 150px;
+}
+
+#quantity {
+    width: 40px;
+}
