@@ -66,8 +66,6 @@
             $sql = "SELECT COUNT(*) AS Sales FROM OrderDetails
                         JOIN Paintings 
                         ON Paintings.PaintingID = OrderDetails.PaintingID
-                        JOIN Artists
-                        ON Artists.ArtistID = Paintings.PaintingID
                         WHERE Paintings.ArtistID = ? ";
             $statement = $pdo->prepare($sql);
             $statement->bindValue(1, $artistID);

@@ -1,7 +1,7 @@
 <?php 
 
 include('config.inc.php');
-
+require_once('art-ultilities.inc.php');
 
 function getFrameOptions($option) {
     try
@@ -165,4 +165,31 @@ function showMattColors() {
     echo "</select></span>"; 
 }
  
+?>
+
+<?php
+
+function getCartList() {
+    if(isset($_SESSION['CartPaintings'])) {
+        $cartItems = $_SESSION['CartPaintings'];
+        $count = 1;
+        foreach ($cartItems as $key => $item) {
+            $artWork = getPaintingDetails($key);        
+            echo "<tr>
+                    <td>".$count++."</td>
+                    <td><a href='works.php?PaintingID=".$key."'><img src='images/works/small/".$artWork->getImageFileName().".jpg'  class='cart-pic' alt='Image not available'></a></td>
+                    <td><a href='works.php?PaintingID=".$key."'>".$artWork->getTitle()."</a></td>
+                    <td><input type='number' name='quantity' min='1' id='quantity' value='1'></td>
+                    <td>
+                        <a href='#'><button>Delete</button></a>
+                        <a href='customize-product.php?PaintingID=".$key."'><button>Edit</button></a>
+                        <a href='#'><button>fa</button></a>
+                    </td>
+                    <td>$211</td>
+                    <td>".$item['TotalPrice']."</td>
+                </tr>";
+        }
+    }
+}
+
 ?>
