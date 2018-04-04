@@ -1,6 +1,5 @@
 <?php
     include('includes/cart-utilities.inc.php');
-    include('includes/art-ultilities.inc.php');
     if(isset($_GET['PaintingID'])) {
         $paintingID = $_GET['PaintingID'];
     }
@@ -33,6 +32,7 @@
     <head>
         <?php include "includes/head.inc.php";?>
         <?php include("includes/customize-product.script.inc.php") ;?>
+        <?php include('includes/view-cart.script.inc.php'); ?>
     </head>
     <body>
         <?php include 'includes/primary-navigation.inc.php';?>
@@ -79,6 +79,7 @@
                         </div>
                     </fieldset>
                 </form>
+                <script>updateFinalPrices(0);</script>
             </div>
         </div>
     </body>
