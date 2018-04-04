@@ -58,7 +58,7 @@ $_SESSION['listFvArtist'] = $listOfFvArtist;
 // echo"<pre>";
 // print_r($_SESSION['listFvArtist']);
 // echo "</pre>";
-header('Location: ../artist-details.php?status=1');
+header('Location: ' . $_SERVER['HTTP_REFERER']);
 
 
 

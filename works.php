@@ -1,13 +1,14 @@
 
 <?php
-    // since there is not enough images file for all paintings , just show the painting as default panting detail
+    require('includes/art-ultilities.inc.php');
+
     if(isset($_GET['PaintingID'])) {
         $paintingID = $_GET['PaintingID'];
     }
     else {
         $paintingID = 437;
     }
-    require('includes/art-ultilities.inc.php');
+    
     $defaultPainting = getPaintingDetails($paintingID);
     $genresNames = $defaultPainting->getGenresName();
     $genresName = '';
@@ -23,6 +24,52 @@
         $subjectName .= "<a href=''>{$elemnt}</a>". " ";
     }
     $ImgPath = "images/works/medium/";
+
+    // get info for top 7 artists to display on left panel
+    $listOfTopSevenArtist = getTopSevenArtist();
+    $listOfTopSevenArtistNames = $listOfTopSevenArtist['name'];
+    $listOfTopSevenArtistId = $listOfTopSevenArtist['id'];
+
+    //display top 7 artist 
+    $singleArtistName = "";
+    for($i=0; $i < count($listOfTopSevenArtistNames); $i++) {
+        $singleArtistName .= "<li><a href='artist-details.php?ArtistID=".$listOfTopSevenArtistId[$i]."'>".$listOfTopSevenArtistNames[$i]."</a></li>";
+    } 
+
+    //display top 4 genres 
+    $listOfTopFourGenre = getTopFourGenre();
+    $listOfTopFourGenreNames = $listOfTopFourGenre['name'];
+    $listOfTopFourGenreId = $listOfTopFourGenre['id'];
+    $singleGenreName = "";
+    for($i=0; $i < count($listOfTopFourGenreNames); $i++) {
+        $singleGenreName .= "<li><a href='genre-details.php?GenreID=".$listOfTopFourGenreId[$i]."'>".$listOfTopFourGenreNames[$i]."</a></li>";
+    } 
+    //display top 4 paitings 
+    $listOfTopFourPainting = getTopFourArt();
+    $listOfTopFourPaintingId = $listOfTopFourPainting['id'];
+    $listOfTopFourPaintingTitle = $listOfTopFourPainting['title'];
+    $listOfTopFourPaintingImgFileName = $listOfTopFourPainting['imgFileName'];
+    $singlePanelOfArt = "";
+    for($i=0; $i < count($listOfTopFourPaintingId); $i++) {
+        $singlePanelOfArt .= 
+        "<div class='panelspace col-md-2 thumbnail'>
+            <img src='images/works/square-medium/".$listOfTopFourPaintingImgFileName[$i].".jpg' alt='...' />
+            <div>
+                <p class='similarTitle'>
+                    <a href='works.php?PaintingID=".$listOfTopFourPaintingId[$i]."'>".$listOfTopFourPaintingTitle[$i]."</a>
+                </p>
+                <div class='btn-space'>
+                    <button type='button' class='btn btn-primary btn-xs'>
+                        <i class='glyphicon glyphicon-info-sign'></i> View</button>
+                    <button type='button' class='btn btn-success btn-xs'>
+                        <i class='glyphicon glyphicon-gift'></i> Wish</button>
+                    <button type='button' class='btn btn-info btn-xs'>
+                        <i class='glyphicon glyphicon-shopping-cart'></i> Cart</button>
+                </div>
+            </div>
+        </div>";
+    } 
+
 ?>
 
 <!DOCTYPE html>
@@ -105,7 +152,8 @@
                 <h3 class="google-font">Similar Products </h3>
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-2 thumbnail">
+                        <?php if(isset($singlePanelOfArt)){echo $singlePanelOfArt;}?>
+                        <!-- <div class="col-md-2 thumbnail">
                             <img src="images/thumbs/116010.jpg" alt="...">
                             <div>
                                 <p class="similarTitle">
@@ -120,8 +168,9 @@
                                         <i class="glyphicon glyphicon-shopping-cart"></i> Cart</button>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-2 thumbnail space">
+                        </div> -->
+
+                        <!-- <div class="col-md-2 thumbnail space">
                             <img src="images/thumbs/120010.jpg" alt="...">
                             <div>
                                 <p class="similarTitle">
@@ -136,9 +185,9 @@
                                         <i class="glyphicon glyphicon-shopping-cart"></i> Cart</button>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
-                        <div class="col-md-2 thumbnail space">
+                        <!-- <div class="col-md-2 thumbnail space">
                             <img src="images/thumbs/107010.jpg" alt="...">
                             <div>
                                 <p class="similarTitle">
@@ -153,9 +202,9 @@
                                         <i class="glyphicon glyphicon-shopping-cart"></i> Cart</button>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
-                        <div class="col-md-2 thumbnail space">
+                        <!-- <div class="col-md-2 thumbnail space">
                             <img src="images/thumbs/106020.jpg" alt="...">
                             <div>
                                 <p class="similarTitle">
@@ -170,7 +219,7 @@
                                         <i class="glyphicon glyphicon-shopping-cart"></i> Cart</button>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -221,27 +270,7 @@
                     </div>
                     <div class="wrapper-list">
                         <ul>
-                            <li>
-                                <a href="#">Caravaggio</a>
-                            </li>
-                            <li>
-                                <a href="#">Cezanne</a>
-                            </li>
-                            <li>
-                                <a href="#">Matisse</a>
-                            </li>
-                            <li>
-                                <a href="#">Michelangelo</a>
-                            </li>
-                            <li>
-                                <a href="#">Picasso</a>
-                            </li>
-                            <li>
-                                <a href="#">Raphael</a>
-                            </li>
-                            <li>
-                                <a href="#">Van Gogh</a>
-                            </li>
+                            <?php if(isset($singleArtistName)){echo $singleArtistName;}?>
                         </ul>
                     </div>
                 </div>
@@ -251,18 +280,7 @@
                     </div>
                     <div class="wrapper-list">
                         <ul>
-                            <li>
-                                <a href="#">Baroque</a>
-                            </li>
-                            <li>
-                                <a href="#">Cubism</a>
-                            </li>
-                            <li>
-                                <a href="#">Impressionism</a>
-                            </li>
-                            <li>
-                                <a href="#">Renaissance</a>
-                            </li>
+                            <?php if(isset($singleGenreName)) { echo $singleGenreName;} ?>
                         </ul>
                     </div>
                 </div>
