@@ -49,7 +49,7 @@
                 <h1>Art Store</h1>
             </div>
             <div class="col-md-3">
-                <form action="" method="post">
+                <form action="simple.search.php" method="GET">
                     <div class="input-group">
                         <input class="form-control" type="text" placeholder="Search" name="search">
                         <div class="input-group-btn">
