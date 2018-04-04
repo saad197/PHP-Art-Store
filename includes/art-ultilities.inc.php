@@ -110,4 +110,30 @@ function getTopFourGenre() {
     } 
 }
 
+function getTopFourArt() {
+    $topFourArtId = array();
+    $topFourArtTitle = array();
+    $topFourArtImgFileName = array();
+    try {
+        $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT PaintingID, ImageFileName, Title
+                FROM Paintings
+                LIMIT 4";
+        $result = $pdo->query($sql);
+        while($row = $result->fetch()) {
+            $topFourArtId[] = $row['PaintingID'];
+            $topFourArtTitle[] = $row['Title'];
+            $topFourArtImgFileName[] = $row['ImageFileName'];
+            $topFourArtInfo['id'] = $topFourArtId;
+            $topFourArtInfo['title'] = $topFourArtTitle;
+            $topFourArtInfo['imgFileName'] = $topFourArtImgFileName;
+        }
+        $pdo = null;
+        return $topFourArtInfo;
+    }catch(PDOException $e) {
+        die($e->getMessage());
+        return null;
+    }
+}
 ?>

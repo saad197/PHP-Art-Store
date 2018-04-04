@@ -235,4 +235,6 @@ footer {
 #prize input {
     width: 80px;
 }
-
+.panelspace {
+    margin-left: 20px;
+}

@@ -2,7 +2,6 @@
 <?php
     require('includes/art-ultilities.inc.php');
 
-    // since there is not enough images file for all paintings , just show the painting as default panting detail
     if(isset($_GET['PaintingID'])) {
         $paintingID = $_GET['PaintingID'];
     }
@@ -31,19 +30,44 @@
     $listOfTopSevenArtistNames = $listOfTopSevenArtist['name'];
     $listOfTopSevenArtistId = $listOfTopSevenArtist['id'];
 
-    //display top 7 artist names
+    //display top 7 artist 
     $singleArtistName = "";
     for($i=0; $i < count($listOfTopSevenArtistNames); $i++) {
         $singleArtistName .= "<li><a href='artist-details.php?ArtistID=".$listOfTopSevenArtistId[$i]."'>".$listOfTopSevenArtistNames[$i]."</a></li>";
     } 
 
-    //display top 4 genres names
+    //display top 4 genres 
     $listOfTopFourGenre = getTopFourGenre();
     $listOfTopFourGenreNames = $listOfTopFourGenre['name'];
     $listOfTopFourGenreId = $listOfTopFourGenre['id'];
     $singleGenreName = "";
     for($i=0; $i < count($listOfTopFourGenreNames); $i++) {
         $singleGenreName .= "<li><a href='genre-details.php?GenreID=".$listOfTopFourGenreId[$i]."'>".$listOfTopFourGenreNames[$i]."</a></li>";
+    } 
+    //display top 4 paitings 
+    $listOfTopFourPainting = getTopFourArt();
+    $listOfTopFourPaintingId = $listOfTopFourPainting['id'];
+    $listOfTopFourPaintingTitle = $listOfTopFourPainting['title'];
+    $listOfTopFourPaintingImgFileName = $listOfTopFourPainting['imgFileName'];
+    $singlePanelOfArt = "";
+    for($i=0; $i < count($listOfTopFourPaintingId); $i++) {
+        $singlePanelOfArt .= 
+        "<div class='panelspace col-md-2 thumbnail'>
+            <img src='images/works/square-medium/".$listOfTopFourPaintingImgFileName[$i].".jpg' alt='...' />
+            <div>
+                <p class='similarTitle'>
+                    <a href='works.php?PaintingID=".$listOfTopFourPaintingId[$i]."'>".$listOfTopFourPaintingTitle[$i]."</a>
+                </p>
+                <div class='btn-space'>
+                    <button type='button' class='btn btn-primary btn-xs'>
+                        <i class='glyphicon glyphicon-info-sign'></i> View</button>
+                    <button type='button' class='btn btn-success btn-xs'>
+                        <i class='glyphicon glyphicon-gift'></i> Wish</button>
+                    <button type='button' class='btn btn-info btn-xs'>
+                        <i class='glyphicon glyphicon-shopping-cart'></i> Cart</button>
+                </div>
+            </div>
+        </div>";
     } 
 
 ?>
@@ -128,7 +152,8 @@
                 <h3 class="google-font">Similar Products </h3>
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-2 thumbnail">
+                        <?php if(isset($singlePanelOfArt)){echo $singlePanelOfArt;}?>
+                        <!-- <div class="col-md-2 thumbnail">
                             <img src="images/thumbs/116010.jpg" alt="...">
                             <div>
                                 <p class="similarTitle">
@@ -143,8 +168,9 @@
                                         <i class="glyphicon glyphicon-shopping-cart"></i> Cart</button>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-2 thumbnail space">
+                        </div> -->
+
+                        <!-- <div class="col-md-2 thumbnail space">
                             <img src="images/thumbs/120010.jpg" alt="...">
                             <div>
                                 <p class="similarTitle">
@@ -159,9 +185,9 @@
                                         <i class="glyphicon glyphicon-shopping-cart"></i> Cart</button>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
-                        <div class="col-md-2 thumbnail space">
+                        <!-- <div class="col-md-2 thumbnail space">
                             <img src="images/thumbs/107010.jpg" alt="...">
                             <div>
                                 <p class="similarTitle">
@@ -176,9 +202,9 @@
                                         <i class="glyphicon glyphicon-shopping-cart"></i> Cart</button>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
-                        <div class="col-md-2 thumbnail space">
+                        <!-- <div class="col-md-2 thumbnail space">
                             <img src="images/thumbs/106020.jpg" alt="...">
                             <div>
                                 <p class="similarTitle">
@@ -193,7 +219,7 @@
                                         <i class="glyphicon glyphicon-shopping-cart"></i> Cart</button>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
