@@ -1,5 +1,5 @@
 <?php
-include('config.inc.php');
+require_once('config.inc.php');
 $filePath = "classes/art.class.php";
 if(file_exists($filePath)) {
     include($filePath);

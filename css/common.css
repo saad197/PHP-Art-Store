@@ -232,8 +232,32 @@ footer {
     padding-bottom: 10px;
 }
 
-#prize input {
+#glass-select {
+    width: 100%;
+}
+
+#glass-select td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.customize-price input {
     width: 80px;
+    
+}
+
+.submit-btn {
+    width: 100px;
+    height: 30px;
+    background-color: steelblue;
+    color: white;
+    margin-right: 10px;
+}
+
+#form-box {
+    border: 6px solid lightslategray;
+    background-color: whitesmoke;
+    padding: 10px;
 }
 .panelspace {
     margin-left: 20px;
