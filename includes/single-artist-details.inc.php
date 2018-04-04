@@ -51,11 +51,11 @@
                             <img src=\"images/works/square-medium/".$value->getImageFileName().".jpg\" alt=\"pic not available\">
                             <div class=\"caption\">
                                 <p class=\"similarTitle\">
-                                    <a href=\"#\">".$value->getTitle().", ".$value->getYearOfWork()."</a>
+                                    <a href=\"works.php?PaintingID=".$value->getPaintingID()."\">".$value->getTitle().", ".$value->getYearOfWork()."</a>
                                 </p>
                                 <div class=\"btn-space\">
                                     <button type=\"button\" class=\"btn btn-primary btn-xs\">
-                                        <i class=\"glyphicon glyphicon-info-sign\"></i> View</button>
+                                   <span class=\"glyphicon glyphicon-info-sign\"></span>View</button>
                                     <button type=\"button\" class=\"btn btn-success btn-xs\">
                                         <i class=\"glyphicon glyphicon-gift\"></i> Wish</button>
                                     <button type=\"button\" class=\"btn btn-info btn-xs\">

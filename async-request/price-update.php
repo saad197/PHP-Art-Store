@@ -9,21 +9,6 @@ else {
     $title = "Default";
 }
 
-// if (isset($_POST['Color'])) {
-//     $color =  $_POST['Color'];
-// }
-// else {
-//     $color = "Default";
-// }
-
-// if (isset($_POST['Syle'])) {
-//     $style = $_POST['Syle'];
-// }
-// else {
-//     $style = "Default";
-// }
-
-
 try
 {
     $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
@@ -33,7 +18,12 @@ try
     $statement->bindValue(1, $title);
     $statement->execute();
     $row = $statement->fetch();
-    echo $row['Price'];
+    if(is_null($row['Price'])) {
+        echo "$0";
+    }
+    else {
+        echo "$".$row['Price'];
+    }
     $pdo = null;
 }
 catch (PDOException $e)

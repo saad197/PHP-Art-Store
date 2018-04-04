@@ -1,15 +1,12 @@
 
 <?php
 session_start();
-$listOfFvArtist = $_SESSION['listFvArtist'];
+if(isset($_SESSION['listFvArtist'])) {
+    $listOfFvArtist = $_SESSION['listFvArtist'];
+}
 if(isset($listOfFvArtist)) {
-    // foreach ($listOfFvArtist as $item) {
-    //     echo "<pre>";
-    //     print_r($item);
-    //     echo "</pre>";
-    // }
     $aSingleRow = "";
-    foreach($listOfFvArtist as $singleFvArtist) {
+    foreach($listOfFvArtist as $delID => $singleFvArtist) {
         $aSingleRow .= "<tr>";
         $aSingleRow .= "<td><input type='checkbox'><span> </span><img src='images/artists/square-thumb/". $singleFvArtist[0]. ".jpg'></td>";
         $aSingleRow .= "<td>".$singleFvArtist[1]."</td>";
@@ -19,7 +16,7 @@ if(isset($listOfFvArtist)) {
         $aSingleRow .= "<td>".$singleFvArtist[5]."</td>";
         $aSingleRow .= "<td>".$singleFvArtist[6]."</td>";
         $aSingleRow .= "<td>";
-        $aSingleRow .= "<button type='button' class='btn btn-default'>
+        $aSingleRow .= "<button type='button' class='btn btn-default' name='delete' value = ".$delID." onclick='deleteArtistRow(this)'>
                             <span class='glyphicon glyphicon-trash' aria-hidden='true'></span>
                         </button>
                         ";
@@ -39,7 +36,7 @@ if(isset($listOfFvArtist)) {
         <form class="form-group">
             <fieldset>
                 <legend>Paintings</legend>
-                <table class="table table-hover">
+                <table class="table table-hover" id="FvArtistTable">
                     <tr>
                         <th></th>
                         <th>Name</th>
@@ -52,6 +49,19 @@ if(isset($listOfFvArtist)) {
                     </tr>
                     <?php if(isset($aSingleRow)) { echo $aSingleRow; }?>
                 </table>
+                <script>
+                    function deleteArtistRow(row) {
+                        // var artId = document.getElementById('fvArtTable').rows[row].cells[0].innerHTML;
+                        var i = row.parentNode.parentNode.rowIndex;
+                        document.getElementById("FvArtistTable").deleteRow(i);
+                        var delID = row.value;
+                        var url = "includes/delete-favorite-artist.php";
+                        var param = "ArtistID=" + delID;
+                        $.post(url, param, function(data) {
+                            console.log(data);
+                        });
+                    }
+                </script>
             </fieldset>
         </form>
     </body>
