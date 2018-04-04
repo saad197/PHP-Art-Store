@@ -1,5 +1,5 @@
 <?php
-include('config.inc.php');
+require_once('config.inc.php');
 $filePath = "classes/art.class.php";
 if(file_exists($filePath)) {
     include($filePath);
@@ -60,4 +60,80 @@ function getPaintingDetails($paintingsID) {
     }
 }
 
+function getTopSevenArtist() {
+    $topSevenArtistId = array();
+    $topSevenArtistNames = array();
+    try {
+        $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT ArtistID, CONCAT_WS(' ', FirstName, LastName) AS FullName
+                FROM Artists
+                LIMIT 7";
+        $result = $pdo->query($sql);
+        while($row = $result->fetch()) {
+            $topSevenArtistId[] = $row['ArtistID'];
+            $topSevenArtistNames[] = $row['FullName'];
+            $topSevenArtistInfo['id'] = $topSevenArtistId;
+            $topSevenArtistInfo['name'] = $topSevenArtistNames;
+        }
+        $pdo = null;
+        return $topSevenArtistInfo;
+        
+    }catch(PDOException $e) {
+        die($e->getMessage());
+        return null;
+    } 
+}
+
+function getTopFourGenre() {
+    $topFourGenreNames = array();
+    $topFourGenreId = array();
+    try {
+        $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT GenreID, GenreName
+                FROM Genres
+                LIMIT 4";
+        $result = $pdo->query($sql);
+        while($row = $result->fetch()) {
+            $topFourGenreId[] = $row['GenreID'];
+            $topFourGenreNames[] = $row['GenreName'];
+            $topFourGenreInfo['id'] = $topFourGenreId;
+            $topFourGenreInfo['name'] = $topFourGenreNames;
+        }
+        $pdo = null;
+        return $topFourGenreInfo;
+        
+    }catch(PDOException $e) {
+        die($e->getMessage());
+        return null;
+    } 
+}
+
+function getTopFourArt() {
+    $topFourArtId = array();
+    $topFourArtTitle = array();
+    $topFourArtImgFileName = array();
+    try {
+        $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT PaintingID, ImageFileName, Title
+                FROM Paintings
+                LIMIT 4";
+        $result = $pdo->query($sql);
+        while($row = $result->fetch()) {
+            $topFourArtId[] = $row['PaintingID'];
+            $topFourArtTitle[] = $row['Title'];
+            $topFourArtImgFileName[] = $row['ImageFileName'];
+            $topFourArtInfo['id'] = $topFourArtId;
+            $topFourArtInfo['title'] = $topFourArtTitle;
+            $topFourArtInfo['imgFileName'] = $topFourArtImgFileName;
+        }
+        $pdo = null;
+        return $topFourArtInfo;
+    }catch(PDOException $e) {
+        die($e->getMessage());
+        return null;
+    }
+}
 ?>

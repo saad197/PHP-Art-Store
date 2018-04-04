@@ -1,5 +1,5 @@
 <?php
-include "Validation/register-validation.php";
+include "includes/customer-validation.php";
 include 'includes/primary-navigation.inc.php';
 include "includes/head.inc.php";
 
@@ -42,7 +42,14 @@ include "includes/head.inc.php";
 
 } */
 
+//check to see if user is admin
+if ( @$_SESSION['cusID']) {
+    echo '<script type="text/javascript">
+alert("You are already registered and logged in.");
+window.location.href = \'index.php/\';
+</script>';
 
+}
 
 ?>
 
@@ -59,7 +66,7 @@ include "includes/head.inc.php";
 
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <h3 class="google-font">Register Account </h3>
+        <h3 class="google-font"><span class = "glyphicon glyphicon-user"></span> Register Account </h3>
 
 
 </div>
@@ -109,7 +116,7 @@ include "includes/head.inc.php";
         <div class="form-group row-md-5" >
             <div id = "phone" class="col-md-6">
                 <label for="inputPassword4">Phone Number</label>
-                <input type="text" class="form-control" name="phone" placeholder="Phone Number" value = "<?php echo $phone; ?>">
+                <input type="text" class="form-control" name="phone" placeholder="Phone Number" value = "<?php echo $phone; ?>" maxlength="19">
                 <span class = "error"><?php echo $phoneErr?></span>
                 <br/>
             </div>
@@ -170,7 +177,7 @@ include "includes/head.inc.php";
             </div>
             <div class="form-group col-md-2">
                 <label for="postal">Postal</label>
-                <input type="text" class="form-control" name = "postal" id="postal" value = "<?php echo $postal; ?>">
+                <input type="text" class="form-control" name = "postal" id="postal" value = "<?php echo $postal; ?>" maxlength="10">
                 <span class = "error"><?php echo $postalErr?></span>
             </div>
         </div>
@@ -178,7 +185,7 @@ include "includes/head.inc.php";
 
         <div class = "form-group row">
         <div class = "col-md-12">
-        <button type="submit" class="btn btn-primary btn-lg" value = "Submit Form" name = "submit" style = "margin-left: 480px"><span class="glyphicon glyphicon-ok-sign"></span> Register</button>
+        <button type="submit" class="btn btn-info btn-lg" value = "Submit Form" name = "submit" style = "margin-left: 480px"><span class="glyphicon glyphicon-ok-sign"></span> Register</button>
         </div>
         </div>
     </form>

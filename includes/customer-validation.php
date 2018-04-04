@@ -1,10 +1,13 @@
 <?php
-include_once "includes/config.inc.php";
+require_once "config.inc.php";
 // define variables and set to empty values
 $email = $password = $cpassword = $country = $firstName = $state = $lastName = $address = $city = $postal = $phone = "";
 $emailErr = $passwordErr = $countryErr = $cPasswordErr = $stateErr = $firstNameErr = $lastNameErr = $addressErr = $cityErr = $postalErr = $phoneErr = "";
 
 $error = array();
+
+//for customer update (admin)
+$error2 = array();
 
 
 
@@ -17,6 +20,7 @@ if (empty($_POST["email"])) {
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $emailErr = "Invalid email format";
         $error[] = $emailErr;
+
     }
 
     $conn = new PDO(DBCONNSTRING,DBUSER,DBPASS);
@@ -25,7 +29,7 @@ if (empty($_POST["email"])) {
 
     if($sql->rowCount() > 0)
     {
-        $emailErr = "An account is already registered with this email.";
+        $emailErr = "An account is already registered with this email";
         $error[] = $emailErr;
     }
 
@@ -37,13 +41,14 @@ if (empty($_POST["email"])) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["firstname"])) {
         $firstNameErr = "First Name is required";
-        $error = $firstNameErr;
+        $error  = $error2 = $firstNameErr;
+
     } else {
         $firstName = test_input($_POST["firstname"]);
         // check if name only contains letters and whitespace
-        if (!preg_match("/^[a-zA-Z ]*$/", $firstName)) {
+        if (!preg_match("/^([^[:punct:]\d]+)$/", $firstName)) {
             $firstNameErr = "Only letters and white space allowed";
-            $error = $firstNameErr;
+            $error = $error2 = $firstNameErr;
         }
     }
 
@@ -53,13 +58,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["lastname"])) {
         $lastNameErr = "Last Name is required";
-        $error = $lastNameErr;
+        $error  = $error2 = $lastNameErr;
     } else {
         $lastName = test_input($_POST["lastname"]);
         // check if name only contains letters and whitespace
-        if (!preg_match("/^[a-zA-Z ]*$/", $lastName)) {
+        if (!preg_match("/^([^[:punct:]\d]+)$/", $lastName)) {
             $lastNameErr = "Only letters and white space allowed";
-            $error = $lastNameErr;
+            $error  = $error2 = $lastNameErr;
         }
     }
 }
@@ -91,7 +96,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $cpassword = test_input($_POST["cpassword"]);
         // check if name only contains letters and whitespace
         if ($cpassword != $password) {
-            $cPasswordErr = "Passwords do not match";
+            $cPasswordErr = "Passwords do
+             not match";
             $error = $cPasswordErr;
 
         }
@@ -102,15 +108,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["phone"])) {
         $phoneErr = "phone is required";
-        $error = $phoneErr;
+        $error  = $error2 = $phoneErr;
     } else {
         $phone = test_input($_POST["phone"]);
         // check if name only contains letters and whitespace
-        if (!preg_match("/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/", $phone)) {
-            $phoneErr = "Not valid format, must follow format 000-000-0000";
-            $error = $phoneErr;
+        if(strlen($phone) >= 8)
+        {
+
+            if (preg_match("/^([0-9+_() -])*$/",$phone)) {
+
+            }
+            else{
+                $phoneErr = "Phone number can only contain numbers and symbols (), +, -, and space";
+                $error  = $error2 = $phoneErr;
+            }
+
+        }
+        else{
+            $phoneErr = "must be 8 length at least";
+            $error = $error2 = $phoneErr;
+
         }
     }
+
+
+
 }
 
 
@@ -119,12 +141,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["postal"])) {
         $postalErr = "postal code is required";
-        $error = $postalErr;
+        $error  = $error2 = $postalErr;
     } else {
         $postal = test_input($_POST["postal"]);
         // check if name only contains letters and whitespace
-        if (!preg_match("^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$^", $postal)) {
-            $postalErr = "Wrong format, should be like T1T G5G";
+        if (!preg_match("/^([A-Z0-9 -])*$/", $postal)) {
+            $postalErr = "Wrong format must be capital letters, can include symbol and - ";
             $error = $postalErr;
         }
     }
@@ -149,7 +171,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["address"])) {
         $addressErr = "address is required";
-        $error = $addressErr;
+        $error  = $error2 = $addressErr;
     } else {
         $address = test_input($_POST["address"]);
         // check if name only contains letters and whitespace
@@ -157,7 +179,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
 }
-
 
 
 
@@ -177,11 +198,31 @@ echo "empty";
         //redirects user and also sends data
         header('Location: includes/process-registration.php?' . $addUserEnter);
     }
+
+
 }
+
 
 else {
     echo "error exists";
     print_r($error);
+}
+
+
+//Customer update
+if(isset($_POST['update'])) {
+
+    if(empty($error2)) {
+        $addUserEnter = "";
+
+        //sending data of all fields
+        foreach ($_POST as $key => $value){
+            $addUserEnter .= "&".$key."=".$value ."&" ;
+        }
+
+        //redirects user and also sends data
+        header('Location: includes/process-customer-update.php?'  . $addUserEnter);
+    }
 }
 
 

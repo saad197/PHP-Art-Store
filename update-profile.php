@@ -1,9 +1,8 @@
 <?php
-include "Validation/customer-validation.php";
+require_once "includes/customer-validation.php";
 include 'includes/primary-navigation.inc.php';
 include "includes/head.inc.php";
 include "classes/customerlist.class.php";
-include('includes/admin-check.php');
 
 
 try {
@@ -33,56 +32,43 @@ $stateSql = "SELECT DISTINCT region FROM Customers WHERE region != '' ORDER BY r
 $stateResult = $conn->prepare($stateSql);
 $stateResult->execute();
 
+$customerID = @$_SESSION['cusID'];
+if (@$_SESSION['cusID']) {
+    try {
+
+        $pdo = new PDO(DBCONNSTRING,DBUSER,DBPASS);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT * FROM Customers WHERE CustomerID = $customerID; ";
+        $result = $pdo->query($sql);
+        while ($row = $result->fetch()) {
+
+            ///will create instance of AdoptionList class to store the adoption data
+            $aCustomer = new CustomerList($row['CustomerID'],$row['FirstName'],$row['LastName'],$row['Address'],
+                $row['City'],$row['Region'], $row['Country'],$row['Postal'], $row['Phone'], $row['Email'], $row['Privacy']);
+            $customerlist[] = $aCustomer;
+            //   asort($adoption_detail);
+        }
+        $pdo = null;
+    }
+    catch (PDOException $e) {
+        die($e->getMessage());
+    }
 
 
-$customerID = $_GET['customerid'];
 
 
-  try {
-      $pdo = new PDO(DBCONNSTRING,DBUSER,DBPASS);
-      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $sql = "SELECT * FROM Customers WHERE CustomerID = $customerID; ";
-      $result = $pdo->query($sql);
-      while ($row = $result->fetch()) {
-
-          ///will create instance of AdoptionList class to store the adoption data
-          $aCustomer = new CustomerList($row['CustomerID'],$row['FirstName'],$row['LastName'],$row['Address'],
-              $row['City'],$row['Region'], $row['Country'],$row['Postal'], $row['Phone'], $row['Email'], $row['Privacy']);
-          $customerlist[] = $aCustomer;
-          //   asort($adoption_detail);
-      }
-      $pdo = null;
-  }
-  catch (PDOException $e) {
-      die($e->getMessage());
-  }
+}
 
 
-  $test = "admin";
-/*foreach($cityResult as $key=> $value) {
-    echo $value['city'];
 
 
-} */
 
 
 //check to see if user is admin
-if ( @$_SESSION['cusID']) {
+if ( !@$_SESSION['cusID']) {
 
-    if (!isAdmin($_SESSION['cusID'])) {
-        echo '<script type="text/javascript">
-window.location.href = \'index.php/\';
-</script>';
-    }
+
 }
-
-else {
-    echo '<script type="text/javascript">
-alert("Access Denied");
-window.location.href = \'index.php/\';
-</script>';
-}
-
 
 
 
@@ -98,27 +84,53 @@ window.location.href = \'index.php/\';
 <body>
 
 
+<?php if ( !@$_SESSION['cusID']) {
+       echo '
+       
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="google-font">Please Login First</h3>
 
+
+    </div>
+    <form action="user-login.php">
+
+                <button type="submit" class="btn btn-success btn-lg" style = "margin-top: 20px; margin-left: 20px;">Login</button>
+
+        </div>
+
+    </form>
+
+</div>
+
+       
+       
+       ';
+
+} else {
+
+echo '
 
 
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <h3 class="google-font"><span class = "glyphicon glyphicon-pencil"> </span> Edit Customer Details </h3>
+        <h3 class="google-font"><span class = " glyphicon glyphicon-user"> </span> Edit Profile </h3>
 
 
     </div>
+   '; }
+?>
 
 
 
 
+    <form  method = "post" action = "<?php echo $_SERVER["PHP_SELF"];?>">
 
-    <form  method = "post" action = "<?php echo $_SERVER["PHP_SELF"]; echo "?customerid=" . $aCustomer->getCustomerId();?>">
-
-        <div class="form-group row">
+        <div class="form-group row" style = "display:none;">
 
 
             <div class="col-md-5" style = "margin-left: 16px; margin-top: 10px;">
-                <div id = "email">
+                <div id = "cid">
                     <label for="inputEmail4">Customer ID</label>
                     <input type="email" class="form-control" name = "customerid" value="<?php echo $aCustomer->getCustomerId();?>" readonly>
 
@@ -228,18 +240,18 @@ window.location.href = \'index.php/\';
         </div>
         <br/>
         <br/>
-
+        <input type="hidden" name="updateprofile" value="updateprofile" />
 
         <div class = "form-group row">
             <div class = "col-md-12">
-                <button type="submit" class="btn btn-success btn-lg" value = "Submit Form" name = "update" style = "margin-left: 480px"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
+                <button type="submit" class="btn btn-success btn-lg" value = "Update" name = "update" id = "update" style = "margin-left: 480px"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
             </div>
         </div>
     </form>
 
 
 
-    <form action="customer-list.php" style = "margin-left: 470px; margin-top: -30px;">
+    <form action="index.php" style = "margin-left: 470px; margin-top: -30px;">
 
         <button type="submit" class="btn btn btn-danger btn-s" style = "margin-top: 20px; margin-left: 20px;"><span class = "glyphicon glyphicon-remove"></span> Cancel</button>
 

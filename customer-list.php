@@ -1,8 +1,11 @@
 <?php
-include "includes/config.inc.php";
+
+
+
 include "classes/customerlist.class.php";
 include "includes/head.inc.php";
 include('includes/primary-navigation.inc.php');
+
 
 function getCustomerList() {
 
@@ -28,14 +31,9 @@ function getCustomerList() {
 }
 
 
-echo $_SESSION['cusID'] ;
-
 
 
 ?>
-
-
-
 
 
 <!DOCTYPE html>
@@ -46,30 +44,76 @@ echo $_SESSION['cusID'] ;
 
 
 
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3 class="google-font">Customer List </h3>
-    </div>
-    <table class = "table table-bordered">
-        <thead>
-        <tr>
-            <th scope="col" style = "text-align: center;">Customer ID</th>
-            <th scope="col" style = "text-align: center;">Name</th>
-            <th scope="col" style = "text-align: center;">Phone</th>
-            <th scope="col" style = "text-align: center;">Email</th>
-            <th scope="col" style = "text-align: center;">Edit</th>
-
-        </tr>
-        </thead>
-        <tbody>
 
                          <?php
                        //In loop will go over all records
-                        $customers = getCustomerList();
-                        foreach ($customers as $customerList)
-                        {
-                            echo $customerList;
-                        }
+                         if ( @$_SESSION['cusID']) {
+
+                             if (isAdmin($_SESSION['cusID'])) {
+
+                                 echo '
+                               
+
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="google-font">Customer List </h3>
+                            </div>
+                             <table class = "table table-bordered">
+                             <thead>
+                             <tr>
+                             <th scope="col" style = "text-align: center;">Customer ID</th>
+                            <th scope="col" style = "text-align: center;">Name</th>
+                            <th scope="col" style = "text-align: center;">Phone</th>
+                            <th scope="col" style = "text-align: center;">Email</th>
+                            <th scope="col" style = "text-align: center;">Edit</th>
+                    
+                            </tr>
+                            </thead>
+                            <tbody>';
+                                 $customers = getCustomerList();
+                                 foreach ($customers as $customerList) {
+                                     echo $customerList;
+                                 }
+                             }
+                             else {
+                                 echo '
+                             <div class="panel panel-danger">
+                                <div class="panel-heading">
+                                    <h3 class="google-font"><span class = "	glyphicon glyphicon-lock"></span> Access Denied</h3>
+                            
+                            
+                                </div>
+                                <form action="index.php">
+                            
+                                            <button type="submit" class="btn btn-success btn-lg" style = "margin-top: 20px; margin-left: 20px;"><span class = " glyphicon glyphicon-home" ></span> Home</button>
+                            
+                                    </div>
+                            
+                                </form>
+                            
+                            </div>
+                             ';
+                             }
+                         }
+                         else {
+                             echo '
+                             <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h3 class="google-font">Please Login First</h3>
+                            
+                            
+                                </div>
+                                <form action="user-login.php">
+                            
+                                            <button type="submit" class="btn btn-success btn-lg" style = "margin-top: 20px; margin-left: 20px;">Login</button>
+                            
+                                    </div>
+                            
+                                </form>
+                            
+                            </div>
+                             ';
+                         }
                         ?>
         </tbody>
     </table>

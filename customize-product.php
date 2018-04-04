@@ -6,57 +6,81 @@
     else {
         header('Location: works.php');
     }
+    $painting = getPaintingDetails($paintingID);
+
+    // Checks session has started or not
+    if(session_status() == PHP_SESSION_NONE) {         
+        session_start();     
+    }
+
+    // Collect previous cart value and add new one
+    if(isset($_SESSION['CartPaintings'])) {
+        $cartPaintings = $_SESSION['CartPaintings'];
+        $paintingInfo['New'] = true;
+        $cartPaintings[$paintingID] = $paintingInfo;
+    }
+    else {
+        $paintingInfo['New'] = true;
+        $cartPaintings[$paintingID] = $paintingInfo;
+    }
+
+    $_SESSION['CartPaintings'] = $cartPaintings;
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
         <?php include "includes/head.inc.php";?>
-        <script>
-            function updatePrice() {
-                var title = document.getElementsByName('Title')[0].value;
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        //console.log(this.responseText);
-                        document.getElementById("framePrice").value = this.responseText;
-                    }
-                };
-                xhttp.open("POST", "async-request/price-update.php", true);
-                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhttp.send("Title="+title);
-                if (title != "Default") {
-                    document.getElementsByName('Color')[0].disabled = false;
-                    document.getElementsByName('Syle')[0].disabled = false;
-                }
-                else {
-                    document.getElementsByName('Color')[0].disabled = true;
-                    document.getElementsByName('Syle')[0].disabled = true;
-                    
-                }
-            }
-        </script>
+        <?php include("includes/customize-product.script.inc.php") ;?>
+        <?php include('includes/view-cart.script.inc.php'); ?>
     </head>
     <body>
         <?php include 'includes/primary-navigation.inc.php';?>
-
-            <form action="" method="post" class"form-group">
-                <h2>Customize Painting</h2>
-                <fieldset>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-10">
-                                <?php  
-                                    showFrameTitles();
-                                    showFrameColors();  
-                                    showFrameStyles();
-                                    showPriceForFrameSelection();
-                                ?>
+            <form action="cart/add-to-cart.php" method="POST" class"form-group">
+                <h2><?php echo $painting->getTitle(); ?></h2>
+                <div id='form-box'>
+                    <fieldset>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-10">
+                                <h3>Customize Your Painting</h3>
+                                <hr>
+                                    <?php  
+                                        showFrameTitles();
+                                        showFrameColors();  
+                                        showFrameStyles();
+                                        showPriceForFrameSelection();
+                                    ?>
+                                <br>
+                                <hr>
+                                    <?php 
+                                        showFrameGlassTypes();
+                                    ?>
+                                <br>
+                                <hr>
+                                    <?php
+                                        showMattTitles();
+                                        showMattColors();
+                                    ?>
+                                    <br>
+                                    <hr>
+                                    <span class='customize-price row-spacing'>Item Price: <input type='text' name='ItemPrice' value='<?php echo "$".intval($painting->getCost()); ?>' readonly></span>
+                                    <span class='customize-price row-spacing'>Total Customize Price: <input type='text' name='CustomizePrice' value='$0' readonly></span>
+                                    <span class='customize-price row-spacing'>Total Price: <input type='text' name='TotalPrice' value='$0' readonly></span>
+                                    <br>
+                                    <hr>
+                                    <input type='submit' name='submit' value="Submit" class='submit-btn'>
+                                    <input type='reset' name='reset' value='Reset' class='submit-btn' onclick='resetColorPicker()'>
+                                    <input type='submit' name='submit' value='Cancel' class='submit-btn'>
+                                    <br>
+                                    <hr>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </fieldset>
-            </form>
+                    </fieldset>
+                </form>
+                <script>updateFinalPrices(0);</script>
+            </div>
         </div>
     </body>
 </html>

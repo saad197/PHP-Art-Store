@@ -52,10 +52,8 @@ function getListOfPaintingWishList($listOfArtWishId) {
 
 $listOfFvPaintings = getListOfPaintingWishList($_SESSION['ArtWishList']);
 $_SESSION['listFvPaintings'] = $listOfFvPaintings;
-echo"<pre>";
-print_r($_SESSION['listFvPaintings']);
-echo"</pre>";
-header('Location: ../works.php?status=1');
+
+header('Location: ' . $_SERVER['HTTP_REFERER']);
 
 
 ?>
