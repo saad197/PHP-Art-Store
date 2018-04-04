@@ -1,5 +1,5 @@
 <?php
-include "Validation/customer-validation.php";
+include "includes/customer-validation.php";
 include 'includes/primary-navigation.inc.php';
 include "includes/head.inc.php";
 
