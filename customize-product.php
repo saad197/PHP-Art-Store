@@ -14,18 +14,18 @@
         session_start();     
     }
 
-    // Collect previous cart value
+    // Collect previous cart value and add new one
     if(isset($_SESSION['CartPaintings'])) {
         $cartPaintings = $_SESSION['CartPaintings'];
-        // stops override info
-        $cartPaintings[$paintingID] = $paintingID;
+        $paintingInfo['New'] = true;
+        $cartPaintings[$paintingID] = $paintingInfo;
+    }
+    else {
+        $paintingInfo['New'] = true;
+        $cartPaintings[$paintingID] = $paintingInfo;
     }
 
     $_SESSION['CartPaintings'] = $cartPaintings;
-
-    echo '<pre>';
-    print_r($_SESSION);
-    echo '</pre>';
 ?>
 
 <!DOCTYPE html>
