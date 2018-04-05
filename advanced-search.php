@@ -9,6 +9,7 @@ $genreResult = getGenresFromDB();
             function searchArtists()
             {
                 var search = document.getElementById("input").value;
+                var searchType = $('#input').parent().prop('id');
                 var filterValue = $("input:radio[name=filter]:checked").val();
                 var selectedValue = $('#selected').find(":selected").val();
                 var xmlhttp = new XMLHttpRequest();
@@ -19,7 +20,7 @@ $genreResult = getGenresFromDB();
                 }
                 xmlhttp.open("POST","async-request/advanced-search-result.php", true);
                 xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xmlhttp.send("search="+search+"&filter="+filterValue+"&select="+selectedValue);
+                xmlhttp.send("search="+search+"&filter="+filterValue+"&select="+selectedValue+"&searchType="+searchType);
             }
     </script>
    </head>
@@ -35,14 +36,14 @@ $genreResult = getGenresFromDB();
                 <legend id = "legendLabel">Advanced Art Work Search</legend>
                 <div class = "advanced-select">
                     <ul class="listStyle">
-                        <li>
+                        <li id="search-art">
                             <input type= "text" placeholder="search title" id="input">
                             subject:
                             <input type="radio" name = "filter" value="history"> History
                             <input type="radio" name = "filter" value="person"> Person
                             <input type="radio" name = "filter" value="landscape"> Landscape
-                            <select id = "selected" >
-                            <option>select genre</option>';
+                            <select id = "selected">
+                            <option disabled selected value = "">Select genre</option>';
                       
                             foreach($genreResult as $key=>$value)
                             {
@@ -51,20 +52,11 @@ $genreResult = getGenresFromDB();
                        
                             echo '</select>
                             <button type="button" onclick="searchArtists()">fitler</button>
+                            <button type="reset">reset</button>
                         </li>
                     </ul>
                 </div>
                 <br>
-                <div class = "advanced-select">
-                    <ul class="listStyle">
-                        <li>
-                            <select>
-                                <option>__select__</option>
-                            </select>
-                            <button>Apply to all</button>
-                        </li>
-                    </ul>
-                </div>
                 <p id="searchResult"></p>
             </fieldset>
         </form>
@@ -78,23 +70,13 @@ $genreResult = getGenresFromDB();
                 <legend id = "legendLabel">Advanced Art Work Search</legend>
                 <div class = "advanced-select">
                     <ul class="listStyle">
-                        <li>
+                        <li id="search-artist">
                             <input type= "text" placeholder="search artists" id="input">
-                            <button type="button" onclick="searchArtists()">fitler</button>
+                            <button type="button" onclick="searchArtists()">filter</button>
                         </li>
                     </ul>
                 </div>
                 <br>
-                <div class = "advanced-select">
-                    <ul class="listStyle">
-                        <li>
-                            <select>
-                                <option>__select__</option>
-                            </select>
-                            <button>Apply to all</button>
-                        </li>
-                    </ul>
-                </div>
                 <p id="searchResult"></p>
             </fieldset>
         </form>

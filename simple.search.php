@@ -2,6 +2,8 @@
     if(session_status() == PHP_SESSION_NONE){         
          session_start();    
     }
+    $titleSearch = $_GET['search'];
+    $title = trim($titleSearch);
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,52 +27,15 @@
     </script>
 </head>
 <body>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Assign 1 </a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="index.php">Home</a></li>
-                <li><a href="about.php">About us</a></li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        pages
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="artists.php">Artists</a>
-                        </li>
-                        <li>
-                            <a href="works.php">Art Work</a>
-                        </li>
-                        <li>
-                            <a href="#">Genres</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <form class="navbar-form navbar-right">
-                    <div class="input-group">
-                        <input class="form-control" type="text" placeholder="Search Painting" name="search">
-                        <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit">
-                                <i class="glyphicon glyphicon-search"></i>
-                            </button>
-                        </div>
-                    </div>
-            </form>
-        </div>
-    </nav>
+    <?php include('includes/primary-navigation.inc.php');?>
     <div class="container">
         <h1>Search Result</h1>
         <form class = "well">
             <div class = "radio">
-                <label><input type = "radio" name = "filter" value="title" checked> Filter by Title
+                <label><input type = "radio" name = "filter" value= "title" checked> Filter by Title
             </div>
             <div class = "form-group">
-                <input type="text" class = "form-control" id="input">
+                <input type="text" class = "form-control" id="input" value = "<?php echo $title; ?>">
             </div>
             <div class = "radio">
                 <label><input type = "radio" name = "filter" value="desc"> Filter by Description

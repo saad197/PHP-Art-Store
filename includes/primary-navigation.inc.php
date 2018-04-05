@@ -1,4 +1,8 @@
-<?php    
+<?php
+
+    include 'admin-check.php';
+require_once 'config.inc.php';
+
     if(session_status() == PHP_SESSION_NONE) {         
         session_start();     
     }
@@ -6,10 +10,24 @@
         $cusName = "Welcome " . $_SESSION['cusName'];
         $btn = "Logout";
         $link = "includes/user-logout.inc.php";
+
+        if (isAdmin($_SESSION['cusID'])) {
+            $cbtn = "Customer List";
+            $clink = "customer-list.php";
+
+        }
+        else {
+            $style = "none;";
+            $cbtn = "";
+            $clink = "#";
+        }
+
+
     } else {
         $btn = "Login";
         $cusName = "";
-        $link = "user-login.php";   
+        $link = "user-login.php";
+        $style = "none;";
     }
 ?>
 <div class="container">
@@ -23,12 +41,16 @@
                 </div>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="#">
+                        <a href="update-profile.php">
                             <span class="glyphicon glyphicon-user"></span> My Account</a>
                     </li>
                     <li>
                         <a href="display-favorite-lists.php">
                             <span class="glyphicon glyphicon-gift"></span> View Wish List</a>
+                    </li>
+                    <li style="display: <?php echo $style;?>;">
+                        <a href= "<?php echo $clink;?>">
+                            <span class="glyphicon glyphicon-list" style="display: <?php echo $style;?>;"></span> <?php echo $cbtn;?></a>
                     </li>
                     <li>
                         <a href="view-shopping-cart.php">
@@ -49,7 +71,7 @@
                 <h1>Art Store</h1>
             </div>
             <div class="col-md-3">
-                <form action="" method="post">
+                <form action="simple.search.php" method="GET">
                     <div class="input-group">
                         <input class="form-control" type="text" placeholder="Search" name="search">
                         <div class="input-group-btn">

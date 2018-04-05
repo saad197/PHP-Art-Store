@@ -1,11 +1,10 @@
 <?php
 
 
-include "includes/config.inc.php";
+
 include "classes/customerlist.class.php";
 include "includes/head.inc.php";
 include('includes/primary-navigation.inc.php');
-include('includes/admin-check.php');
 
 
 function getCustomerList() {
@@ -35,9 +34,6 @@ function getCustomerList() {
 
 
 ?>
-
-
-
 
 
 <!DOCTYPE html>

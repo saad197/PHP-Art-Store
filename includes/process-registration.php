@@ -37,7 +37,7 @@ $hashed_password = sha1($password);
 try {
 
     //login details insert
-    $insertCustomerLogonSql = "INSERT INTO `CustomerLogon` (`CustomerID`, `UserName`, `Pass`, `Salt`, `State`, `DateJoined`, `DateLastModified`) VALUES (DEFAULT , '$email', '$hashed_password', 1, 1, NOW(), NOW())";
+    $insertCustomerLogonSql = "INSERT INTO `CustomerLogon` ( `UserName`, `Pass`, `Salt`, `State`, `DateJoined`, `DateLastModified`) VALUES ( '$email', '$hashed_password', 1, 1, NOW(), NOW())";
 $customerLogon = $conn->prepare($insertCustomerLogonSql);
 
 $conn->exec($insertCustomerLogonSql);

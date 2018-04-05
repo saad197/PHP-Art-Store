@@ -1,9 +1,7 @@
 <?php
 session_start();
-if(!isset($_SESSION['PaintingIdToUpdate'])) {
-    if(isset($_GET['PaintingID'])) {
-        $_SESSION['PaintingIdToUpdate'] = $_GET['PaintingID'];
-    }
+if(isset($_GET['PaintingID'])) {
+    $_SESSION['PaintingIdToUpdate'] = $_GET['PaintingID'];
 }
 include 'includes/subject-utilities.inc.php';
 include 'includes/genre-utilities.inc.php';

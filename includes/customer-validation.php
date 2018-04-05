@@ -1,5 +1,5 @@
 <?php
-include_once "includes/config.inc.php";
+require_once "config.inc.php";
 // define variables and set to empty values
 $email = $password = $cpassword = $country = $firstName = $state = $lastName = $address = $city = $postal = $phone = "";
 $emailErr = $passwordErr = $countryErr = $cPasswordErr = $stateErr = $firstNameErr = $lastNameErr = $addressErr = $cityErr = $postalErr = $phoneErr = "";
