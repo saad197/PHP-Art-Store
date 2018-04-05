@@ -6,18 +6,19 @@ include('includes/cart-utilities.inc.php');
 if(session_status() == PHP_SESSION_NONE) {         
     session_start();     
 }
-
-    echo '<pre>';
-    print_r($_SESSION);
-    echo '</pre>';
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <?php include "includes/head.inc.php";?>
+        <?php 
+            include "includes/head.inc.php";
+            include "includes/view-cart.script.inc.php";
+        ?>
+        
     </head>
     <body>
         <?php include 'includes/primary-navigation.inc.php';?>
+        <form action="#" method="POST">
             <table class="table table-bordered">
                 <thead><h1>Shopping Cart</h1></thead>
                 <tbody>
@@ -31,37 +32,15 @@ if(session_status() == PHP_SESSION_NONE) {
                     </tr>
                     <?php getCartList(); ?>
                     <!-- <tr>
-                        <td>Pic # 1</td>
-                        <td>Girl with a pearl</td>
-                        <td>4</td>
-                        <td>$90.00</td>
-                        <td>$250.00</td>
-                    </tr>
-                    <tr>
-                        <td>Pic # 2</td>
-                        <td>Girl with a pearl</td>
-                        <td>3</td>
-                        <td>$80.00</td>
-                        <td>$240.00</td>
+                        <td colspan='7'>
                     </tr> -->
-                    <tr class="summary-tr">
-                        <td colspan='6'>Subtotal</td>
-                        <td>$515</td>
-                    </tr>
-                    <tr class="summary-tr">
-                        <td colspan='6'>Tax</td>
-                        <td>$56</td>
-                    </tr>
-                    <tr class="summary-tr">
-                        <td colspan='6'>Shipping</td>
-                        <td>$77</td>
-                    </tr>
-                    <tr class="summary-tr">
-                        <td colspan='6'><span style='color:red'>GrandTotal</span></td>
-                        <td style='color:red'>$776</td>
-                    </tr>
                 </tbody>
             </table>
+                <div id='checkout'><a href='#'><button type='submit'>Checkout</button></td></a></div>
+        </form>
        </div><!--end container-->
+       <script>
+           updateCartPrices();
+        </script>
     </body>
 </html>

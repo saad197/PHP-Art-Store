@@ -270,6 +270,35 @@ footer {
     width: 150px;
 }
 
-#quantity {
+.product-quantity {
     width: 40px;
+}
+
+
+.cart-price input {
+    width: 80px;
+    border: none;
+}
+
+#checkout {
+    float: right;
+    margin-bottom: 10%;
+}
+
+#checkout p {
+    display: inline-block;
+    color: darkred;
+}
+
+#checkout input {
+    width: 15px;
+    height: 15px;
+    background-color: #eee;
+}
+
+#checkout button{
+    background-color: darkorange;
+    color: white;
+    width: 125px;
+    height: 40px;
 }

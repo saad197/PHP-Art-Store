@@ -1,5 +1,5 @@
 <?php 
-
+// customize product
 include('config.inc.php');
 require_once('art-ultilities.inc.php');
 
@@ -14,7 +14,7 @@ function getFrameOptions($option) {
         while ($row = $statement->fetch()) {
             // condition to  make no change 
             if($row[$option] == "[None]" || $row[$option] == "" || is_null($row[$option])){
-                $row[$option] = "Default";
+                $row[$option] = "None";
             }
             $aFrame[$option] = $row[$option];
             $frames[] = $aFrame;
@@ -43,7 +43,13 @@ function showFrameColors() {
     $frames = getFrameOptions('Color');
     echo "<span class='row-spacing'>Frame Color: <select name='FrameColor' disabled>";
     foreach ($frames as $frame) {
-        echo "<option value='".$frame['Color']."'>".$frame['Color']."</option>";      
+        if($frame['Color']=='None') {
+            $disabled = 'selected disabled';
+        }
+        else {
+            $disabled = '';
+        }
+        echo "<option value='".$frame['Color']."'".$disabled.">".$frame['Color']."</option>";      
     }
     echo "</select></span>"; 
 }
@@ -53,7 +59,13 @@ function showFrameStyles() {
     $frames = getFrameOptions('Syle');
     echo "<span class='row-spacing'>Frame Style: <select name='FrameStyle' disabled>";
     foreach ($frames as $frame) {
-        echo "<option value='".$frame['Syle']."'>".$frame['Syle']."</option>";      
+        if($frame['Syle']=='None') {
+            $disabled = 'selected disabled';
+        }
+        else {
+            $disabled = '';
+        }
+        echo "<option value='".$frame['Syle']."'".$disabled.">".$frame['Syle']."</option>";      
     }
     echo "</select></span>"; 
 }
@@ -164,31 +176,62 @@ function showMattColors() {
     }
     echo "</select></span>"; 
 }
+
+function showMattPrice() {
+    echo "<span class='customize-price''> Price: <input type='text' name='MattPrice' value = '$25'  readonly> </span>";
+}
  
 ?>
 
 <?php
+// view cart
 
 function getCartList() {
     if(isset($_SESSION['CartPaintings'])) {
         $cartItems = $_SESSION['CartPaintings'];
         $count = 1;
+        $subtotal = 0;
         foreach ($cartItems as $key => $item) {
-            $artWork = getPaintingDetails($key);        
+            $customPrice = $_SESSION['CartPaintings'][437]['CustomizePrice'];
+            $itemPrice  = $item['TotalPrice'];
+            $subtotal += $itemPrice;
+            $artWork = getPaintingDetails($key);   
+            $tax = $subtotal * 0.05;
+            $shippingCost = 10;
+            $grandTotal = $subtotal + $tax + $shippingCost; 
             echo "<tr>
                     <td>".$count++."</td>
                     <td><a href='works.php?PaintingID=".$key."'><img src='images/works/small/".$artWork->getImageFileName().".jpg'  class='cart-pic' alt='Image not available'></a></td>
                     <td><a href='works.php?PaintingID=".$key."'>".$artWork->getTitle()."</a></td>
-                    <td><input type='number' name='quantity' min='1' id='quantity' value='1'></td>
+                    <td><input type='number' name='quantity' min='1' class='product-quantity' value='1' onload='updateCartPrices(this,".($count-1)."' onchange='updateCartPrices(this,".($count-1).")'></td>
                     <td>
                         <a href='#'><button>Delete</button></a>
                         <a href='customize-product.php?PaintingID=".$key."'><button>Edit</button></a>
                         <a href='#'><button>fa</button></a>
                     </td>
-                    <td>$211</td>
-                    <td>".$item['TotalPrice']."</td>
+                    <td id='item-price-".($count-1)."'>$".$itemPrice."</td>
+                    <td class='cart-price' ><input type='text' name='ItemSubtotal' id='cart-subtotal-".($count-1)."' value='$".$itemPrice."' readonly></td>
                 </tr>";
         }
+        echo "<tr class='summary-tr'>
+                        <td colspan='6'>Subtotal:</td>
+                        <td id='summary-subtotal'>$".$subtotal."</td>
+                    </tr>
+                    <tr class='summary-tr'>
+                        <td colspan='6'>Tax</td>
+                        <td id='summary-tax'>$".$tax."</td>
+                    </tr>
+                    <tr class='summary-tr'>
+                        <td colspan='6'>Shipping</td>
+                        <td id='shipping-price'>$".$shippingCost."</td>
+                    </tr>
+                    <tr class='summary-tr'>
+                        <td colspan='6'><span style='color:red'>GrandTotal</span></td>
+                        <td style='color:red' id='summary-total'>
+                        $".$grandTotal."
+                    
+                        </td>
+                    </tr>";
     }
 }
 
