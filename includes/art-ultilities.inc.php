@@ -136,4 +136,22 @@ function getTopFourArt() {
         return null;
     }
 }
+
+function getThreeRandomPainting() {
+    try{
+        $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "
+            SELECT PaintingID, ImageFileName, Title, Excerpt, Description 
+            FROM Paintings 
+            ORDER BY RAND()
+            LIMIT 0,3
+        ";
+        $result = $pdo->query($sql);
+        return $result;
+
+    }catch(PDOException $e) {
+        die($e->getMessage());
+    }
+}
 ?>
