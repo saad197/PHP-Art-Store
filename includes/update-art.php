@@ -1,15 +1,10 @@
 <?php
-session_start();
-include('config.inc.php');
+// session_start();
+// include('config.inc.php');
 
 if(isset($_SESSION['PaintingIdToUpdate'])) {
     $paintingId = $_SESSION['PaintingIdToUpdate'];
 }
-
-echo $paintingId;
-echo"<pre>";
-print_r($_POST);
-echo"</pre>";
 
 $newTitle = $_POST['title'];
 $newDescription = $_POST['desc'];
@@ -21,7 +16,7 @@ $newMuseumLink = $_POST['museum'];
 
 // connect db of to Paintings table to update title, description, medium, year of work, museumlink
 
-function updateArtInfoFromPaintingTable($newTitle, $newdesc, $medium ,$newMuseum ,$paintingId) {
+function updateArtInfoFromPaintingTable($newTitle, $newdesc, $medium ,$newMuseum ,$paintingID) {
     try {
         $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -36,7 +31,7 @@ function updateArtInfoFromPaintingTable($newTitle, $newdesc, $medium ,$newMuseum
         $statement->bindValue(':desc',$newdesc);
         $statement->bindValue(':medium',$medium);
         $statement->bindValue(':museum',$newMuseum);
-        $statement->bindValue(':paintingId',$paintingId);
+        $statement->bindValue(':paintingId',$paintingID);
         $statement->execute();
     }catch(PDOException $e) {
         die($e->getMessage());
@@ -44,19 +39,20 @@ function updateArtInfoFromPaintingTable($newTitle, $newdesc, $medium ,$newMuseum
 }
 
 // connect db to Genres table to update genreName
-function updateArtInfoFromGenreTable($genreName, $paintingId) {
+function updateArtInfoFromGenreTable($genreName, $paintingID) {
     try {
         $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "UPDATE Genres 
+        $sql = 'UPDATE Genres 
                 SET GenreName = :genreName
                 WHERE GenreID = 
-                    (SELECT Genres.GenreID 
-                     FROM PaintingGenres
-                     WHERE PaintingGenres.PaintingID = :paintingId)";
+                    (SELECT PaintingGenres.GenreID 
+                     FROM PaintingGenres 
+                     WHERE PaintingGenres.PaintingID = :paintingId
+                     LIMIT 1)';
         $statement = $pdo->prepare($sql);
         $statement->bindValue(':genreName', $genreName);
-        $statement->bindValue(':paintingId',$paintingId);
+        $statement->bindValue(':paintingId',$paintingID);
         $statement->execute();
     }catch(PDOException $e) {
         die($e->getMessage());
@@ -64,7 +60,7 @@ function updateArtInfoFromGenreTable($genreName, $paintingId) {
 }
 
 //connect db to Subject table to update subjectName
-function updateArtInfoFromSubjectTable($newSubjectName, $paintingId) {
+function updateArtInfoFromSubjectTable($newSubjectName, $paintingID) {
     try {
         $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -73,18 +69,20 @@ function updateArtInfoFromSubjectTable($newSubjectName, $paintingId) {
                 WHERE SubjectID = 
                     (SELECT PaintingSubjects.SubjectID 
                      FROM PaintingSubjects 
-                     WHERE PaintingSubjects.PaintingID = :paintingId)";
+                     WHERE PaintingSubjects.PaintingID = :paintingId
+                     LIMIT 1)";
         $statement = $pdo->prepare($sql);
         $statement->bindValue(':subjectName', $newSubjectName);
-        $statement->bindValue(':paintingId',$paintingId);
+        $statement->bindValue(':paintingId',$paintingID);
         $statement->execute();
     }catch(PDOException $e) {
         die($e->getMessage());
     }
 }
 
-updateArtInfoFromPaintingTable($newTitle, $newDescription, $newMedium, $newMuseumLink, $paintingId);
-updateArtInfoFromSubjectTable($newGenreName, $paintingId);
-updateArtInfoFromSubjectTable($newSubjectName, $paintingId);
+// updateArtInfoFromPaintingTable($newTitle, $newDescription, $newMedium, $newMuseumLink, $paintingId);
+// updateArtInfoFromGenreTable($newGenreName, $paintingId);
+// updateArtInfoFromSubjectTable($newSubjectName, $paintingId);
+
 
 ?>

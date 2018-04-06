@@ -61,6 +61,7 @@
                                     <?php
                                         showMattTitles();
                                         showMattColors();
+                                        showMattPrice();
                                     ?>
                                     <br>
                                     <hr>

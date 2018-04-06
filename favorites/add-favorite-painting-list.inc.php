@@ -26,6 +26,9 @@ function getListOfPaintingWishList($listOfArtWishId) {
     $listOfFvPaintings = array();
     foreach($listOfArtWishId as $aWishArtId) {
         $anArtObject = getPaintingDetails($aWishArtId);
+        // store art Id
+        $aFavoriteArtId = $anArtObject->getPaintingID();
+        $aFavoriteArt[] = $aFavoriteArtId;
         // store art Img name
         $aFavoriteArtImg = $anArtObject->getImageFileName();
         $aFavoriteArt[] = $aFavoriteArtImg;
