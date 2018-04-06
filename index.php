@@ -77,7 +77,7 @@ $listOfThreeBottomPainting = getThreeRandomPainting();
                         <h3 class="align-header google-font"><?php echo $rowBottom['Title']?></h3>
                         <p><?php echo $rowBottom['Description']?> &nbsp;
                         </p>
-                        <button type="button" class="btn btn-default align-button">View details
+                        <button type="button" class="btn btn-default align-button"><a href="works.php?PaintingID=<?php echo $rowBottom['PaintingID']?>">View details</a>
                             <i class="fa fa-angle-double-right"></i>
                         </button>
                     </div>
