@@ -1,14 +1,14 @@
 
 <?php
     require('includes/art-ultilities.inc.php');
-
     if(isset($_GET['PaintingID'])) {
         $paintingID = $_GET['PaintingID'];
     }
     else {
         $paintingID = 437;
     }
-    
+    require('includes/record-visit.php');
+
     $defaultPainting = getPaintingDetails($paintingID);
     $genresNames = $defaultPainting->getGenresName();
     $genresName = '';

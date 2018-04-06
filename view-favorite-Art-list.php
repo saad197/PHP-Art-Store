@@ -9,12 +9,12 @@ if(isset($listOfFvPaintings)) {
     $aSingleRow = "";
     foreach($listOfFvPaintings as $delID => $singleFvPainting) {
         $aSingleRow .= "<tr>";
-        $aSingleRow .= "<td><input type='checkbox' name='checked'><span> </span><img src='images/works/square-small/". $singleFvPainting[0]. ".jpg'></td>";
-        $aSingleRow .= "<td>".$singleFvPainting[1]."</td>";
+        $aSingleRow .= "<td><input type='checkbox' name='checked'><span> </span><img src='images/works/square-small/". $singleFvPainting[1]. ".jpg'></td>";
         $aSingleRow .= "<td>".$singleFvPainting[2]."</td>";
         $aSingleRow .= "<td>".$singleFvPainting[3]."</td>";
+        $aSingleRow .= "<td>".$singleFvPainting[4]."</td>";
         $genres = "";
-        foreach($singleFvPainting[4] as $genreName) {
+        foreach($singleFvPainting[5] as $genreName) {
             $genres .= $genreName . ' ';
         }
         $aSingleRow .= "<td>".$genres."</td>";
@@ -22,8 +22,8 @@ if(isset($listOfFvPaintings)) {
         $aSingleRow .= "<button type='button' class='btn btn-default' name='delete' value = ".$delID." onclick='deleteRow(this)'>
                             <span class='glyphicon glyphicon-trash' aria-hidden='true'></span>
                         </button>
-                        <button type='submit' class='btn btn-default' name='addToCart'>
-                            <span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span>
+                        <button type='button' class='btn btn-default' name='addToCart'>
+                           <a href='customize-product.php?PaintingID=".$singleFvPainting[0]."'> <span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span></a>
                         </button>";
         $aSingleRow .= "</td>";
         $aSingleRow .= "</tr>";
@@ -38,7 +38,7 @@ if(isset($listOfFvPaintings)) {
     <body>
         <?php include('includes/primary-navigation.inc.php');?>
 
-        <form class="form-group" method="post" action="includes/process-favoriteList-Art-action.php">
+        <form class="form-group" method="post" action="">
             <fieldset>
                 <legend>Paintings</legend>
                 <table class="table table-hover" id="fvArtTable">
