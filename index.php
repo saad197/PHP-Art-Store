@@ -31,7 +31,7 @@ $listOfThreeBottomPainting = getThreeRandomPainting();
                             <p>This painting entitled Madame de Pompadour dates from 1758 and now resides in the National Gallery of
                                 Scotland
                             </p>
-                            <button type="button" class="btn btn-info">Learn More</button>
+                            <a href="works.php?PaintingID=347"> <button type="button" class="btn btn-info">Learn More</button></a>
                             <br>
                             <br>
                         </div>
@@ -45,7 +45,7 @@ $listOfThreeBottomPainting = getThreeRandomPainting();
                         <div class="carousel-caption">
                             <h3 class="google-font"><?php echo $row['Title']?></h3>
                             <p><?php echo $row['Excerpt']?></p>
-                            <button type="button" class="btn btn-info">Learn More</button>
+                            <a href="works.php?PaintingID=<?php echo $row['PaintingID']?>"><button type="button" class="btn btn-info">Learn More</button></a>
                             <br>
                             <br>
                         </div>
