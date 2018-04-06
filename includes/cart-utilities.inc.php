@@ -186,52 +186,71 @@ function showMattPrice() {
 <?php
 // view cart
 
+function getQuantity($itemID) {
+    if(isset($_SESSION['CartPaintings'])) {
+        foreach ($_SESSION['CartPaintings'] as $cartPaintingID => $cartPainiting) {
+            if(isset($cartPainiting['quantity'])) {
+            $quantity[$cartPaintingID] = $cartPainiting['quantity'];      
+            }
+            else {
+                $quantity[$cartPaintingID] = 1;
+            }
+        }
+    }
+    return $quantity[$itemID];
+}
+
 function getCartList() {
     if(isset($_SESSION['CartPaintings'])) {
         $cartItems = $_SESSION['CartPaintings'];
         $count = 1;
         $subtotal = 0;
         foreach ($cartItems as $key => $item) {
-            $customPrice = $_SESSION['CartPaintings'][437]['CustomizePrice'];
-            $itemPrice  = $item['TotalPrice'];
-            $subtotal += $itemPrice;
-            $artWork = getPaintingDetails($key);   
-            $tax = $subtotal * 0.05;
-            $shippingCost = 10;
-            $grandTotal = $subtotal + $tax + $shippingCost; 
-            echo "<tr>
-                    <td>".$count++."</td>
-                    <td><a href='works.php?PaintingID=".$key."'><img src='images/works/small/".$artWork->getImageFileName().".jpg'  class='cart-pic' alt='Image not available'></a></td>
-                    <td><a href='works.php?PaintingID=".$key."'>".$artWork->getTitle()."</a></td>
-                    <td><input type='number' name='quantity' min='1' class='product-quantity' value='1' onload='updateCartPrices(this,".($count-1)."' onchange='updateCartPrices(this,".($count-1).")'></td>
-                    <td>
-                        <a href='#'><button>Delete</button></a>
-                        <a href='customize-product.php?PaintingID=".$key."'><button>Edit</button></a>
-                        <a href='#'><button>fa</button></a>
-                    </td>
-                    <td id='item-price-".($count-1)."'>$".$itemPrice."</td>
-                    <td class='cart-price' ><input type='text' name='ItemSubtotal' id='cart-subtotal-".($count-1)."' value='$".$itemPrice."' readonly></td>
-                </tr>";
-        }
-        echo "<tr class='summary-tr'>
-                        <td colspan='6'>Subtotal:</td>
-                        <td id='summary-subtotal'>$".$subtotal."</td>
-                    </tr>
-                    <tr class='summary-tr'>
-                        <td colspan='6'>Tax</td>
-                        <td id='summary-tax'>$".$tax."</td>
-                    </tr>
-                    <tr class='summary-tr'>
-                        <td colspan='6'>Shipping</td>
-                        <td id='shipping-price'>$".$shippingCost."</td>
-                    </tr>
-                    <tr class='summary-tr'>
-                        <td colspan='6'><span style='color:red'>GrandTotal</span></td>
-                        <td style='color:red' id='summary-total'>
-                        $".$grandTotal."
-                    
+            if(isset($_SESSION['CartPaintings'][$key]['CustomizePrice']) && isset($item['TotalPrice'])) {
+                $customPrice = $_SESSION['CartPaintings'][$key]['CustomizePrice'];
+                $itemPrice  = $item['TotalPrice'];
+                $subtotal += $itemPrice;
+                $artWork = getPaintingDetails($key);   
+                $tax = $subtotal * 0.05;
+                $shippingCost = 10;
+                $grandTotal = $subtotal + $tax + $shippingCost; 
+                $qty = getQuantity($key);
+                echo "<tr>
+                        <td>".$count++."</td>
+                        <td><a href='works.php?PaintingID=".$key."'><img src='images/works/small/".$artWork->getImageFileName().".jpg'  class='cart-pic' alt='Image not available'></a></td>
+                        <td><a href='works.php?PaintingID=".$key."'>".$artWork->getTitle()."</a></td>
+                        <td><input type='number' name='".$artWork->getPaintingID()."=>quantity' min='1' class='product-quantity' value='".$qty."' onload='updateCartPrices(this,".($count-1)."' onchange='updateCartPrices(this,".($count-1).")'></td>
+                        <td>
+                            
+                            <button type='submit' name='Delete' value='".$artWork->getPaintingID()."'>Delete</button>
+                            <a href='customize-product.php?PaintingID=".$key."'><input type='button' name='Edit' value='Edit'></a>
+                            <a href='#'><button>fa</button></a>
                         </td>
+                        <td id='item-price-".($count-1)."'>$".$itemPrice."</td>
+                        <td class='cart-price' ><input type='text' name='ItemSubtotal' id='cart-subtotal-".($count-1)."' value='$".$itemPrice."' readonly></td>
                     </tr>";
+            }
+        }
+        if(isset($subtotal) && isset($shippingCost) && isset($subtotal) && isset($tax)) {
+            echo "<tr class='summary-tr'>
+                            <td colspan='6'>Subtotal:</td>
+                            <td id='summary-subtotal'>$".$subtotal."</td>
+                        </tr>
+                        <tr class='summary-tr'>
+                            <td colspan='6'>Tax</td>
+                            <td id='summary-tax'>$".$tax."</td>
+                        </tr>
+                        <tr class='summary-tr'>
+                            <td colspan='6'>Shipping</td>
+                            <td id='shipping-price'>$".$shippingCost."</td>
+                        </tr>
+                        <tr class='summary-tr'>
+                            <td colspan='6'><span style='color:red'>GrandTotal</span></td>
+                            <td style='color:red' id='summary-total'>
+                                $".$grandTotal."
+                            </td>
+                        </tr>";
+        }
     }
 }
 
