@@ -6,6 +6,7 @@ include('includes/cart-utilities.inc.php');
 if(session_status() == PHP_SESSION_NONE) {         
     session_start();     
 }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,7 +19,7 @@ if(session_status() == PHP_SESSION_NONE) {
     </head>
     <body>
         <?php include 'includes/primary-navigation.inc.php';?>
-        <form action="#" method="POST">
+        <form action="cart/process-cart-submit-request.php" method="POST">
             <table class="table table-bordered">
                 <thead><h1>Shopping Cart</h1></thead>
                 <tbody>
