@@ -190,6 +190,7 @@ footer {
 
 /*Advanced-search*/
 #legendLabel{
+    border : 1px solid black;
     background-color: dimgrey;
     color : white;
     width: 50em;
@@ -210,8 +211,13 @@ footer {
     background-color:lightgrey;
 }
 .fieldset-container{
-    background-color:lightslategray;
-    
+    background-color:rgba(220, 228, 213, 0.411);
+}
+.caption1{
+    text-align: center;
+    font-size: 2em;
+    border : 1px solid lightgrey;
+    background-color:rgba(105, 105, 105, 0.801);
 }
 /* Shopping cart */
 
@@ -270,6 +276,35 @@ footer {
     width: 150px;
 }
 
-#quantity {
+.product-quantity {
     width: 40px;
+}
+
+
+.cart-price input {
+    width: 80px;
+    border: none;
+}
+
+#checkout {
+    float: right;
+    margin-bottom: 10%;
+}
+
+#checkout p {
+    display: inline-block;
+    color: darkred;
+}
+
+#checkout input {
+    width: 15px;
+    height: 15px;
+    background-color: #eee;
+}
+
+#checkout button{
+    background-color: darkorange;
+    color: white;
+    width: 125px;
+    height: 40px;
 }

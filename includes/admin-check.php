@@ -1,8 +1,5 @@
 <?php
 
-
-
-
 function isAdmin ($id) {
     try {
         $conn = new PDO(DBCONNSTRING, DBUSER, DBPASS);

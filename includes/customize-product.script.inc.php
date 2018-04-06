@@ -16,10 +16,12 @@
         xhttp.send("Title="+title);
 
         //update color and style select option
-        if (title != "Default") {
+        if (title != "None") {
             //enable color and style if title is not default
             document.getElementsByName('FrameColor')[0].disabled = false;
             document.getElementsByName('FrameStyle')[0].disabled = false;
+            document.getElementsByName('FrameColor')[0][4].selected = true
+            document.getElementsByName('FrameStyle')[0][1].selected = true;
         }
         else {
             //show default for color and style if title is back to default
@@ -27,15 +29,20 @@
             document.getElementsByName('FrameStyle')[0].disabled = true;
             document.getElementsByName("FrameColor")[0].selectedIndex = 0;
             document.getElementsByName("FrameStyle")[0].selectedIndex = 0;
+            document.getElementsByName('FrameColor')[0][0].selected = true
+            document.getElementsByName('FrameStyle')[0][0].selected = true;
+            
         }
     }
     
     function updateFinalPrices(framePrice) {
         var glassPrice = extractNum(document.querySelector('input[name="GlassType"]:checked').value);
-        var customizePrice = glassPrice + framePrice;
+        var mattPrice = extractNum(document.getElementsByName("MattPrice")[0].value);
         var itemPrice = extractNum(document.getElementsByName('ItemPrice')[0].value);
+        var customizePrice = glassPrice + framePrice + mattPrice;
+        var totalPrice = itemPrice + customizePrice;
         document.getElementsByName("CustomizePrice")[0].value = "$"+customizePrice;
-        document.getElementsByName("TotalPrice")[0].value = "$" + (itemPrice + customizePrice);
+        document.getElementsByName("TotalPrice")[0].value = "$" + (totalPrice);
     }
     
     function extractNum(str) {
