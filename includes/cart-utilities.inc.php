@@ -124,7 +124,7 @@ function showFrameGlassTypes() {
                         ".$type['Description']."
                     </td>
                     <td>
-                        $".$type['Price']."
+                        $". intval($type['Price'])."
                     </td>
                 </tr>
             ";

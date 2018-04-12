@@ -111,14 +111,16 @@
             if($sales>0) {
                 echo "
                     <div class=\"col-md-2\">
-                        <div class=\"thumbnail\">
-                            <a href=\"artist-details.php?ArtistID=".$key."\"><img src=\"images/artists/square-medium/".$key.".jpg\" alt=\"Image not available\"></a>
-                            <div class=\"caption\">
-                                 <a href=\"artist-details.php?ArtistID=".$key."\"><p>".$value."</p></a>
-                                <button class=\"btn btn-info\">
-                                    <i class=\"glyphicon glyphicon-fire\"></i> Sales
-                                    <span class=\"badge\">".$sales."</span>
-                                </button>
+                        <div class='artist-box'>
+                            <div class=\"thumbnail\" >
+                                <a href=\"artist-details.php?ArtistID=".$key."\"><img src=\"images/artists/square-medium/".$key.".jpg\" alt=\"Image not available\"></a>
+                                <div class=\"caption\">
+                                    <a href=\"artist-details.php?ArtistID=".$key."\"><p>".$value."</p></a>
+                                    <button class=\"btn btn-info\">
+                                        <i class=\"glyphicon glyphicon-fire\"></i> Sales
+                                        <span class=\"badge\">".$sales."</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>";
@@ -132,10 +134,12 @@
         foreach ($artists as $key => $value) {
             echo "
                 <div class=\"col-md-2\">
-                    <div class=\"thumbnail\">
-                        <a href=\"artist-details.php?ArtistID=".$key."\"><img src=\"images/artists/square-thumb/".$key.".jpg\" alt=\"Image not available\"></a>
-                        <div class=\"caption\">
-                                <a href=\"artist-details.php?ArtistID=".$key."\"><p>".$value."</p></a>
+                    <div class='artist-box'>
+                        <div class=\"thumbnail\">
+                            <a href=\"artist-details.php?ArtistID=".$key."\"><img src=\"images/artists/square-medium/".$key.".jpg\" alt=\"Image not available\"></a>
+                            <div class=\"caption\">
+                                    <a href=\"artist-details.php?ArtistID=".$key."\"><p>".$value."</p></a>
+                            </div>
                         </div>
                     </div>
                 </div>";

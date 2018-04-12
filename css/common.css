@@ -145,14 +145,21 @@ footer {
     height: 275px;
 }
 
-#artwork-panel {
-    height: 225px;
-    margin-bottom: 5px;
+.artwork-panel {
+    height: 400px;
+    margin-bottom: 2px;
 }
 
 #genre-panel {
     margin-right: 38px;
 }
+/* browse artist */
+
+.artist-box {
+    height: 225px;
+    margin-bottom: 20px;
+}
+
 
 /* edit art form styles*/
 #edit-work-form {

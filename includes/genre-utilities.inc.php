@@ -34,7 +34,7 @@
                         <div class=\"col-md-2\" id=\"genre-panel\">
                             <div class=\"row\">
                                 <div class=\"thumbnail\">
-                                    <img src=\"images/artists/".$value->getGenreID().".jpg\" alt=\"pic not available\">
+                                    <img src=\"images/genres/square-medium/".$value->getGenreID().".jpg\" alt=\"pic not available\">
                                     <div class=\"caption\">
                                         <p class=\"similarTitle\">
                                             <a href=\"genre-details.php?GenreID=".$value->getGenreID()."\">".$value->getGenreName()."</a>
@@ -98,11 +98,13 @@
         foreach ($paintings as $key => $value) {  
             echo "
                 <div class=\"col-md-3\">
+                    <div>
                     <a href=\"works.php?PaintingID=". $key ."\">
                         <div class=\"thumbnail\">
-                            <img src=\"images/artists/".$key.".jpg\" alt=\"pic not available\">
+                            <img src=\"images/genres/square-medium/".$key.".jpg\" alt=\"pic not available\">
                         </div>
                     </a>
+                    </div>
                 </div>
                 ";
         }

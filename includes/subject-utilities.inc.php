@@ -32,7 +32,7 @@ function showSubjectsList() {
             <div class=\"col-md-3\">
                 <div class=\"thumbnail\">
                     <a href=\"subject-details.php?SubjectID=". $sub->getSubjectID() ."\">
-                        <img src=\"images/artists/".$sub->getSubjectID().".jpg\" alt=\"pic not available\">
+                        <img src=\"images/subjects/square-medium/".$sub->getSubjectID().".jpg\" alt=\"pic not available\">
                     </a>
                     <div class=\"caption\">
                         <p class=\"similarTitle\">

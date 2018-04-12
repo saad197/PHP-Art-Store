@@ -4,7 +4,7 @@ if(session_status() == PHP_SESSION_NONE) {
     session_start();     
 }
 
-// storing quantities to the session variable
+// collecting quantity for each paintings in cart
 if(isset($_POST)) {
     foreach ($_POST as $key => $value) {
         if (strpos($key, "quantity")) {
@@ -13,6 +13,7 @@ if(isset($_POST)) {
     }
 }
 
+// storing quantity into session variable 
 if(isset($_SESSION['CartPaintings'])) {
     foreach ($_SESSION['CartPaintings'] as $cartPaintingID => $cartPainiting) {
         if(array_key_exists($cartPaintingID, $quantity)) {
