@@ -79,7 +79,7 @@ function showSubjectAllArtWork($subjectID) {
             <div class=\"col-md-3\">
                 <div class=\"thumbnail\">
                     <a href=\"works.php?PaintingID=". $key ."\">
-                        <img src=\"images/thumbs/".$work['ImageFileName'].".jpg\" alt=\"pic not available\">
+                        <img src=\"images/works/square-medium/".$work['ImageFileName'].".jpg\" alt=\"pic not available\">
                     </a>
                     <div class=\"caption\">
                         <p class=\"similarTitle\">

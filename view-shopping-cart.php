@@ -40,8 +40,5 @@ if(session_status() == PHP_SESSION_NONE) {
                 <div id='checkout'><a href='#'><button type='submit'>Checkout</button></td></a></div>
         </form>
        </div><!--end container-->
-       <script>
-           updateCartPrices();
-        </script>
     </body>
 </html>

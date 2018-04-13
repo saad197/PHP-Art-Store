@@ -22,7 +22,6 @@ if(isset($_SESSION['CartPaintings'])) {
     }
 }
 
-
 function extractNum($str, $delimeter) {
     $pos = stripos($str, $delimeter);
     $quantity = substr($str, 0, $pos);
@@ -37,6 +36,6 @@ if(isset($_POST['Delete']) && isset($_SESSION['CartPaintings'])) {
      header('Location: ../view-shopping-cart.php');
 }
 
-
+header('Location: checkout.php');
 
 ?>

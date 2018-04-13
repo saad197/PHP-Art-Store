@@ -1,5 +1,6 @@
 <script>
   function updateCartPrices(obj, objNo) {
+      alert(objNo);
       quantity = extractNum(obj.value);
       var itemPrice = extractNum($('#item-price-'+objNo).text()); 
       itemSubtotal = quantity * itemPrice;

@@ -219,7 +219,7 @@ function getCartList() {
                         <td>".$count++."</td>
                         <td><a href='works.php?PaintingID=".$key."'><img src='images/works/small/".$artWork->getImageFileName().".jpg'  class='cart-pic' alt='Image not available'></a></td>
                         <td><a href='works.php?PaintingID=".$key."'>".$artWork->getTitle()."</a></td>
-                        <td><input type='number' name='".$artWork->getPaintingID()."=>quantity' min='1' class='product-quantity' value='".$qty."' onload='updateCartPrices(this,".($count-1)."' onchange='updateCartPrices(this,".($count-1).")'></td>
+                        <td><input type='number' name='".$artWork->getPaintingID()."=>quantity' min='1' class='product-quantity' value='".$qty."' onload='updateCartPrices(this,".($count-1).")' onchange='updateCartPrices(this,".($count-1).")'></td>
                         <td>
                             
                             <button type='submit' name='Delete' value='".$artWork->getPaintingID()."'>Delete</button>
@@ -253,5 +253,9 @@ function getCartList() {
         }
     }
 }
+
+
+
+
 
 ?>

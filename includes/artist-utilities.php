@@ -108,7 +108,7 @@
         $artists = getAllArtistNames();
         foreach ($artists as $key => $value) {
             $sales = getNumberOfSales($key);
-            if($sales>0) {
+            if($sales>18) {
                 echo "
                     <div class=\"col-md-2\">
                         <div class='artist-box'>

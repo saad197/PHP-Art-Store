@@ -34,7 +34,7 @@
                         <div class=\"col-md-2\" id=\"genre-panel\">
                             <div class=\"row\">
                                 <div class=\"thumbnail\">
-                                    <img src=\"images/genres/square-medium/".$value->getGenreID().".jpg\" alt=\"pic not available\">
+                                    <a href=\"genre-details.php?GenreID=".$value->getGenreID()."\"><img src=\"images/genres/square-medium/".$value->getGenreID().".jpg\" alt=\"pic not available\"></a>
                                     <div class=\"caption\">
                                         <p class=\"similarTitle\">
                                             <a href=\"genre-details.php?GenreID=".$value->getGenreID()."\">".$value->getGenreName()."</a>
@@ -55,7 +55,7 @@
                 <div class=\"row\">
                     <div class=\"col-md-2 row\">
                         <div class=\"thumbnail\">
-                            <img src=\"images/artists/".$genre->getGenreID().".jpg\" alt=\"pic not available\">
+                            <img src=\"images/genres/square-medium/".$genre->getGenreID().".jpg\" alt=\"pic not available\">
                         </div>
                     </div>
                     <div class=\"col-md-10 \">
@@ -73,7 +73,7 @@
         try {
             $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "SELECT  PaintingGenres.PaintingID FROM PaintingGenres 
+            $sql = "SELECT Paintings.PaintingID, Paintings.ImageFileName FROM PaintingGenres 
                     INNER JOIN Genres ON PaintingGenres.GenreID = Genres.GenreID
                     INNER JOIN Paintings ON Paintings.PaintingID = PaintingGenres.PaintingID
                     WHERE Genres.GenreID = ?";
@@ -81,7 +81,7 @@
             $statement->bindValue(1, $genreID);
             $statement->execute();
             while($row = $statement->fetch()) {
-                $paintings[$row['PaintingID']] = $row['PaintingID'];
+                $paintings[$row['PaintingID']] = $row['ImageFileName'];
             }
             $pdo = null;
         }
@@ -95,16 +95,15 @@
                     <hr>
                 </div>";
 
-        foreach ($paintings as $key => $value) {  
+        foreach ($paintings as $key => $value) {
+            
             echo "
                 <div class=\"col-md-3\">
-                    <div>
                     <a href=\"works.php?PaintingID=". $key ."\">
                         <div class=\"thumbnail\">
-                            <img src=\"images/genres/square-medium/".$key.".jpg\" alt=\"pic not available\">
+                            <img src=\"images/works/square-medium/".$value.".jpg\" alt=\"pic not available\">
                         </div>
                     </a>
-                    </div>
                 </div>
                 ";
         }

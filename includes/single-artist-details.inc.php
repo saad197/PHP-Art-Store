@@ -1,3 +1,40 @@
+<?php
+
+function showArtWorksForArtist($artWorks)
+{
+    foreach ($artWorks as $value) {
+                echo "<div class=\"col-md-3\" id=\"artwork-panel\">
+                        <div class=\"thumbnail\">
+                            <img src=\"images/works/square-medium/".$value->getImageFileName().".jpg\" alt=\"pic not available\">
+                            <div class=\"caption\">
+                                <p class=\"similarTitle\">
+                                    <a href=\"works.php?PaintingID=".$value->getPaintingID()."\">".$value->getTitle().", ".$value->getYearOfWork()."</a>
+                                </p>
+                                <div class=\"btn-space\">
+                                    <a href=\"works.php?PaintingID=".$value->getPaintingID()."\">
+                                        <button type=\"button\" class=\"btn btn-primary btn-xs\">
+                                            <span class=\"glyphicon glyphicon-info-sign\"></span>View
+                                        </button>
+                                    </a>
+                                    <a href=\"favorites/add-favorite-painting-list.inc.php?PaintingID=".$value->getPaintingID()."\">
+                                        <button type=\"button\" class=\"btn btn-success btn-xs\">
+                                            <i class=\"glyphicon glyphicon-gift\"></i> Wish
+                                        </button>
+                                    </a>
+                                    <a href=\"customize-product.php?PaintingID=".$value->getPaintingID()."\">
+                                        <button type=\"button\" class=\"btn btn-info btn-xs\">
+                                            <i class=\"glyphicon glyphicon-shopping-cart\"></i> Cart
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>";
+            }
+}
+
+ ?>
+
 </div>
 <div class="container">
     <div class="row">
@@ -45,26 +82,7 @@
     <div class="row"> 
     
         <?php 
-            foreach ($artWorks as $value) {
-                echo "<div class=\"col-md-3\" id=\"artwork-panel\">
-                        <div class=\"thumbnail\">
-                            <img src=\"images/works/square-medium/".$value->getImageFileName().".jpg\" alt=\"pic not available\">
-                            <div class=\"caption\">
-                                <p class=\"similarTitle\">
-                                    <a href=\"works.php?PaintingID=".$value->getPaintingID()."\">".$value->getTitle().", ".$value->getYearOfWork()."</a>
-                                </p>
-                                <div class=\"btn-space\">
-                                    <button type=\"button\" class=\"btn btn-primary btn-xs\">
-                                   <span class=\"glyphicon glyphicon-info-sign\"></span>View</button>
-                                    <button type=\"button\" class=\"btn btn-success btn-xs\">
-                                        <i class=\"glyphicon glyphicon-gift\"></i> Wish</button>
-                                    <button type=\"button\" class=\"btn btn-info btn-xs\">
-                                        <i class=\"glyphicon glyphicon-shopping-cart\"></i> Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>";
-            }
+            showArtWorksForArtist($artWorks);
         ?>
         
     </div>
