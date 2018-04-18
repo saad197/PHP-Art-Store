@@ -364,5 +364,5 @@ glyphicon glyphicon-pencil"></span> Post</button>
     
 </body>
 <script src="//code.jquery.com/jquery.min.js"></script>
-<script src="js/rating.js"></script>
+<script src="Js/rating.js"></script>
 </html>
