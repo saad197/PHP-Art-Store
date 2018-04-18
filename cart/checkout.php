@@ -4,25 +4,25 @@
         session_start();     
     }  
 
-    echo '<pre>';
-    print_r($_SESSION);
-    echo '</pre>';
+    // echo '<pre>';
+    // print_r($_SESSION);
+    // echo '</pre>';
     include('../includes/config.inc.php');
 
     function getAddressField($fieldColumn) {
         try {
-        $conn = new PDO(DBCONNSTRING, DBUSER, DBPASS);
-        // set the PDO error mode to exception
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-         $citySql = "SELECT DISTINCT city FROM Customers WHERE city != '' ORDER BY city ASC";
-        $cityResult = $conn->prepare($citySql);
-        $cityResult->execute();
-        while ($row = $cityResult->fetch())
-        {
-            $cityNames[] = $row['city'];
-        }
-        $pdo = null;
-        return $cityNames;
+            $conn = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+            // set the PDO error mode to exception
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $Sql = "SELECT DISTINCT ".$fieldColumn." FROM Customers WHERE ".$fieldColumn." != '' ORDER BY ".$fieldColumn." ASC";
+            $Result = $conn->prepare($Sql);
+            $Result->execute();
+            while ($row = $Result->fetch())
+            {
+                $fieldResult[] = $row[$fieldColumn];
+            }
+            $pdo = null;
+            return $fieldResult;
         } catch (PDOException $e) {
             die($e->getMessage());
             return null;
@@ -30,7 +30,24 @@
     }
 
     function getCityOption() {
+        $cityNames = getAddressField('City');
+        foreach ($cityNames as  $city) {
+            echo '<option>'.$city.'</option>';
+        }
+    }
 
+    function getRegionOptions() {
+        $region = getAddressField('Region');
+        foreach ($region as  $reg) {
+            echo '<option>'.$reg.'</option>';
+        }
+    }
+
+    function getCountryOptions() {
+        $region = getAddressField('Country');
+        foreach ($region as  $reg) {
+            echo '<option>'.$reg.'</option>';
+        }
     }
 ?>
 
@@ -59,7 +76,19 @@
                         Adress Line 2:
                         <input type='text' name = 'AddressLine1' placeholder = ''> <br><br>
                         City:
-                        
+                        <select class="form-control" name = "city" id="city">
+                            <?php getCityOption(); ?>
+                        </select>
+                        State:
+                        <select class="form-control" name = "city" id="city">
+                            <?php getRegionOptions(); ?>
+                        </select>
+                        Country:
+                        <select class="form-control" name = "city" id="city">
+                            <?php getCountryOptions(); ?>
+                        </select>
+                        Postal Code:
+                        <input type='text' name='postal' placeholder='T1Y 3H4'>
                     </div>
                     <h2>Payment<h2>
                 </div>
