@@ -1,4 +1,3 @@
-
 <?php
     require('includes/art-ultilities.inc.php');
     if(isset($_GET['PaintingID'])) {
@@ -68,8 +67,34 @@
                 </div>
             </div>
         </div>";
-    } 
+    }
 
+
+
+include 'classes/reviews.class.php';
+
+function getReviews($paintingID) {
+
+    try {
+        $pdo = new PDO(DBCONNSTRING,DBUSER,DBPASS);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT * FROM Reviews WHERE PaintingID = $paintingID ORDER BY ReviewDate DESC ;";
+        $result = $pdo->query($sql);
+        while ($row = $result->fetch()) {
+
+            ///will create instance of AdoptionList class to store the adoption data
+            $aReview = new Reviews($row['RatingID'],$row['PaintingID'],$row['ReviewDate'],$row['Rating'],
+                $row['Comment']);
+            $reviews[] = $aReview;
+            //   asort($adoption_detail);
+        }
+        $pdo = null;
+    }
+    catch (PDOException $e) {
+        die($e->getMessage());
+    }
+    return $reviews;
+}
 ?>
 
 <!DOCTYPE html>
@@ -184,6 +209,104 @@
             </div>
         </div>
     </div>
+    <!--REVIEWS -->
+
+
+    <link rel="stylesheet" href="css/rating.css">
+
+
+    <div class="panel panel-warning container" style = "margin-top: 10em;">
+        <div class="panel-heading text-center"><h2><span class="glyphicon glyphicon-edit"></span>  Reviews</h2></div>
+
+        <div class = "container" style = "width: 400px;">
+
+
+            <?php if ( @$_SESSION['cusID']) {
+
+                echo '
+       <div class ="alert alert-info text-center" role="alert" style = "margin-top: 10px;">Review this painting!</div>
+        <form action="includes/process-review.php" method="post" style="margin-top: 20px;">
+
+            <div class="form-group form-margin">
+                <textarea class="form-control" rows="3" name="message" placeholder="How did you find this painting?"></textarea>
+            </div>
+
+            <label id="rating-label">Rate me: </label>
+            <h2>
+
+                <span id="rat-1" name="rat" class="glyphicon glyphicon-star-empty rating"></span>
+
+                <span id="rat-2" name="rat" class="glyphicon glyphicon-star-empty rating"></span>
+
+                <span id="rat-3" name="rat" class="glyphicon glyphicon-star-empty rating"></span>
+
+                <span id="rat-4" name="rat" class="glyphicon glyphicon-star-empty rating"></span>
+
+                <span id="rat-5" name="rat" class="glyphicon glyphicon-star-empty rating"></span>
+
+            </h2>
+
+            <input type="hidden" name="rat" id="rat-value" value="1"/>
+            <input type ="hidden" name = "paintingid" value = "';
+
+                echo $paintingID; echo '"/>
+
+            <div class="form-group">
+                <button class="form-control btn btn-primary" type="submit"><span class = "
+glyphicon glyphicon-pencil"></span> Post</button>
+            </div>
+        </form>
+        '; }
+
+            else {
+                echo '<div class ="alert alert-info text-center" role="alert" style = "margin-top: 10px;"><b><a href = "user-login.php">Login</a></b> to post a review.</div>';
+            }?>
+        </div>
+
+
+
+        <div style = "margin-top: 10px;">
+            <?php
+            if (@getReviews($paintingID)) {
+                $reviews = getReviews($paintingID);
+                foreach ($reviews as $review) {
+
+                    echo '<hr>';
+                    echo $review;
+                    echo '<div style = "margin-left:300px;">';
+                    echo "<h4>Rating: ";
+                    echo  $review->printStars() ;
+                    echo '</h4></div>';
+
+                    if ( @$_SESSION['cusID']) {
+
+
+                        if (@isAdmin($_SESSION['cusID'])) {
+                            echo '
+                    
+                    <div style = "margin-left: 900px; margin-bottom:30px;">
+                    <a href="includes/delete-review.php?reviewid=' . $review->getRatingId() . '"><button class ="btn btn-danger btn-s"><span class = "glyphicon glyphicon-trash"> </span> Delete Review</button></a>
+                    </div>
+                    
+                    
+                    ';
+                        } else {
+
+                        }
+
+                    }
+
+
+                }
+            }
+            else {
+                echo '<div class = "text-center" ><h3>Be the first to review this painting!</h3></div>';
+            }
+
+            ?>
+        </div>
+    </div>
+
     <footer>
         <div class="container">
             <div class="col-md-4">
@@ -238,6 +361,8 @@
         <?php include("includes/copyright.inc.php"); ?>
     </div>
     </footer>
+    
 </body>
-
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="Js/rating.js"></script>
 </html>

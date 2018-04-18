@@ -43,14 +43,14 @@ if (isset($customerID)) {
 
     try {
 
-        $updateSQL = "UPDATE customers SET Email='$email', FirstName='$firstName', LastName='$lastName',
+        $updateSQL = "UPDATE Customers SET Email='$email', FirstName='$firstName', LastName='$lastName',
                   Country='$country',City='$city', Address='$address', Postal='$postal', Region='$state', Phone='$phone'
                   WHERE CustomerID=$customerID";
         $customer= $conn->prepare($updateSQL);
 
         $conn->exec($updateSQL);
 
-        $updateTimeSql = "UPDATE customerlogon SET UserName = '$email', DateLastModified = NOW() WHERE CustomerID = $customerID;";
+        $updateTimeSql = "UPDATE CustomerLogon SET UserName = '$email', DateLastModified = NOW() WHERE CustomerID = $customerID;";
 
         $customer= $conn->prepare($updateTimeSql);
 

@@ -1,5 +1,5 @@
 <?php
-require_once "config.inc.php";
+include_once "includes/config.inc.php";
 // define variables and set to empty values
 $email = $password = $cpassword = $country = $firstName = $state = $lastName = $address = $city = $postal = $phone = $cardNumber = $cvvNum = $date = "";
 $emailErr = $passwordErr = $countryErr = $cPasswordErr = $stateErr = $firstNameErr = $lastNameErr = $addressErr = $cityErr = $postalErr = $phoneErr = $cardNumErr = $cvvErr = $dateErr = "";
@@ -103,6 +103,7 @@ if (empty($_POST["email"])) {
 }
 
 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["firstname"])) {
         $firstNameErr = "First Name is required";
@@ -114,54 +115,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!preg_match("/^([^[:punct:]\d]+)$/", $firstName)) {
             $firstNameErr = "Only letters and white space allowed";
             $error = $error2 = $firstNameErr;
-        }
-    }
-
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["region"])) {
-        $stateErr = "Filed is required";
-        $error  = $error2 = $stateErr;
-
-    } else {
-        $state = test_input($_POST["region"]);
-        // check if name only contains letters and whitespace
-        if (!preg_match("/^([^[:punct:]\s\d]+)$/", $state)) {
-            $stateErr = "Only letters";
-            $error = $error2 = $stateErr;
-        }
-    }
-
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["city"])) {
-        $cityErr = "Filed is required";
-        $error  = $error2 = $cityErr;
-
-    } else {
-        $city = test_input($_POST["city"]);
-        // check if name only contains letters and whitespace
-        if (!preg_match("/^([^[:punct:]\s\d]+)$/", $city)) {
-            $cityErr = "Only letters";
-            $error = $error2 = $cityErr;
-        }
-    }
-
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["country"])) {
-        $countryErr = "Filed is required";
-        $error  = $error2 = $countryErr;
-
-    } else {
-        $country = test_input($_POST["country"]);
-        // check if name only contains letters and whitespace
-        if (!preg_match("/^([^[:punct:]\s\d]+)$/", $country)) {
-            $countryErr = "Only letters";
-            $error = $error2 = $countryErr;
         }
     }
 
@@ -297,6 +250,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 if(empty($error))
 {
+
+
     $addUserEnter = "";
 
     //sending data of all fields
@@ -353,7 +308,7 @@ if(empty($error3))
     if(isset($_POST['checkout'])) {
 
         //redirects user and also sends data
-        header('Location: cart/submit-order.php?' . $addUserEnter);
+        header('Location: submit-order.php?' . $addUserEnter);
     }
 
 

@@ -240,6 +240,7 @@ echo '
         </div>
         <br/>
         <br/>
+
         <input type="hidden" name="updateprofile" value="updateprofile" />
 
         <div class = "form-group row">

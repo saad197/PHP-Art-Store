@@ -1,9 +1,9 @@
 <?php
-include "Validation/customer-validation.php";
+include "includes/customer-validation.php";
 include 'includes/primary-navigation.inc.php';
 include "includes/head.inc.php";
 include "classes/customerlist.class.php";
-include('includes/admin-check.php');
+
 
 
 try {
@@ -140,13 +140,13 @@ window.location.href = \'index.php/\';
 
         <div class="form-group row-md-5">
             <div id = "firstname" class="col-md-6">
-                <label for="inputPassword4">First Name</label>
+                <label for="firstname">First Name</label>
                 <input type="text" class="form-control" name = "firstname" placeholder="First Name" value="<?php echo $aCustomer->getFirstName();?>">
                 <span class = "error"><?php echo $firstNameErr?></span>
                 <br/>
             </div>
             <div id = "lastname" class="col-md-6">
-                <label for="inputPassword4">Last Name</label>
+                <label for="lastname">Last Name</label>
                 <input type="text" class="form-control" name = "lastname" placeholder="Last Name" value="<?php echo $aCustomer->getLastName();?>">
                 <span class = "error"><?php echo $lastNameErr?></span>
                 <br/>
@@ -157,7 +157,7 @@ window.location.href = \'index.php/\';
 
         <div class="form-group row-md-5" >
             <div id = "phone" class="col-md-6">
-                <label for="inputPassword4">Phone Number</label>
+                <label for="phone">Phone Number</label>
                 <input type="text" class="form-control" name="phone" placeholder="Phone Number" value = "<?php echo $aCustomer->getPhone(); ?>" maxlength="19">
                 <span class = "error"><?php echo $phoneErr?></span>
                 <br/>
@@ -241,7 +241,7 @@ window.location.href = \'index.php/\';
 
     <form action="customer-list.php" style = "margin-left: 470px; margin-top: -30px;">
 
-        <button type="submit" class="btn btn btn-danger btn-s" style = "margin-top: 20px; margin-left: 20px;"><span class = "glyphicon glyphicon-remove"></span> Cancel</button>
+        <button type="submit" name = "cupdate" class="btn btn btn-danger btn-s" style = "margin-top: 20px; margin-left: 20px;"><span class = "glyphicon glyphicon-remove"></span> Cancel</button>
 
 </div>
 

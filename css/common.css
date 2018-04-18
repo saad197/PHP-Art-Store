@@ -327,3 +327,278 @@ footer {
 #order {
     margin-left: 20px;
 }
+
+h1 { font-size: 3em; font-weight: bold; margin-top: 0;}
+
+div#topHeaderRow {
+   font-size: 0.9em;
+   color: white;
+   font-family: Bad Script;
+}
+
+#topHeaderRow ul {
+    margin-right: 5px;
+}
+
+#topHeaderRow li a{
+    color: white;
+}
+
+#mainNavText {
+    font-size: 1.0em;
+    color: whitesmoke;
+}
+
+#mainNavigationRow {
+    font-family: 'PT Sans Caption', sans-serif;
+}
+
+.navbar-wrapper {
+    position: absolute;
+    color: white;
+    background: visible;
+    margin: 1% 0 0 7%;
+}
+
+.brand-text {
+    font-size: 32px;
+    color: white;
+}
+.nav-text {
+    color: white;
+    font-size: 16px;
+}
+
+.google-font {
+    font-family: 'PT Sans Caption', sans-serif;
+}
+
+#logoRow {
+    font-family: 'PT Sans Caption', sans-serif;
+}
+.space {
+    margin-left: 50px;
+}
+
+.wrapper {
+    width: 80%;
+    margin: auto;
+    margin: 10% 10%;
+}
+.wrapper-list {
+   margin: 0 0 10% 0;
+}
+
+.wrapper-list li {
+    list-style-type: none;
+}
+
+.wrapper-list li {
+    margin: 10% 0 10% 0;
+}
+
+.btn-space {
+    margin: 5%;
+}
+
+.price { 
+    color: red;
+}
+
+.similarTitle { 
+    margin-bottom: 5%;
+ }
+
+
+.cartText { 
+
+}
+
+footer {
+   margin-top: 1em;
+   background-color: #E7E7E7;
+
+}
+
+.form-margin {
+    margin-bottom: 2%;
+}
+
+.tight-form-group {  }
+
+#copyrightRow { 
+    background-color: #3A3A3A; 
+    font-size: 12px;
+    color: rgb(160, 160, 160);
+}
+
+#copyright-message {
+    margin-left: 5%;
+}
+
+#copyright-symbol {
+    float: right;
+    margin-right: 5%;
+}
+.pic {
+    margin-bottom: 10%;
+    color: white;
+}
+.jumbotron {
+    background-image: url("../images/works/large/013030.jpg");
+    background-repeat: repeat-x;
+}
+
+#inner-button {
+    border-radius: 40%;
+}
+
+.thumbnail-style {
+    margin-top: 5%;
+    border-style: none;
+    text-align: justify;
+}
+
+.align-header {
+   text-align: center;
+   font-size: 20px;
+}
+
+.align-button {
+    margin-left: 35%;
+}
+
+
+#artist-img {
+    width: 225;
+    height: 275px;
+}
+
+#artwork-panel {
+    height: 225px;
+    margin-bottom: 5px;
+}
+
+#genre-panel {
+    margin-right: 38px;
+}
+
+/* edit art form styles*/
+#edit-work-form {
+    border: solid 1px grey;
+    padding: 5px;
+    background-color: #F8F8F8;
+}
+#art-year{
+    width: 200px;
+}
+#type-box{
+    border: solid 0.5px grey;
+    padding : 10px;
+    width: 450px;
+    
+}
+#check-box{
+    border: solid 0.5px grey;
+    padding : 10px;
+    width: 450px;
+    margin-top: 10px;
+}
+#sm-buttons {
+    height: 40px;
+    width: 85%;
+    background-color: grey;
+    text-align: center;
+    padding-top: 8px;
+    margin-top: 20px;
+}
+#sm-buttons .form-btn {
+    background-color: orange;
+    color: black;
+}
+
+/*Advanced-search*/
+#legendLabel{
+    background-color: dimgrey;
+    color : white;
+    width: 50em;
+    text-align: center;
+    height: 2em;
+    margin-left : 4em;
+}
+.form-container{
+    margin : auto;
+    width : 60em;
+}
+.listStyle{
+    list-style-type:none;
+    
+    }
+.advanced-select{
+    border : 1px solid black;
+    background-color:lightgrey;
+}
+.fieldset-container{
+    background-color:lightslategray;
+    
+}
+/* Shopping cart */
+
+#tb-header {
+    background-color: orange;
+    color: white;
+}
+
+.summary-tr {
+    background-color: #f7ecc3;
+    text-align: right;
+}
+
+/* customize-produect */
+
+.row-spacing {
+    padding-right: 75px;
+    padding-bottom: 10px;
+}
+
+#glass-select {
+    width: 100%;
+}
+
+#glass-select td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.customize-price input {
+    width: 80px;
+    
+}
+
+.submit-btn {
+    width: 100px;
+    height: 30px;
+    background-color: steelblue;
+    color: white;
+    margin-right: 10px;
+}
+
+#form-box {
+    border: 6px solid lightslategray;
+    background-color: whitesmoke;
+    padding: 10px;
+}
+.panelspace {
+    margin-left: 20px;
+}
+
+
+/* view-cart */
+.cart-pic {
+    height: 150px;
+    width: 150px;
+}
+
+#quantity {
+    width: 40px;
+}

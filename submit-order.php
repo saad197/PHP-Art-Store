@@ -1,6 +1,6 @@
 <?php 
 
-    require('../includes/checkout-utility.inc.php');
+    require('includes/checkout-utility.inc.php');
 
     if(session_status() == PHP_SESSION_NONE) {         
         session_start(); 
@@ -10,8 +10,8 @@
 
 <?php
 
-include "../includes/head.inc.php";
-include '../includes/primary-navigation.inc.php';
+include "includes/head.inc.php";
+include 'includes/primary-navigation.inc.php';
 
 ?>
 
