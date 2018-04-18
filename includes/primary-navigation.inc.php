@@ -99,6 +99,24 @@ require_once 'config.inc.php';
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Advanced Search
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <form method = "Post" action="advanced-search.php">
+                                    <button type="submit" name="artists"  class="btn btn-link btn-lg">Artists</button>
+                                </form>
+                            </li>
+                            <li>
+                                <form method = "Post"  action="advanced-search.php">
+                                    <button type="submit" name="artWork"  class="btn btn-link btn-lg">Artwork</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             Browse
                             <span class="caret"></span>
                         </a>
