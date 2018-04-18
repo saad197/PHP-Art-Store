@@ -34,10 +34,10 @@ function showShippingType() {
     $shipperTypes = getShippingTypes();
     foreach ($shipperTypes as $key => $value) {
         echo "<div>
-                <input type='radio' name='ShippingID' value='".$key."'> ".$value['shipperName']."
-                <div class='shipping-details'>
-                    ".$value["shipperDescription"]."
-                </div>
+                <input type='radio' name='ShippingID' value='".$key."'><label class='shipping-details'>".$value['shipperName']."</label>
+                    <label class='shipping-details'> | ".$value["shipperAvgTime"]." | </label>
+                    <label class='shipping-details'> | ".$value["shipperBaseFee"]." | </label>
+                    <label class='shipping-details'> | ".$value["shipperWeightFee"]." | </label>
             </div>";
     }
 }
