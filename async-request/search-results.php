@@ -16,7 +16,7 @@ if(isset($_POST['filter'])){
                 </a>
             </div>
             <div class = "col-md-10">
-                <a href="works.php?PaintingID='.$value['ArtistID'].'">
+                <a href="works.php?PaintingID='.$value['PaintingID'].'">
                 <p>'.$value['Title'].'</p>
                 </a>
                 <p>'.$value['Description'].'</p>
@@ -128,8 +128,8 @@ function getArtByTitleAndArtist($search)
         $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "SELECT Paintings.PaintingID, Paintings.ArtistID, Paintings.Title, Paintings.Description,Paintings.ImageFileName 
-        FROM Paintings JOIN Artists ON Paintings.ArtistID = Artists.ArtistID  
-        where Artists.FirstName =  ? OR Artists.LastName = ? OR Paintings.Title Like ?";
+                FROM Paintings JOIN Artists ON Paintings.ArtistID = Artists.ArtistID  
+                where Artists.FirstName =  ? OR Artists.LastName = ? OR Paintings.Title Like ?";
         // UNION
         // SELECT Paintings.PaintingID,Paintings.ArtistID, Paintings.Title, Paintings.Description,Paintings.ImageFileName
         // FROM Paintings JOIN Artists ON Paintings.ArtistID = Artists.ArtistID 
@@ -145,6 +145,7 @@ function getArtByTitleAndArtist($search)
         $result->bindValue(3, $search."%");
         $result->execute();
         $arts = array();
+        
         while ($row = $result->fetch()) {
             $artDetails['ArtistID'] = $row['ArtistID'];
             $artDetails['PaintingID'] = $row['PaintingID'];
