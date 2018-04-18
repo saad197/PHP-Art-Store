@@ -161,46 +161,6 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="google-font">Cart </h3>
-                    </div>
-                    <div class="wrapper">
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img src="images/tiny/116010.jpg" class="media-object" alt="..." width="32">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <p>
-                                    <a href="#">Artist Holding a Thistle</a>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img src="images/tiny/113010.jpg" class="media-object" alt="..." width="32">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <p>
-                                    <a href="#">Self-portrait in a Straw Hat</a>
-                                </p>
-                            </div>
-                        </div>
-                        <strong class="cartText">Subtotal:
-                            <span>$1200</span>
-                        </strong>
-                        <div>
-                            <button type="button" class="btn btn-primary btn-xs">
-                                <i class="glyphicon glyphicon-info-sign"></i> Edit</button>
-                            <button type="button" class="btn btn-primary btn-xs">
-                                <i class="glyphicon glyphicon-arrow-right"></i> Checkout</button>
-                        </div>
-                    </div>
-                </div>
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         <h3 class="google-font">Popular Artists</h3>
@@ -226,13 +186,13 @@
     </div>
     <footer>
         <div class="container">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <h4 class="google-font">
                     <i class="glyphicon glyphicon-info-sign"></i> About Us</h4>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
                     standard dummy text ever since the 1500s.</p>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <h4 class="google-font">
                     <i class="glyphicon glyphicon-earphone"></i> Customer Service
                 </h4>
@@ -255,50 +215,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <h4 class="google-font">
-                    <i class="glyphicon glyphicon-shopping-cart"></i> Just Ordered</h4>
-                <div class="media">
-                    <div class="media-left">
-                        <a href="#">
-                            <img src="images/tiny/13030.jpg" class="media-object" alt="...">
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <p>
-                            <a href="#">Arrangement in Grey and Black</a>
-                        </p>
-                        <em>5 minutes ago</em>
-                    </div>
-                </div>
-                <div class="media">
-                    <div class="media-left">
-                        <a href="#">
-                            <img src="images/tiny/116010.jpg" class="media-object" alt="...">
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <p>
-                            <a href="#">Artist Holding a Thistle</a>
-                        </p>
-                        <em>11 minutes ago</em>
-                    </div>
-                </div>
-                <div class="media similarTitle">
-                    <div class="media-left">
-                        <a href="#">
-                            <img src="images/tiny/113010.jpg" class="media-object" alt="...">
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <p>
-                            <a href="#">Self-portrait in a Straw Hat</a>
-                        </p>
-                        <em>23 minutes ago</em>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
+            
+            <div class="col-md-4">
                 <h4 class="google-font">
                     <i class="glyphicon glyphicon-envelope"></i> Contact us</h4>
                 <form action="http://www.randyconnolly.com/tests/process.php" method="post">
