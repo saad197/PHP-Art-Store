@@ -18,6 +18,7 @@ function getArtbySubAndArtist($search,$subject)
         $result->execute();
         $arts = array();
         while ($row = $result->fetch()) {
+            $artDetails['ArtistID'] = $row['ArtistID'];
             $artDetails['Artists'] = $row['Artists'];
             $artDetails['ImageFileName'] = $row['ImageFileName'];
             $artDetails['Title'] = $row['Title'];
