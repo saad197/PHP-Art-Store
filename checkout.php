@@ -89,7 +89,7 @@
                        </div>
                     </div>
                 </div>
-                <button type="submit"  value = "Checkout" class="btn btn-primary btn-md">Submit</button>
+                <button type="submit" name='checkout' value = "Checkout" class="btn btn-primary btn-md">Submit</button>
             </form>
         </div>
     </body>
