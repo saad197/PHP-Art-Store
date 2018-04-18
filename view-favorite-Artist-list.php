@@ -35,7 +35,7 @@ if(isset($listOfFvArtist)) {
 
         <form class="form-group">
             <fieldset>
-                <legend>Paintings</legend>
+                <legend>Artists</legend>
                 <table class="table table-hover" id="FvArtistTable">
                     <tr>
                         <th></th>

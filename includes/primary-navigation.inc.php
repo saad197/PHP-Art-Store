@@ -45,8 +45,12 @@ require_once 'config.inc.php';
                             <span class="glyphicon glyphicon-user"></span> My Account</a>
                     </li>
                     <li>
-                        <a href="display-favorite-lists.php">
-                            <span class="glyphicon glyphicon-gift"></span> View Wish List</a>
+                        <a href="view-favorite-Art-list.php">
+                            <span class="glyphicon glyphicon-gift"></span> View Art Wish-List</a>
+                    </li>
+                    <li>
+                        <a href="view-favorite-Artist-list.php">
+                            <span class="glyphicon glyphicon-gift"></span> View Artist Wish-List</a>
                     </li>
                     <li style="display: <?php echo $style;?>;">
                         <a href= "<?php echo $clink;?>">
@@ -132,6 +136,9 @@ require_once 'config.inc.php';
                             </li>
                             <li>
                                 <a href="browse-subjects.php">Subjects</a>
+                            </li>
+                            <li>
+                                <a href="browse-gallery.php">Galleries</a>
                             </li>
                         </ul>
                     </li>
