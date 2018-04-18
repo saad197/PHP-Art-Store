@@ -169,14 +169,13 @@ function getArtDescription($search){
     {
         $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT Paintings.PaintingID,Paintings.ArtistID, Paintings.Title, Paintings.Description, Paintings.ImageFileName 
-        FROM Paintings JOIN Artists ON Paintings.ArtistID = Artists.ArtistID WHERE Description Like ?";
+        $sql = "SELECT Paintings.PaintingID,Paintings.Title, Paintings.Description, Paintings.ImageFileName 
+        FROM Paintings WHERE Description LIKE ?";
         $result = $pdo->prepare($sql);
-        $result->bindValue(1, "%".$search."%");
+        $result->bindValue(1,"%".$search."%");
         $result->execute();
         $arts = array();
         while ($row = $result->fetch()) {
-            $artDetails['ArtistID'] = $row['ArtistID'];
             $artDetails['PaintingID'] = $row['PaintingID'];
             $artDetails['ImageFileName'] = $row['ImageFileName'];
             $artDetails['Title'] = $row['Title'];
