@@ -145,21 +145,14 @@ footer {
     height: 275px;
 }
 
-.artwork-panel {
-    height: 400px;
-    margin-bottom: 2px;
+#artwork-panel {
+    height: 225px;
+    margin-bottom: 5px;
 }
 
 #genre-panel {
     margin-right: 38px;
 }
-/* browse artist */
-
-.artist-box {
-    height: 225px;
-    margin-bottom: 20px;
-}
-
 
 /* edit art form styles*/
 #edit-work-form {
@@ -197,7 +190,6 @@ footer {
 
 /*Advanced-search*/
 #legendLabel{
-    border : 1px solid black;
     background-color: dimgrey;
     color : white;
     width: 50em;
@@ -218,13 +210,8 @@ footer {
     background-color:lightgrey;
 }
 .fieldset-container{
-    background-color:rgba(220, 228, 213, 0.411);
-}
-.caption1{
-    text-align: center;
-    font-size: 2em;
-    border : 1px solid lightgrey;
-    background-color:rgba(105, 105, 105, 0.801);
+    background-color:lightslategray;
+    
 }
 /* Shopping cart */
 
@@ -272,7 +259,7 @@ footer {
     background-color: whitesmoke;
     padding: 10px;
 }
- .panelspace {
+.panelspace {
     margin-left: 20px;
 }
 
@@ -283,43 +270,6 @@ footer {
     width: 150px;
 }
 
-.product-quantity {
+#quantity {
     width: 40px;
-}
-
-
-.cart-price input {
-    width: 80px;
-    border: none;
-}
-
-#checkout {
-    float: right;
-    margin-bottom: 10%;
-}
-
-#checkout p {
-    display: inline-block;
-    color: darkred;
-}
-
-#checkout input {
-    width: 15px;
-    height: 15px;
-    background-color: #eee;
-}
-
-#checkout button{
-    background-color: darkorange;
-    color: white;
-    width: 125px;
-    height: 40px;
-}
-
-#shipping-type {
-    margin-left: 20px;
-}
-
-.shipping-details {
-    margin-left: 10px;
 }
