@@ -315,3 +315,11 @@ footer {
     width: 125px;
     height: 40px;
 }
+
+#shipping-type {
+    margin-left: 20px;
+}
+
+#shipping-details {
+    margin-left: 10px;
+}

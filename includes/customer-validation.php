@@ -311,12 +311,6 @@ echo "empty";
 }
 
 
-else {
-    echo "error exists";
-    print_r($error);
-}
-
-
 //Customer update
 if(isset($_POST['update'])) {
 

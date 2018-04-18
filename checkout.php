@@ -3,7 +3,8 @@
     if(session_status() == PHP_SESSION_NONE) {         
         session_start();
     }  
-    include('includes/config.inc.php');
+    
+    include('includes/checkout-utility.inc.php');
 ?>
 
 
@@ -13,7 +14,6 @@
         <?php
             include "includes/customer-validation.php";
             include "includes/head.inc.php";
-            include "includes/view-cart.script.inc.php";
         ?>
         <style>.error{color : red; margin-top: 0px; margin-bottom: 0px;}</style>
     </head>
@@ -65,6 +65,12 @@
                             <span class = "error"><?php echo $phoneErr?></span>
                         </div>
                     </div>
+                    <div class='row'>
+                        <div id='shipping-type'>
+                            <h3><b>Choose Shipping Type</b></h3>
+                            <?php showShippingType(); ?>
+                        </div>
+                    </div>
                     <br>
                     <br>
                     <h1>Payment Infromation</h1>
@@ -83,7 +89,7 @@
                        </div>
                     </div>
                 </div>
-                <button type="submit"  value = "Submit Form" class="btn btn-primary btn-md">Submit</button>
+                <button type="submit"  value = "Checkout" class="btn btn-primary btn-md">Submit</button>
             </form>
         </div>
     </body>
