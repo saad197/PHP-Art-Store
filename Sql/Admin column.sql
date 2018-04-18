@@ -1,1 +1,0 @@
-ALTER TABLE `CustomerLogon` ADD `Admin` BOOLEAN NOT NULL AFTER `DateLastModified`;
