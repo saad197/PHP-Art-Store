@@ -78,7 +78,7 @@ function getReviews($paintingID) {
     try {
         $pdo = new PDO(DBCONNSTRING,DBUSER,DBPASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT * FROM reviews WHERE PaintingID = $paintingID ORDER BY ReviewDate DESC ;";
+        $sql = "SELECT * FROM Reviews WHERE PaintingID = $paintingID ORDER BY ReviewDate DESC ;";
         $result = $pdo->query($sql);
         while ($row = $result->fetch()) {
 
