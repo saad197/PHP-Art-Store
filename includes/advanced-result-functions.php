@@ -97,6 +97,7 @@ function getArtByGenre($select)
         $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "SELECT
+        genres.GenreID,
         Artists.ArtistID,
         CONCAT(
             artists.FirstName,
@@ -119,6 +120,7 @@ function getArtByGenre($select)
         $result->execute();
         $arts = array();
         while ($row = $result->fetch()) {
+            $artDetails['GenreID'] = $row['GenreID'];
             $artDetails['ArtistID'] = $row['ArtistID'];
             $artDetails['Artists'] = $row['Artists'];
             $artDetails['ImageFileName'] = $row['ImageFileName'];

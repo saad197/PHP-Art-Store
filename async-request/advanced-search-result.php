@@ -115,7 +115,7 @@ if($_POST['searchType'] == "search-art")
                 {
                     echo'
                     <tr>
-                    <td><img src="images/works/square-tiny/'.$value['ImageFileName'].'.jpg">
+                    <td><img src="images/works/square-medium/'.$value['ImageFileName'].'.jpg">
                         <a href="artist-details.php?ArtistID='.$value['ArtistID'].'">'.$value['Title'].'</td></a>
                         <td>'.$value['Artists'].'</td>
                         <td>'.$value['YearOfWork'].'</td>

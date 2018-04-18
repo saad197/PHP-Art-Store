@@ -36,6 +36,6 @@ if(isset($_POST['Delete']) && isset($_SESSION['CartPaintings'])) {
      header('Location: ../view-shopping-cart.php');
 }
 
-header('Location: checkout.php');
+header('Location: ../checkout.php');
 
 ?>

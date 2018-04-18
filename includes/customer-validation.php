@@ -1,8 +1,8 @@
 <?php
 require_once "config.inc.php";
 // define variables and set to empty values
-$email = $password = $cpassword = $country = $firstName = $state = $lastName = $address = $city = $postal = $phone = "";
-$emailErr = $passwordErr = $countryErr = $cPasswordErr = $stateErr = $firstNameErr = $lastNameErr = $addressErr = $cityErr = $postalErr = $phoneErr = "";
+$email = $password = $cpassword = $country = $firstName = $state = $lastName = $address = $city = $postal = $phone = $cardNumber = $cvvNum = $date = "";
+$emailErr = $passwordErr = $countryErr = $cPasswordErr = $stateErr = $firstNameErr = $lastNameErr = $addressErr = $cityErr = $postalErr = $phoneErr = $cardNumErr = $cvvErr = $dateErr = "";
 
 $error = array();
 
@@ -10,7 +10,68 @@ $error = array();
 $error2 = array();
 
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["cardnumber"])) {
+        $cardNumErr = "cardnumber is required";
+        $error  = $error2 = $cardNumErr;
+    } else {
+        $cardNumber = test_input($_POST["cardnumber"]);
+        // check if name only contains letters and whitespace
+        if(strlen($cardNumber) == 16)
+        {
 
+            if (!preg_match("/^[0-9]*$/",$cardNumber)) {
+                $cardNumErr = "only number";
+                $error = $error2 = $cardNumErr;
+            }
+
+        }
+        else{
+            $cardNumErr = "must be 16 length";
+            $error = $error2 = $cardNumErr;
+
+        }
+    }
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["cvvNum"])) {
+        $cvvErr = "cvvNum is required";
+        $error  = $error2 = $cvvErr;
+    } else {
+        $cvvNum = test_input($_POST["cvvNum"]);
+        // check if name only contains letters and whitespace
+        if(strlen($cvvNum) == 3)
+        {
+
+            if (!preg_match("/^[0-9]*$/",$cvvNum)) {
+                $cvvErr = "only number";
+                $error = $error2 = $cvvErr;
+            }
+
+        }
+        else{
+            $cvvErr = "must be 3 length";
+            $error = $error2 = $cvvErr;
+
+        }
+    }
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["date"])) {
+        $dateErr = "date is required";
+        $error  = $error2 = $dateErr;
+    } else {
+        $date = test_input($_POST["date"]);
+        // check if name only contains letters and whitespace
+
+        if (!preg_match("/^([0-9]{2})\\/([0-9]{2})$/",$date)) {
+            $dateErr = "Invalid format";
+            $error = $error2 = $dateErr;
+        }
+    }
+}
 
 if (empty($_POST["email"])) {
     $emailErr = "Email is required";
@@ -37,7 +98,6 @@ if (empty($_POST["email"])) {
 }
 
 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["firstname"])) {
         $firstNameErr = "First Name is required";
@@ -49,6 +109,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!preg_match("/^([^[:punct:]\d]+)$/", $firstName)) {
             $firstNameErr = "Only letters and white space allowed";
             $error = $error2 = $firstNameErr;
+        }
+    }
+
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["region"])) {
+        $stateErr = "Filed is required";
+        $error  = $error2 = $stateErr;
+
+    } else {
+        $state = test_input($_POST["region"]);
+        // check if name only contains letters and whitespace
+        if (!preg_match("/^([^[:punct:]\s\d]+)$/", $state)) {
+            $stateErr = "Only letters";
+            $error = $error2 = $stateErr;
+        }
+    }
+
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["city"])) {
+        $cityErr = "Filed is required";
+        $error  = $error2 = $cityErr;
+
+    } else {
+        $city = test_input($_POST["city"]);
+        // check if name only contains letters and whitespace
+        if (!preg_match("/^([^[:punct:]\s\d]+)$/", $city)) {
+            $cityErr = "Only letters";
+            $error = $error2 = $cityErr;
+        }
+    }
+
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["country"])) {
+        $countryErr = "Filed is required";
+        $error  = $error2 = $countryErr;
+
+    } else {
+        $country = test_input($_POST["country"]);
+        // check if name only contains letters and whitespace
+        if (!preg_match("/^([^[:punct:]\s\d]+)$/", $country)) {
+            $countryErr = "Only letters";
+            $error = $error2 = $countryErr;
         }
     }
 
@@ -92,7 +200,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["cpassword"])) {
         $cPasswordErr = "Type password again to confirm";
         $error = $cPasswordErr;
-    } else {
+    } else { 
         $cpassword = test_input($_POST["cpassword"]);
         // check if name only contains letters and whitespace
         if ($cpassword != $password) {
