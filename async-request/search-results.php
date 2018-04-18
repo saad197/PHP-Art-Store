@@ -22,10 +22,10 @@ if(isset($_POST['filter'])){
                 <p>'.$value['Description'].'</p>
                 <div class="btn-group">
                     <button type="button" class="btn btn-default">
-                        <a href="#"><span class="glyphicon glyphicon-th-large"></span>&nbsp;Add to Wish List</a>
+                    <a href="favorites/add-favorite-painting-list.inc.php?PaintingID='.$value['PaintingID'].'"></span>&nbsp;Add to Wish List</a>
                     </button>
                     <button type="button" class="btn btn-default">
-                        <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Add to Shopping Cart</a>
+                    <a href="customize-product.php?PaintingID='.$value['PaintingID'].'"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Add to Shopping Cart</a>
                     </button>
                 </div>
             </div>
@@ -51,10 +51,10 @@ if(isset($_POST['filter'])){
                         <p>'.str_replace($search,'<span class="bg-primary">'.$search.'</span>',$value['Description']).'</p>
                         <div class="btn-group">
                             <button type="button" class="btn btn-default">
-                                <a href="#"><span class="glyphicon glyphicon-th-large"></span>&nbsp;Add to Wish List</a>
+                                <a href="favorites/add-favorite-painting-list.inc.php?PaintingID='.$value['PaintingID'].'"></span>&nbsp;Add to Wish List</a>
                             </button>
                             <button type="button" class="btn btn-default">
-                                <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Add to Shopping Cart</a>
+                                <a href="customize-product.php?PaintingID='.$value['PaintingID'].'"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Add to Shopping Cart</a>
                             </button>
                         </div>
                     </div>
@@ -81,10 +81,10 @@ if(isset($_POST['filter'])){
                     <p>'.$value['Description'].'</p>
                     <div class="btn-group">
                         <button type="button" class="btn btn-default">
-                            <a href="#"><span class="glyphicon glyphicon-th-large"></span>&nbsp;Add to Wish List</a>
+                            <a href="favorites/add-favorite-painting-list.inc.php?PaintingID='.$value['PaintingID'].'"></span>&nbsp;Add to Wish List</a>
                         </button>
                         <button type="button" class="btn btn-default">
-                            <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Add to Shopping Cart</a>
+                            <a href="customize-product.php?PaintingID='.$value['PaintingID'].'"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Add to Shopping Cart</a>
                         </button>
                     </div>
                 </div>
