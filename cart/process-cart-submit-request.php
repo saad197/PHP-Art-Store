@@ -1,7 +1,7 @@
 <?php
 
 if(session_status() == PHP_SESSION_NONE) {         
-    session_start();     
+    session_start();
 }
 
 // collecting quantity for each paintings in cart
@@ -35,7 +35,9 @@ if(isset($_POST['Delete']) && isset($_SESSION['CartPaintings'])) {
      }
      header('Location: ../view-shopping-cart.php');
 }
+if (isset($_POST['checkoutSubmit'])) {
+    header('Location: ../checkout.php');
+}
 
-header('Location: ../checkout.php');
 
 ?>

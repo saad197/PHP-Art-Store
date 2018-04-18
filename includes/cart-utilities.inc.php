@@ -231,7 +231,7 @@ function getCartList() {
                     </tr>";
             }
         }
-        if(isset($subtotal) && isset($shippingCost) && isset($subtotal) && isset($tax)) {
+        if(isset($subtotal) && isset($subtotal) && isset($tax)) {
             echo "<tr class='summary-tr'>
                             <td colspan='6'>Subtotal:</td>
                             <td id='summary-subtotal'>$".$subtotal."</td>
@@ -239,10 +239,6 @@ function getCartList() {
                         <tr class='summary-tr'>
                             <td colspan='6'>Tax</td>
                             <td id='summary-tax'>$".$tax."</td>
-                        </tr>
-                        <tr class='summary-tr'>
-                            <td colspan='6'>Shipping</td>
-                            <td id='shipping-price'>$".$shippingCost."</td>
                         </tr>
                         <tr class='summary-tr'>
                             <td colspan='6'><span style='color:red'>GrandTotal</span></td>

@@ -3,8 +3,11 @@
     if(session_status() == PHP_SESSION_NONE) {         
         session_start();
     }  
-    
+
     include('includes/checkout-utility.inc.php');
+    if (empty($_SESSION['cusID'])) {
+        header('Location: login-please.php');
+    }
 ?>
 
 

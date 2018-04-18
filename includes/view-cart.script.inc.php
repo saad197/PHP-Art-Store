@@ -8,8 +8,7 @@
       $('#summary-subtotal').text("$" + Subtotal);
       var tax = 0.05 * Subtotal;
       $('#summary-tax').text("$" + tax);
-      var shippingCost = 10;
-      var grandTotal = Subtotal + shippingCost + tax;
+      var grandTotal = Subtotal + tax;
       $('#summary-total').text("$"+grandTotal);
   }
 

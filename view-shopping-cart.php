@@ -37,7 +37,7 @@ if(session_status() == PHP_SESSION_NONE) {
                     </tr> -->
                 </tbody>
             </table>
-                <div id='checkout'><a href='#'><button type='submit'>Checkout</button></td></a></div>
+                <div id='checkout'><a href='#'><button type='submit' name='checkoutSubmit'>Checkout</button></td></a></div>
         </form>
        </div><!--end container-->
     </body>

@@ -129,16 +129,7 @@ function getArtByTitleAndArtist($search)
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "SELECT Paintings.PaintingID, Paintings.ArtistID, Paintings.Title, Paintings.Description,Paintings.ImageFileName 
                 FROM Paintings JOIN Artists ON Paintings.ArtistID = Artists.ArtistID  
-                where Artists.FirstName =  ? OR Artists.LastName = ? OR Paintings.Title Like ?";
-        // UNION
-        // SELECT Paintings.PaintingID,Paintings.ArtistID, Paintings.Title, Paintings.Description,Paintings.ImageFileName
-        // FROM Paintings JOIN Artists ON Paintings.ArtistID = Artists.ArtistID 
-        // where Artists.LastName Like ?
-        // UNION
-        // SELECT Paintings.PaintingID,Paintings.ArtistID, Paintings.Title, Paintings.Description,Paintings.ImageFileName 
-        // FROM Paintings JOIN Artists ON Paintings.ArtistID = Artists.ArtistID  
-        // where Paintings.Title Like ?";
-        // Subjects.SubjectName = ? and Genres.GenreName = ? and Paintings.Title like ?
+                WHERE Artists.FirstName =  ? OR Artists.LastName = ? OR Paintings.Title Like ?";
         $result = $pdo->prepare($sql);
         $result->bindValue(1, $search);
         $result->bindValue(2, $search);

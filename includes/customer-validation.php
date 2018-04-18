@@ -9,11 +9,14 @@ $error = array();
 //for customer update (admin)
 $error2 = array();
 
+//for checkout
+$error3 = array();
+
 if (isset($_POST['checkout'])) {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($_POST["cardnumber"])) {
             $cardNumErr = "cardnumber is required";
-            $error  = $error2 = $cardNumErr;
+            $error  = $error3 = $cardNumErr;
         } else {
             $cardNumber = test_input($_POST["cardnumber"]);
             // check if name only contains letters and whitespace
@@ -22,13 +25,13 @@ if (isset($_POST['checkout'])) {
 
                 if (!preg_match("/^[0-9]*$/",$cardNumber)) {
                     $cardNumErr = "only number";
-                    $error = $error2 = $cardNumErr;
+                    $error = $error3 = $cardNumErr;
                 }
 
             }
             else{
                 $cardNumErr = "must be 16 length";
-                $error = $error2 = $cardNumErr;
+                $error = $error3 = $cardNumErr;
 
             }
         }
@@ -37,7 +40,7 @@ if (isset($_POST['checkout'])) {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($_POST["cvvNum"])) {
             $cvvErr = "cvvNum is required";
-            $error  = $error2 = $cvvErr;
+            $error  = $error3 = $cvvErr;
         } else {
             $cvvNum = test_input($_POST["cvvNum"]);
             // check if name only contains letters and whitespace
@@ -46,13 +49,13 @@ if (isset($_POST['checkout'])) {
 
                 if (!preg_match("/^[0-9]*$/",$cvvNum)) {
                     $cvvErr = "only number";
-                    $error = $error2 = $cvvErr;
+                    $error = $error3 = $cvvErr;
                 }
 
             }
             else{
                 $cvvErr = "must be 3 length";
-                $error = $error2 = $cvvErr;
+                $error = $error3 = $cvvErr;
 
             }
         }
@@ -61,19 +64,17 @@ if (isset($_POST['checkout'])) {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($_POST["date"])) {
             $dateErr = "date is required";
-            $error  = $error2 = $dateErr;
+            $error  = $error3 = $dateErr;
         } else {
             $date = test_input($_POST["date"]);
             // check if name only contains letters and whitespace
 
             if (!preg_match("/^([0-9]{2})\\/([0-9]{2})$/",$date)) {
                 $dateErr = "Invalid format";
-                $error = $error2 = $dateErr;
+                $error = $error3 = $dateErr;
             }
         }
-    }
-
-    
+    }    
 }
 
 
@@ -296,8 +297,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 if(empty($error))
 {
-
-echo "empty";
     $addUserEnter = "";
 
     //sending data of all fields
@@ -337,5 +336,26 @@ function test_input($data) {
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
+}
+
+
+
+
+if(empty($error3))
+{
+    $addUserEnter = "";
+
+    //sending data of all fields
+    foreach ($_POST as $key => $value){
+        $addUserEnter .= $key."=".$value ."&" ;
+    }
+
+    if(isset($_POST['checkout'])) {
+
+        //redirects user and also sends data
+        header('Location: cart/submit-order.php?' . $addUserEnter);
+    }
+
+
 }
 ?>
