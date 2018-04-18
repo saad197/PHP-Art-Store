@@ -48,6 +48,7 @@
     <body>
         <?php include '../includes/primary-navigation.inc.php';?>
         <div class = "container">
+            <h1>Shipping infotmation</h1>
             <form method = "POST" action ="<?php echo $_SERVER["PHP_SELF"]; ?>">
                 <div class = "form-group">
                     <div class = "row">
@@ -74,15 +75,15 @@
                     <br>
                     <div class = "row">
                         <div class = "col-md-2">
-                            City: <input type="text" class="form-control" name="city"  value = "<?php echo $city; ?>" required>
+                            City: <input type="text" class="form-control" name="city"  value = "<?php echo $city; ?>" >
                             <span class = "error"><?php echo $cityErr?></span>
                         </div>
                         <div class = "col-md-2">
-                            Region: <input type="text" class="form-control" name="region"  value = "<?php echo $state; ?>" required>
+                            Region: <input type="text" class="form-control" name="region"  value = "<?php echo $state; ?>" >
                             <span class = "error"><?php echo $stateErr?></span>
                         </div>
                        <div class = "col-md-2">
-                            Country: <input type="text" class="form-control" name="country"  value = "<?php echo $country; ?>"required>
+                            Country: <input type="text" class="form-control" name="country"  value = "<?php echo $country; ?>">
                             <span class = "error"><?php echo $countryErr?></span>
                        </div>
                     </div>
@@ -95,6 +96,23 @@
                             Phone: <input type="text" class="form-control"name="phone" placeholder="Phone Number" value = "<?php echo $phone; ?>">
                             <span class = "error"><?php echo $phoneErr?></span>
                         </div>
+                    </div>
+                    <br>
+                    <br>
+                    <h1>Payment Infromation</h1>
+                    <div class = "row">
+                        <div class = "col-md-3">
+                            Card Number: <input type="number" class="form-control" min = "0" name = "cardnumber" value = "<?php echo $cardNumber; ?>">
+                            <span class = "error"><?php echo $cardNumErr?></span>
+                        </div>
+                        <div class = "col-md-2">
+                            CVV: <input type="number" class="form-control" min = "0"  name = "cvvNum" value = "<?php echo $cvvNum; ?>">
+                            <span class = "error"><?php echo $cvvErr?></span>
+                        </div>
+                       <div class = "col-md-2">
+                            Expiry Date: <input type="text" class="form-control" name = "date" value = "<?php echo $date; ?>" placeholder = "05/15">
+                            <span class = "error"><?php echo $dateErr?></span>
+                       </div>
                     </div>
                 </div>
                 <button type="submit"  value = "Submit Form" class="btn btn-primary btn-md">Submit</button>
