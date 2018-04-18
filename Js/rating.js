@@ -60,11 +60,11 @@ $(".rating").click(function () {
     $("#rat-value").val(id);
     // Just for fun, you can remove or edit this if you want!
     if ( id == "1")
-      //  $("#rating-label").text('Thank you! you gave me: '+ id +' star :-( ');
+        $("#rating-label").text('Thank you! you gave me: '+ id +' star :-( ');
     else if ( id == "2" | id == "3" )
-     //   $("#rating-label").text('Thank you! you gave me: '+ id +' stars :-| ');
+        $("#rating-label").text('Thank you! you gave me: '+ id +' stars :-| ');
     else
-      //  $("#rating-label").text('Thank you! you gave me: '+ id +' stars :-) ');
+        $("#rating-label").text('Thank you! you gave me: '+ id +' stars :-) ');
 
     // Make all stars up to the clicked star as selected ( GOLD color)
     for (i = 1; i <= id; i++)
